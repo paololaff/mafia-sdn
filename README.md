@@ -1,10 +1,5 @@
 # MAFIA: Measurements As FIrst-class Artifacts
 
-## Paper
-
-OverLeaf MAFIA InfoCom 2019 Paper: [MAFIA](https://www.overleaf.com/11021339hznvyrqfkpzw#/41508904/ "MAFIA") 
-OverLeaf MAFIA SOSR 2018 Paper: [MAFIA](https://www.overleaf.com/11021339hznvyrqfkpzw#/41508904/ "MAFIA") (Rejected)
-<!-- OverLeaf Software-defined Measurement Primitives: [SDM-Primitives](https://www.overleaf.com/8361283nxtctdnhfcqz#/38280255/ "SDM-Primitives") (old document)   -->
 
 ## Repository structure  
 
