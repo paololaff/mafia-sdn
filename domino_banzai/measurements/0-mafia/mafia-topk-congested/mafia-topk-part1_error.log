@@ -1,0 +1,202 @@
+// sketch1_idx sketch1_idx0
+// sketch2_idx sketch2_idx0
+// sketch3_idx sketch3_idx0
+// sketch4_idx sketch4_idx0
+// ipv4_id ipv4_id1
+// marked marked0
+// sketch1_idx0 sketch1_idx00
+// sketch2_idx0 sketch2_idx00
+// sketch3_idx0 sketch3_idx00
+// sketch4_idx0 sketch4_idx00
+// sketch_cnt_10 sketch_cnt_101
+// sketch_cnt_20 sketch_cnt_201
+// sketch_cnt_30 sketch_cnt_301
+// sketch_cnt_40 sketch_cnt_401
+// tmp0 tmp00
+// tmp1 tmp10
+// tmp2 tmp20
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+digraph graph_output {splines=true node [shape = box style="rounded,filled"];
+11759439804438399393 [label = "p.tmp6 = hash5(p.ipv4_src, p.ipv4_dst, p.tcp_src, p.tcp_dst, p.ipv4_proto) % 256"  fillcolor=white];
+13057984771731786445 [label = "p.sketch1_idx00 = (p.tmp2) ? p.tmp6 : p.sketch1_idx"  fillcolor=white];
+17773084505922394417 [label = "p.sketch_cnt_100 = sketch_cnt_1[p.sketch1_idx00]"  fillcolor=white];
+7241667285541357087 [label = "p.sketch2_idx00 = (p.tmp2) ? p.tmp6 : p.sketch2_idx"  fillcolor=white];
+7557946539361221525 [label = "p.sketch_cnt_200 = sketch_cnt_2[p.sketch2_idx00]"  fillcolor=white];
+11171446858379809234 [label = "p.sketch3_idx00 = (p.tmp2) ? p.tmp6 : p.sketch3_idx"  fillcolor=white];
+10699238449338417354 [label = "p.sketch_cnt_300 = sketch_cnt_3[p.sketch3_idx00]"  fillcolor=white];
+576496772717329985 [label = "p.sketch4_idx00 = (p.tmp2) ? p.tmp6 : p.sketch4_idx"  fillcolor=white];
+1718110601614435832 [label = "p.sketch_cnt_400 = sketch_cnt_4[p.sketch4_idx00]"  fillcolor=white];
+13074249694434954449 [label = "p.tmp00 = p.is_entry_switch == 1"  fillcolor=white];
+17276396864622465789 [label = "p.tmp7 = p.marked | 1"  fillcolor=white];
+7022144807708654724 [label = "p.marked0 = (p.tmp00) ? p.tmp7 : p.marked"  fillcolor=white];
+2001220494191269010 [label = "p.ipv4_id0 = (p.tmp00) ? (p.q_length) : p.ipv4_id"  fillcolor=white];
+3516863814885240221 [label = "p.tmp8 = p.is_entry_switch == 0"  fillcolor=white];
+6110382703848996571 [label = "p.tmp9 = p.marked0 == 1"  fillcolor=white];
+16083602143589714236 [label = "p.tmp10 = p.tmp8 && p.tmp9"  fillcolor=white];
+15751393903020360102 [label = "p.tmp11 = p.ipv4_id0 + p.q_length"  fillcolor=white];
+4940250073891723151 [label = "p.ipv4_id1 = (p.tmp10) ? p.tmp11 : p.ipv4_id0"  fillcolor=white];
+17226750264928043591 [label = "p.tmp20 = p.is_exit_switch == 1"  fillcolor=white];
+1845944490557987672 [label = "p.tmp16 = p.sketch_cnt_100 + 1"  fillcolor=white];
+11600464386831270947 [label = "p.sketch_cnt_101 = (p.tmp20) ? p.tmp16 : p.sketch_cnt_100"  fillcolor=white];
+1221852423281705703 [label = "p.tmp17 = p.sketch_cnt_200 + 1"  fillcolor=white];
+5279618931931841640 [label = "p.sketch_cnt_201 = (p.tmp20) ? p.tmp17 : p.sketch_cnt_200"  fillcolor=white];
+17204800414547166846 [label = "p.tmp18 = p.sketch_cnt_300 + 1"  fillcolor=white];
+234463787930202236 [label = "p.sketch_cnt_301 = (p.tmp20) ? p.tmp18 : p.sketch_cnt_300"  fillcolor=white];
+3946858646978868970 [label = "p.tmp19 = p.sketch_cnt_400 + 1"  fillcolor=white];
+16293029080274020590 [label = "p.sketch_cnt_401 = (p.tmp20) ? p.tmp19 : p.sketch_cnt_400"  fillcolor=white];
+1779731341209553812 [label = "sketch_cnt_1[p.sketch1_idx00] = (p.tmp20) ? p.tmp16 : p.sketch_cnt_100"  fillcolor=white];
+7448027085160046920 [label = "sketch_cnt_2[p.sketch2_idx00] = (p.tmp20) ? p.tmp17 : p.sketch_cnt_200"  fillcolor=white];
+10670205858349682404 [label = "sketch_cnt_3[p.sketch3_idx00] = (p.tmp20) ? p.tmp18 : p.sketch_cnt_300"  fillcolor=white];
+16759295602507557720 [label = "sketch_cnt_4[p.sketch4_idx00] = (p.tmp20) ? p.tmp19 : p.sketch_cnt_400"  fillcolor=white];
+11759439804438399393 -> 13057984771731786445 ;
+11759439804438399393 -> 7241667285541357087 ;
+11759439804438399393 -> 11171446858379809234 ;
+11759439804438399393 -> 576496772717329985 ;
+13057984771731786445 -> 17773084505922394417 ;
+13057984771731786445 -> 1779731341209553812 ;
+17773084505922394417 -> 1845944490557987672 ;
+17773084505922394417 -> 11600464386831270947 ;
+17773084505922394417 -> 1779731341209553812 ;
+7241667285541357087 -> 7557946539361221525 ;
+7241667285541357087 -> 7448027085160046920 ;
+7557946539361221525 -> 1221852423281705703 ;
+7557946539361221525 -> 5279618931931841640 ;
+7557946539361221525 -> 7448027085160046920 ;
+11171446858379809234 -> 10699238449338417354 ;
+11171446858379809234 -> 10670205858349682404 ;
+10699238449338417354 -> 17204800414547166846 ;
+10699238449338417354 -> 234463787930202236 ;
+10699238449338417354 -> 10670205858349682404 ;
+576496772717329985 -> 1718110601614435832 ;
+576496772717329985 -> 16759295602507557720 ;
+1718110601614435832 -> 3946858646978868970 ;
+1718110601614435832 -> 16293029080274020590 ;
+1718110601614435832 -> 16759295602507557720 ;
+13074249694434954449 -> 7022144807708654724 ;
+13074249694434954449 -> 2001220494191269010 ;
+17276396864622465789 -> 7022144807708654724 ;
+7022144807708654724 -> 6110382703848996571 ;
+2001220494191269010 -> 15751393903020360102 ;
+2001220494191269010 -> 4940250073891723151 ;
+3516863814885240221 -> 16083602143589714236 ;
+6110382703848996571 -> 16083602143589714236 ;
+16083602143589714236 -> 4940250073891723151 ;
+15751393903020360102 -> 4940250073891723151 ;
+17226750264928043591 -> 11600464386831270947 ;
+17226750264928043591 -> 5279618931931841640 ;
+17226750264928043591 -> 234463787930202236 ;
+17226750264928043591 -> 16293029080274020590 ;
+17226750264928043591 -> 1779731341209553812 ;
+17226750264928043591 -> 7448027085160046920 ;
+17226750264928043591 -> 10670205858349682404 ;
+17226750264928043591 -> 16759295602507557720 ;
+1845944490557987672 -> 11600464386831270947 ;
+1845944490557987672 -> 1779731341209553812 ;
+1221852423281705703 -> 5279618931931841640 ;
+1221852423281705703 -> 7448027085160046920 ;
+17204800414547166846 -> 234463787930202236 ;
+17204800414547166846 -> 10670205858349682404 ;
+3946858646978868970 -> 16293029080274020590 ;
+3946858646978868970 -> 16759295602507557720 ;
+1779731341209553812 -> 17773084505922394417 ;
+7448027085160046920 -> 7557946539361221525 ;
+10670205858349682404 -> 10699238449338417354 ;
+16759295602507557720 -> 1718110601614435832 ;
+}
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+digraph pipeline_diagram {splines=true node [shape = box style="rounded,filled" fontsize = 10];
+14123810169076349000 [label = "p.tmp6 = hash5(p.ipv4_src, p.ipv4_dst, p.tcp_src, p.tcp_dst, p.ipv4_proto) % 256;
+"  pos = "0,0" fillcolor=white];
+13655216411131505077 [label = "p.tmp20 = p.is_exit_switch == 1;
+"  pos = "0,75" fillcolor=white];
+3215499722881208491 [label = "p.tmp8 = p.is_entry_switch == 0;
+"  pos = "0,150" fillcolor=white];
+11614898306924148225 [label = "p.tmp7 = p.marked | 1;
+"  pos = "0,225" fillcolor=white];
+6844952968122449764 [label = "p.tmp00 = p.is_entry_switch == 1;
+"  pos = "0,300" fillcolor=white];
+15604650532830576361 [label = "p.sketch1_idx00 = (p.tmp2) ? p.tmp6 : p.sketch1_idx;
+"  pos = "250,0" fillcolor=white];
+10778946627771147778 [label = "p.ipv4_id0 = (p.tmp00) ? (p.q_length) : p.ipv4_id;
+"  pos = "250,75" fillcolor=white];
+1767836932789475123 [label = "p.marked0 = (p.tmp00) ? p.tmp7 : p.marked;
+"  pos = "250,150" fillcolor=white];
+764078864699575838 [label = "p.sketch4_idx00 = (p.tmp2) ? p.tmp6 : p.sketch4_idx;
+"  pos = "250,225" fillcolor=white];
+2077739543486811195 [label = "p.sketch3_idx00 = (p.tmp2) ? p.tmp6 : p.sketch3_idx;
+"  pos = "250,300" fillcolor=white];
+13957149405663407335 [label = "p.sketch2_idx00 = (p.tmp2) ? p.tmp6 : p.sketch2_idx;
+"  pos = "250,375" fillcolor=white];
+14282290291327780433 [label = "p.sketch_cnt_400 = sketch_cnt_4[p.sketch4_idx00];
+p.tmp19 = p.sketch_cnt_400 + 1;
+sketch_cnt_4[p.sketch4_idx00] = (p.tmp20) ? p.tmp19 : p.sketch_cnt_400;
+"  pos = "500,0" fillcolor=darkturquoise];
+5739013375607681150 [label = "p.sketch_cnt_300 = sketch_cnt_3[p.sketch3_idx00];
+p.tmp18 = p.sketch_cnt_300 + 1;
+sketch_cnt_3[p.sketch3_idx00] = (p.tmp20) ? p.tmp18 : p.sketch_cnt_300;
+"  pos = "500,75" fillcolor=darkturquoise];
+6284922247875427652 [label = "p.sketch_cnt_200 = sketch_cnt_2[p.sketch2_idx00];
+p.tmp17 = p.sketch_cnt_200 + 1;
+sketch_cnt_2[p.sketch2_idx00] = (p.tmp20) ? p.tmp17 : p.sketch_cnt_200;
+"  pos = "500,150" fillcolor=darkturquoise];
+9817484958284513127 [label = "p.tmp9 = p.marked0 == 1;
+"  pos = "500,225" fillcolor=white];
+8543838041922604570 [label = "p.tmp11 = p.ipv4_id0 + p.q_length;
+"  pos = "500,300" fillcolor=white];
+10524776772445726454 [label = "p.sketch_cnt_100 = sketch_cnt_1[p.sketch1_idx00];
+p.tmp16 = p.sketch_cnt_100 + 1;
+sketch_cnt_1[p.sketch1_idx00] = (p.tmp20) ? p.tmp16 : p.sketch_cnt_100;
+"  pos = "500,375" fillcolor=darkturquoise];
+12678646432440801421 [label = "p.tmp10 = p.tmp8 && p.tmp9;
+"  pos = "750,0" fillcolor=white];
+10316747558264773318 [label = "p.sketch_cnt_101 = (p.tmp20) ? p.tmp16 : p.sketch_cnt_100;
+"  pos = "750,75" fillcolor=white];
+7894335505433145878 [label = "p.sketch_cnt_201 = (p.tmp20) ? p.tmp17 : p.sketch_cnt_200;
+"  pos = "750,150" fillcolor=white];
+4369020159258408017 [label = "p.sketch_cnt_301 = (p.tmp20) ? p.tmp18 : p.sketch_cnt_300;
+"  pos = "750,225" fillcolor=white];
+14546580095824117666 [label = "p.sketch_cnt_401 = (p.tmp20) ? p.tmp19 : p.sketch_cnt_400;
+"  pos = "750,300" fillcolor=white];
+1516267225348127473 [label = "p.ipv4_id1 = (p.tmp10) ? p.tmp11 : p.ipv4_id0;
+"  pos = "1000,0" fillcolor=white];
+14123810169076349000 -> 15604650532830576361 ;
+14123810169076349000 -> 13957149405663407335 ;
+14123810169076349000 -> 2077739543486811195 ;
+14123810169076349000 -> 764078864699575838 ;
+15604650532830576361 -> 10524776772445726454 ;
+10524776772445726454 -> 10316747558264773318 ;
+13957149405663407335 -> 6284922247875427652 ;
+6284922247875427652 -> 7894335505433145878 ;
+2077739543486811195 -> 5739013375607681150 ;
+5739013375607681150 -> 4369020159258408017 ;
+764078864699575838 -> 14282290291327780433 ;
+14282290291327780433 -> 14546580095824117666 ;
+6844952968122449764 -> 1767836932789475123 ;
+6844952968122449764 -> 10778946627771147778 ;
+11614898306924148225 -> 1767836932789475123 ;
+1767836932789475123 -> 9817484958284513127 ;
+10778946627771147778 -> 8543838041922604570 ;
+10778946627771147778 -> 1516267225348127473 ;
+3215499722881208491 -> 12678646432440801421 ;
+9817484958284513127 -> 12678646432440801421 ;
+12678646432440801421 -> 1516267225348127473 ;
+8543838041922604570 -> 1516267225348127473 ;
+13655216411131505077 -> 10524776772445726454 ;
+13655216411131505077 -> 6284922247875427652 ;
+13655216411131505077 -> 5739013375607681150 ;
+13655216411131505077 -> 14282290291327780433 ;
+13655216411131505077 -> 10316747558264773318 ;
+13655216411131505077 -> 7894335505433145878 ;
+13655216411131505077 -> 4369020159258408017 ;
+13655216411131505077 -> 14546580095824117666 ;
+}

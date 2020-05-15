@@ -1,0 +1,84 @@
+table_set_default forward _drop
+table_set_default ipv4_lpm _drop
+table_set_default send_frame _drop
+
+table_set_default table_veridp_is_switch_first _no_op
+table_set_default table_veridp_is_switch_last _no_op
+table_set_default table_veridp_load_switch_id _no_op
+table_set_default table_veridp_load_in_out_port _no_op
+table_set_default table_veridp_sample_interval _no_op
+table_set_default table_veridp_select do_veridp_select
+table_set_default table_veridp_calculate_bf_indexes do_veridp_calculate_bf_indexes
+
+table_add table_veridp_load_switch_id do_veridp_load_switch_id => 15
+table_add table_veridp_is_switch_first do_veridp_is_switch_first_or_last 15 =>
+table_add table_veridp_is_switch_last do_veridp_is_switch_first_or_last 15 =>
+table_add table_veridp_sample_interval do_veridp_sample_interval 10.0.0.1 10.0.0.2 => 0
+table_add table_veridp_sample_interval do_veridp_sample_interval 10.0.0.1 10.0.0.3 => 1
+table_add table_veridp_sample_interval do_veridp_sample_interval 10.0.0.1 10.0.0.4 => 2
+table_add table_veridp_sample_interval do_veridp_sample_interval 10.0.0.1 10.0.0.5 => 3
+table_add table_veridp_sample_interval do_veridp_sample_interval 10.0.0.1 10.0.0.6 => 4
+table_add table_veridp_sample_interval do_veridp_sample_interval 10.0.0.1 10.0.0.7 => 5
+table_add table_veridp_sample_interval do_veridp_sample_interval 10.0.0.1 10.0.0.8 => 6
+
+table_add table_veridp_load_in_out_port do_veridp_load_packet_in_out_port 15 00:00:00:00:00:01 => 1
+
+table_add send_frame rewrite_mac 1 => 00:00:00:00:00:01
+table_add send_frame rewrite_mac 2 => 00:00:00:00:00:02
+table_add send_frame rewrite_mac 3 => 00:00:00:00:00:03
+table_add forward set_dmac 10.0.0.1 => 00:00:00:00:00:01
+table_add forward set_dmac 10.0.0.2 => 00:00:00:00:00:02
+table_add forward set_dmac 10.0.0.3 => 00:00:00:00:00:03
+table_add ipv4_lpm set_nhop 10.0.0.1/32 => 10.0.0.1 1
+table_add ipv4_lpm set_nhop 10.0.0.2/32 => 10.0.0.2 2
+table_add ipv4_lpm set_nhop 10.0.0.3/32 => 10.0.0.3 3
+mirroring_add 999 0
+
+table_add table_veridp_update_bf_0 do_veridp_update_bf_tag 0 => 0x1
+table_add table_veridp_update_bf_0 do_veridp_update_bf_tag 1 => 0x2
+table_add table_veridp_update_bf_0 do_veridp_update_bf_tag 2 => 0x4
+table_add table_veridp_update_bf_0 do_veridp_update_bf_tag 3 => 0x8
+table_add table_veridp_update_bf_0 do_veridp_update_bf_tag 4 => 0x10
+table_add table_veridp_update_bf_0 do_veridp_update_bf_tag 5 => 0x20
+table_add table_veridp_update_bf_0 do_veridp_update_bf_tag 6 => 0x40
+table_add table_veridp_update_bf_0 do_veridp_update_bf_tag 7 => 0x80
+table_add table_veridp_update_bf_0 do_veridp_update_bf_tag 8 => 0x100
+table_add table_veridp_update_bf_0 do_veridp_update_bf_tag 9 => 0x200
+table_add table_veridp_update_bf_0 do_veridp_update_bf_tag 10 => 0x400
+table_add table_veridp_update_bf_0 do_veridp_update_bf_tag 11 => 0x800
+table_add table_veridp_update_bf_0 do_veridp_update_bf_tag 12 => 0x1000
+table_add table_veridp_update_bf_0 do_veridp_update_bf_tag 13 => 0x2000
+table_add table_veridp_update_bf_0 do_veridp_update_bf_tag 14 => 0x4000
+table_add table_veridp_update_bf_0 do_veridp_update_bf_tag 15 => 0x8000
+table_add table_veridp_update_bf_1 do_veridp_update_bf_tag 0 => 0x1
+table_add table_veridp_update_bf_1 do_veridp_update_bf_tag 1 => 0x2
+table_add table_veridp_update_bf_1 do_veridp_update_bf_tag 2 => 0x4
+table_add table_veridp_update_bf_1 do_veridp_update_bf_tag 3 => 0x8
+table_add table_veridp_update_bf_1 do_veridp_update_bf_tag 4 => 0x10
+table_add table_veridp_update_bf_1 do_veridp_update_bf_tag 5 => 0x20
+table_add table_veridp_update_bf_1 do_veridp_update_bf_tag 6 => 0x40
+table_add table_veridp_update_bf_1 do_veridp_update_bf_tag 7 => 0x80
+table_add table_veridp_update_bf_1 do_veridp_update_bf_tag 8 => 0x100
+table_add table_veridp_update_bf_1 do_veridp_update_bf_tag 9 => 0x200
+table_add table_veridp_update_bf_1 do_veridp_update_bf_tag 10 => 0x400
+table_add table_veridp_update_bf_1 do_veridp_update_bf_tag 11 => 0x800
+table_add table_veridp_update_bf_1 do_veridp_update_bf_tag 12 => 0x1000
+table_add table_veridp_update_bf_1 do_veridp_update_bf_tag 13 => 0x2000
+table_add table_veridp_update_bf_1 do_veridp_update_bf_tag 14 => 0x4000
+table_add table_veridp_update_bf_1 do_veridp_update_bf_tag 15 => 0x8000
+table_add table_veridp_update_bf_2 do_veridp_update_bf_tag 0 => 0x1
+table_add table_veridp_update_bf_2 do_veridp_update_bf_tag 1 => 0x2
+table_add table_veridp_update_bf_2 do_veridp_update_bf_tag 2 => 0x4
+table_add table_veridp_update_bf_2 do_veridp_update_bf_tag 3 => 0x8
+table_add table_veridp_update_bf_2 do_veridp_update_bf_tag 4 => 0x10
+table_add table_veridp_update_bf_2 do_veridp_update_bf_tag 5 => 0x20
+table_add table_veridp_update_bf_2 do_veridp_update_bf_tag 6 => 0x40
+table_add table_veridp_update_bf_2 do_veridp_update_bf_tag 7 => 0x80
+table_add table_veridp_update_bf_2 do_veridp_update_bf_tag 8 => 0x100
+table_add table_veridp_update_bf_2 do_veridp_update_bf_tag 9 => 0x200
+table_add table_veridp_update_bf_2 do_veridp_update_bf_tag 10 => 0x400
+table_add table_veridp_update_bf_2 do_veridp_update_bf_tag 11 => 0x800
+table_add table_veridp_update_bf_2 do_veridp_update_bf_tag 12 => 0x1000
+table_add table_veridp_update_bf_2 do_veridp_update_bf_tag 13 => 0x2000
+table_add table_veridp_update_bf_2 do_veridp_update_bf_tag 14 => 0x4000
+table_add table_veridp_update_bf_2 do_veridp_update_bf_tag 15 => 0x8000

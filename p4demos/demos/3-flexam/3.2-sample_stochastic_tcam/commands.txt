@@ -1,0 +1,29 @@
+table_set_default table_drop _drop
+table_set_default table_sample do_sample
+table_set_default table_no_sample do_no_sample
+table_set_default table_check_sample _no_op
+table_set_default table_sample_probability _no_op
+table_set_default table_sample_redirect _no_op
+table_add table_check_sample do_check_sample 192.168.0.0/16 10.0.0.1 6 => 16 255.255.255.255 65535 0
+table_add table_check_sample do_check_sample 192.168.0.0/16 10.0.0.2 6 => 64 255.255.255.255 65535 1
+table_add table_check_sample do_check_sample 192.168.0.0/16 10.0.0.3 6 => 256 255.255.255.255 65535 2
+table_add table_check_sample do_check_sample 192.168.0.0/16 10.0.0.4 6 => 512 255.255.255.255 65535 3
+table_add table_check_sample do_check_sample 192.168.0.0/16 10.0.0.5 6 => 1024 255.255.255.255 65535 4
+table_add table_check_sample do_check_sample 192.168.0.0/16 10.0.0.6 6 => 2048 255.255.255.255 65535 5
+table_add table_check_sample do_check_sample 192.168.0.0/16 10.0.0.7 6 => 4096 255.255.255.255 65535 6
+table_add table_check_sample do_check_sample 192.168.0.0/16 10.0.0.8 6 => 8192 255.255.255.255 65535 7
+table_add table_sample_probability do_apply_sample_probability 0x1&&&0x1 => 2 0
+table_add table_sample_probability do_apply_sample_probability 0x2&&&0x3 => 4 1
+table_add table_sample_probability do_apply_sample_probability 0x3&&&0x7 => 8 2
+table_add table_sample_probability do_apply_sample_probability 0x8&&&0xf => 16 3
+table_add table_sample_probability do_apply_sample_probability 0x10&&&0x1f => 32 4
+table_add table_sample_probability do_apply_sample_probability 0x20&&&0x3f => 64 5
+table_add table_sample_probability do_apply_sample_probability 0x40&&&0x7f => 128 6
+table_add table_sample_probability do_apply_sample_probability 0x80&&&0xff => 256 7
+table_add table_sample_probability do_apply_sample_probability 0x100&&&0x1ff => 512 8
+table_add table_sample_probability do_apply_sample_probability 0x200&&&0x3ff => 1024 9
+table_add table_sample_probability do_apply_sample_probability 0x400&&&0x7ff => 2048 10
+table_add table_sample_probability do_apply_sample_probability 0x800&&&0xfff => 4096 11
+table_add table_sample_probability do_apply_sample_probability 0x1000&&&0x1fff => 8192 12
+table_add table_sample_redirect do_sample_redirect 1 =>
+mirroring_add 999 0

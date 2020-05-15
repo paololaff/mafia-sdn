@@ -1,0 +1,427 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    
+    "tasks": [
+        {
+            "label": "SDM-DEMO Launcher",
+            "type": "shell",
+            "command": "sudo ./p4demos/sdm-launcher.sh",
+            "args": ["8.1", "22222"],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            }
+        },
+        {
+            "label": "Python sdm.py",
+            "type": "shell",
+            "command": "python",
+            "args": ["./p4demos/py/sdm.py", "--demo", "2.2", "--timer", "1000"],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Python Run ${file}",
+            "type": "shell",
+            "command": "python",
+            "args": ["${file}"],
+            "group": "test",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "P4 Validate ${file}",
+            "type": "shell",
+            "command": "p4-validate",
+            "args": ["${file}"],
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "P4 Compile ${file}",
+            "type": "shell",
+            "command": "~/p4/p4c-bmv2/p4c_bm/__main__.py",
+            "args": ["${file}", "--json", "${fileDirname}/${fileBasenameNoExtension}.json"],
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "P4 Compile ${project}",
+            "type": "shell",
+            // "command": "./p4demos/scripts/p4_compile_project.sh",
+            "command": "./scripts/scripts/p4_compile_project.sh",
+            "args": ["${file}"],
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "problemMatcher": [
+                {
+                    "severity": "error",
+                    "fileLocation": ["relative", "${workspaceRoot}"],
+                    "pattern": {
+                        "regexp": "^parse (error) in file [\/a-zA-Z0-9\\-]+\/(p4demos/demos\/.*\\.p4) at line (\\d+) : (.*)$",
+                        // "regexp": "^parse error in file [\/a-zA-Z0-9\\-]+\/(.*\\.p4) at line (\\d+) : (.*)$",
+                        "severity": 1,
+                        "file": 2,
+                        "location": 3,
+                        "message": 4
+                    }
+                    // "background": {                        
+                    //     "activeOnStart": true,
+                    //     "beginsPattern": { "regexp": "^P4: Compiling project .*$" },
+                    //     "endsPattern": { "regexp": "/^((Genereting json output to .*)|(Error while building HLIR))$" }
+                    // }
+                },
+                {
+                    "fileLocation": ["relative", "${workspaceRoot}"],
+                    "pattern": {
+                        // "regexp": "^Semantic (error): (.*) in file [\/a-zA-Z0-9\\-]+\/(demos\/.*\\.p4) at line (\\d+): (.*)$",
+                        // // "regexp": "^Semantic (error|warning): (.*) (defined|)\\s*in file [\/a-zA-Z0-9\\-]+\/(p4demos/demos\/.*\\.p4) at line (\\d+)[:]* (.*)$",
+                        "regexp": "^Semantic (error): (Redefinition of (.*))\\s*in file [\/a-zA-Z0-9\\-]+\/(p4demos\/demos\/.*\\.p4)\\s*at\\s*line\\s*(\\d+),previous definition was in file\\s*(.*)$",
+                        "severity": 1,
+                        "file": 4,
+                        "location": 5,
+                        "message": 2
+                    }
+                },
+                {
+                    "fileLocation": ["relative", "${workspaceRoot}"],
+                    "pattern": {
+                        // "regexp": "^Semantic (error): (.*) in file [\/a-zA-Z0-9\\-]+\/(demos\/.*\\.p4) at line (\\d+): (.*)$",
+                        // // "regexp": "^Semantic (error|warning): (.*) (defined|)\\s*in file [\/a-zA-Z0-9\\-]+\/(p4demos/demos\/.*\\.p4) at line (\\d+)[:]* (.*)$",
+                        "regexp": "^Semantic (error|warning): (.*) (defined|)\\s*in file [\/a-zA-Z0-9\\-]+\/(p4demos\/demos\/.*\\.p4)\\s*at\\s*line\\s*(\\d+)[:]*\\s*(.*)$",
+                        "severity": 1,
+                        "file": 4,
+                        "location": 5,
+                        "message": 2
+                    }
+                },
+                {
+                    "fileLocation": ["relative", "${workspaceRoot}"],
+                    "pattern": {
+                        // "regexp": "^Semantic (error): (.*) in file [\/a-zA-Z0-9\\-]+\/(demos\/.*\\.p4) at line (\\d+): (.*)$",
+                        "regexp": "^Semantic (error): Invalid reference to field (.*)\\s*in file [\/a-zA-Z0-9\\-]+\/(p4demos\/demos\/.*\\.p4)\\s*at\\s*line\\s*(\\d+)[:]*\\s*(.*)$",
+                        "severity": 1,
+                        "file": 3,
+                        "location": 4,
+                        "message": 5
+                    }
+                },
+                {
+                    "fileLocation": ["relative", "${workspaceRoot}"],
+                    "pattern": {
+                        "regexp": "^Semantic (warning): (.*)$",
+                        "severity": 1,
+                        "message": 2
+                    }
+                },
+                {
+                    "fileLocation": ["relative", "${workspaceRoot}"],
+                    "pattern": {
+                            "regexp": "^[\/a-zA-Z0-9\\-]+\/(p4demos/demos\/.*\\.p4):(\\d+):(\\d+): fatal (error): (.*)$",
+                            
+                            "severity": 4,
+                            "file": 1,
+                            "location": 2,
+                            "column": 3,
+                            "message": 5
+                        }
+                }
+            ]
+        },
+        {
+            "label": "P4 bm 'update' 'simple_switch.cpp'",
+            "type": "shell",
+            "command": "cp",
+            "args": ["${workspaceRoot}/bmv2/targets/simple_switch/*", "${workspaceRoot}/../behavioral-model/targets/simple_switch/"],
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "P4 bm 'update' 'p4dbg.py'",
+            "type": "shell",
+            "command": "cp",
+            "args": ["${workspaceRoot}/bmv2/tools/p4dbg.py", "${workspaceRoot}/../behavioral-model/tools/p4dbg.py"],
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "P4 bm 'update'",
+            "type": "shell",
+            "command": "echo 'P4 bm update: simple_switch.cpp && p4dbg.py'",
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "dependsOn": ["P4 bm 'update' 'p4dbg.py'", "P4 bm 'update' 'simple_switch.cpp'"]
+        },
+        {
+            "label": "P4 bm 'make'",
+            "type": "shell",
+            "command": "make",
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "options": {
+                "cwd": "${workspaceRoot}/../behavioral-model"
+            },            
+            "dependsOn": ["P4 bm 'update'"]
+        },
+        {
+            "label": "P4 bm 'make clean'",
+            "type": "shell",
+            "command": "make clean",
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            },
+            "options": {
+                "cwd": "${workspaceRoot}/../behavioral-model"
+            }
+        },
+        {
+            "label": "P4 bm 'make install'",
+            "type": "shell",
+            "command": "sudo make install",
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            },
+            "options": {
+                "cwd": "${workspaceRoot}/../behavioral-model"
+            }
+        },
+        
+        // {
+        //     "label": "p4c-tofino 'set_sde.bash'",
+        //     "type": "shell",
+        //     "command": ". ./set_sde.bash",
+        //     "group": "build",
+        //     "presentation": {
+        //         "reveal": "always",
+        //         "panel": "shared"
+        //     },
+        //     "options": {
+        //         "cwd": "${workspaceRoot}/../barefoot-sde/bf-sde-7.0.1.61"
+        //     }
+        // },
+        {
+            "label": "p4c-tofino 'p4_build.sh' ${file}",
+            "type": "shell",
+            "command": ". ./set_sde.bash && ./p4_build.sh ${file} --with-graphs",
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "options": {
+                "cwd": "${workspaceRoot}/../barefoot-sde/bf-sde-7.0.1.61"
+            }
+        },
+
+
+
+
+        // Domino/Banzai compilation tasks
+        {
+            "label": "Domino compile - RW",
+            "type": "shell",
+            "command": "sh",
+            "args": ["./compile.sh", "${file}", "./banzai_atoms/rw.sk", "32", "16", "${fileBasenameNoExtension}", "${fileDirname}"],
+            "group": "build",
+            "options": {
+                "cwd": "${workspaceRoot}/../domino/domino-examples"
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Domino compile - RAW",
+            "type": "shell",
+            "command": "sh",
+            "args": ["./compile.sh", "${file}", "./banzai_atoms/raw.sk", "32", "16", "${fileBasenameNoExtension}", "${fileDirname}"],
+            "group": "build",
+            "options": {
+                "cwd": "${workspaceRoot}/../domino/domino-examples"
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Domino compile - PRAW",
+            "type": "shell",
+            "command": "sh",
+            "args": ["./compile.sh", "${file}", "./banzai_atoms/pred_raw.sk", "32", "16", "${fileBasenameNoExtension}", "${fileDirname}"],
+            "group": "build",
+            "options": {
+                "cwd": "${workspaceRoot}/../domino/domino-examples"
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Domino compile - IfElseRAW",
+            "type": "shell",
+            "command": "sh",
+            "args": ["./compile.sh", "${file}", "./banzai_atoms/if_else_raw.sk", "32", "16", "${fileBasenameNoExtension}", "${fileDirname}"],
+            "group": "build",
+            "options": {
+                "cwd": "${workspaceRoot}/../domino/domino-examples"
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Domino compile - SUB",
+            "type": "shell",
+            "command": "sh",
+            "args": ["./compile.sh", "${file}", "./banzai_atoms/sub.sk", "32", "16", "${fileBasenameNoExtension}", "${fileDirname}"],
+            "group": "build",
+            "options": {
+                "cwd": "${workspaceRoot}/../domino/domino-examples"
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Domino compile - NestedIfs",
+            "type": "shell",
+            "command": "sh",
+            "args": ["./compile.sh", "${file}", "./banzai_atoms/nested_ifs.sk", "32", "16", "${fileBasenameNoExtension}", "${fileDirname}"],
+            "group": "build",
+            "options": {
+                "cwd": "${workspaceRoot}/../domino/domino-examples"
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Domino compile - PAIR",
+            "type": "shell",
+            "command": "sh",
+            "args": ["./compile.sh", "${file}", "./banzai_atoms/pair.sk", "32", "16", "${fileBasenameNoExtension}", "${fileDirname}"],
+            "group": "build",
+            "options": {
+                "cwd": "${workspaceRoot}/../domino/domino-examples"
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        }
+
+        
+        // {
+        //     "taskName": "P4 Clean ${file}",
+        //     "type": "shell",
+        //     "command": "rm",
+        //     "args": ["${fileDirname}/*.json", "${fileDirname}/../*.pcap"],
+        //     "group": "build",
+        //     "presentation": {
+        //         "reveal": "always",
+        //         "panel": "shared"
+        //     }
+        // },
+        // {
+        //     "taskName": "P4 Clean PCAP ${file}",
+        //     "type": "shell",
+        //     "command": "sudo rm",
+        //     "args": ["${fileDirname}/../*.pcap"],
+        //     "group": "build",
+        //     "presentation": {
+        //         "reveal": "always",
+        //         "panel": "shared"
+        //     }
+        // },
+        // {
+        //     "taskName": "P4 Clean PCAP ${workspaceRoot}",
+        //     "type": "shell",
+        //     "command": "sudo rm",
+        //     "args": ["${workspaceRoot}/*.pcap"],
+        //     "group": "build",
+        //     "presentation": {
+        //         "reveal": "always",
+        //         "panel": "shared"
+        //     }
+        // },
+        // {
+        //     "taskName": "P4 Update bmv2 - simple_switch",
+        //     "type": "shell",
+        //     "command": "cp",
+        //     "args": ["${workspaceRoot}/bmv2/targets/simple_switch/simple_switch.cpp", "${workspaceRoot}/../bmv2/targets/simple_switch/simple_switch.cpp"],
+        //     "group": "build",
+        //     "presentation": {
+        //         "reveal": "always",
+        //         "panel": "shared"
+        //     }
+        // },
+        // {
+        //     "taskName": "P4 Update bmv2 - prng",
+        //     "type": "shell",
+        //     "command": "cp",
+        //     "args": ["${workspaceRoot}/bmv2/targets/simple_switch/prng.*", "${workspaceRoot}/../bmv2/targets/simple_switch/"],
+        //     "group": "build",
+        //     "presentation": {
+        //         "reveal": "always",
+        //         "panel": "shared"
+        //     }
+        // },
+        // {
+        //     "taskName": "P4 Update bmv2 - Makefile",
+        //     "type": "shell",
+        //     "command": "cp",
+        //     "args": ["${workspaceRoot}/bmv2/targets/simple_switch/Makefile", "${workspaceRoot}/../bmv2/targets/simple_switch/Makefile"],
+        //     "group": "build",
+        //     "presentation": {
+        //         "reveal": "always",
+        //         "panel": "shared"
+        //     }
+        // },
+    ]
+}
+

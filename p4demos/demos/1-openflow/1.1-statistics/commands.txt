@@ -1,0 +1,9 @@
+table_set_default counter_table _no_op
+table_add counter_table do_count 10.0.0.1 10.0.0.2 => 0
+table_add counter_table do_count 10.0.0.1 10.0.0.3 => 1
+table_add counter_table do_count 10.0.0.2 10.0.0.1 => 2
+table_add counter_table do_count 10.0.0.2 10.0.0.3 => 3
+table_add counter_table do_count 10.0.0.3 10.0.0.1 => 4
+table_add counter_table do_count 10.0.0.3 10.0.0.2 => 5
+table_set_default duration_table update_duration
+table_add duration_table update_start_ts 0 =>

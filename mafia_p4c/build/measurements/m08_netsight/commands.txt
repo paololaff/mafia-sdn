@@ -1,0 +1,6 @@
+table_set_default t_duplicate_postcards a_duplicate_postcards
+mirroring_add 1 0
+table_set_default t_tag_input_port a_tag_input_port
+table_set_default t_tag_switch_id a_tag_switch_id
+table_set_default t_tag_output_port a_tag_output_port
+table_set_default t_collect_postcards a_collect_postcards

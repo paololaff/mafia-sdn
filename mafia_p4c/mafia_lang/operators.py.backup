@@ -1,0 +1,173 @@
+
+from .util.util import repr_plus
+from .p4objects import *
+from .observer import Observable, Observer
+
+class Operator(Observable, Observer):
+
+    def __add__(self, ob):
+        """
+        The parallel composition operator.
+
+        :param ob: the Policy to the right of the operator
+        :type ob: Policy
+        :rtype: Parallel
+        """
+        p = Parallel([self, ob])
+        return p
+        # if isinstance(ob, Parallel):
+        #     # self.subscribe(ob.observers[0])
+        #     p =  Parallel([self] + ob.observers)
+        #     return p
+        # else:
+        #     # self.subscribe(ob)
+        #     p = Parallel([self, ob])
+        #     return p
+
+    def __rshift__(self, ob):
+        """
+        The sequential composition operator.
+
+        :param pol: the Policy to the right of the operator
+        :type pol: Policy
+        :rtype: Sequential
+        """
+        s = Sequential([self, ob])
+        return s
+        # if isinstance(ob, Sequential):
+        #     # self.subscribe(ob.observers[0])
+        #     s = Sequential([self] + ob.observers)
+        #     return s
+        # else:
+        #     # self.subscribe(ob)
+        #     s = Sequential([self, ob])
+        #     return s
+
+    def name(self):
+        return self.__class__.__name__
+
+    def __repr__(self):
+        return "%s : %d" % (self.name(), id(self))
+
+    def _compile(self):
+        pass
+
+
+class Combinator(Operator):
+    """
+    Abstract class for policy combinators.
+
+    :param policies: the policies to be combined.
+    :type policies: list Policy
+    """
+
+    ### init : List Policy -> unit
+    def __init__(self, observers=[]):
+        super(Combinator, self).__init__()
+        self.observers = list(observers)
+        self.p4object = None
+
+    def on_next(self, item):
+        self._next(item)
+
+    def on_compile(self, p4_ast, action_list = list(), table_list = list()):
+        # for o in p4_ast.chi
+        pass # for node in PreOrderIter(p4_ast, maxlevel = ):
+
+    def __repr__(self):
+        return "%s:\n%s" % (self.name(), repr_plus(self.observers))
+
+    def __eq__(self, other):
+        return ((self.__class__ == other.__class__) and (self.observers == other.observers))
+
+class Parallel(Combinator):
+    """
+    Combinator for several policies in Parallel.
+
+    :param policies: the policies to be combined.
+    :type policies: list Policy
+    """
+
+    def __new__(cls, observers=[]):
+        # Hackety hack.
+        if not observers:
+            raise ValueError("No observers")
+        else:
+            rv = super().__new__(Parallel)
+            rv.__init__(observers)
+            return rv
+
+    def __init__(self, observers=[]):
+        if not observers:
+            raise TypeError
+        super(Parallel, self).__init__(observers)
+
+    def __add__(self, ob):
+        return Parallel([self, ob])
+        # return Parallel(self.observers + [ob])
+        # if isinstance(ob, Parallel):
+        #     return Parallel(self.observers + ob.observers)
+        # else:
+        #     return Parallel(self.observers + [ob])
+
+    def on_next(self, item):
+        ret = False
+        for o in self.observers:
+            ret |= o.on_next(item)
+        return ret
+
+    def on_compile(self, p4_ast, action_list = list(), table_list = list()):
+        self.p4object = P4Control("parallel", p4_ast)
+        for o in reversed(self.observers):
+            o.on_compile(self.p4object, action_list, table_list)
+        # super.on_compile(self.p4object)
+        self._compile()
+
+    def _compile(self):
+        pass
+
+class Sequential(Combinator):
+    """
+    Combinator for several policies in sequence.
+
+    :param policies: the policies to be combined.
+    :type policies: list Policy
+    """
+
+    def __new__(cls, observers=[]):
+        # Hackety hack.
+        if not observers:
+            raise ValueError("No observers")
+        else:
+            rv = super().__new__(Sequential)
+            rv.__init__(observers)
+            return rv
+
+    def __init__(self, observers=[]):
+        if not observers:
+            raise TypeError
+        super(Sequential, self).__init__(observers)
+
+    def __rshift__(self, ob):
+        return Sequential([self, ob])
+        # return Sequential(self.observers + [ob])
+        # if isinstance(ob, Sequential):
+        #     return Sequential(self.observers + ob.observers)
+        # else:
+        #     return Sequential(self.observers + [ob])
+
+    def on_next(self, item):
+        for o in self.observers:
+            if not o.on_next(item):
+                break
+        return True
+
+    def on_compile(self, p4_ast, action_list = list(), table_list = list()):
+        self.p4object = P4Control("sequential", p4_ast)
+        for o in reversed(self.observers):
+            o.on_compile(self.p4object, action_list, table_list)
+        # super.on_compile(self.p4object)
+        self._compile()
+
+    def _compile(self):
+        pass

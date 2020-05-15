@@ -1,0 +1,116 @@
+// flow_index flow_index0
+// flow_index flow_index1
+// flow_index flow_index2
+// flow_index flow_index3
+// flow_index flow_index4
+// bytes_counter0 bytes_counter01
+// flow_duration0 flow_duration01
+// flow_index0 flow_index00
+// flow_index1 flow_index10
+// flow_index2 flow_index20
+// flow_index3 flow_index30
+// flow_index4 flow_index40
+// now_ts0 now_ts01
+// packet_counter0 packet_counter01
+// start_ts0 start_ts01
+// tmp0 tmp00
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+digraph graph_output {splines=true node [shape = box style="rounded,filled"];
+4164574518165950843 [label = "p.flow_index40 = hash5(p.ipv4_src, p.ipv4_dst, p.tcp_src, p.tcp_dst, p.ipv4_proto) % 4096"  fillcolor=white];
+4019475960438583022 [label = "p.bytes_counter00 = bytes_counter[p.flow_index40]"  fillcolor=white];
+8006737280893263794 [label = "p.packet_counter00 = packet_counter[p.flow_index40]"  fillcolor=white];
+5775798277178600601 [label = "p.start_ts00 = start_ts[p.flow_index40]"  fillcolor=white];
+9059446917090722653 [label = "p.now_ts00 = now_ts[p.flow_index40]"  fillcolor=white];
+8103361598836080060 [label = "p.flow_duration00 = flow_duration[p.flow_index40]"  fillcolor=white];
+9651909220468302688 [label = "p.bytes_counter01 = p.bytes_counter00 + p.pkt_len"  fillcolor=white];
+17229034948881188856 [label = "p.packet_counter01 = p.packet_counter00 + 1"  fillcolor=white];
+6434416889596147977 [label = "p.tmp00 = p.start_ts00 == 0"  fillcolor=white];
+9941114747508428507 [label = "p.start_ts01 = (p.tmp00) ? (p.timestamp) : p.start_ts00"  fillcolor=white];
+4267533166220813415 [label = "p.now_ts01 = p.timestamp"  fillcolor=white];
+7043823229595318023 [label = "p.flow_duration01 = p.now_ts01 - p.start_ts01"  fillcolor=white];
+11338405670896210613 [label = "bytes_counter[p.flow_index40] = p.bytes_counter00 + p.pkt_len"  fillcolor=white];
+16061032795029417443 [label = "packet_counter[p.flow_index40] = p.packet_counter00 + 1"  fillcolor=white];
+3114984533469083611 [label = "start_ts[p.flow_index40] = (p.tmp00) ? (p.timestamp) : p.start_ts00"  fillcolor=white];
+2423186416876362779 [label = "now_ts[p.flow_index40] = p.timestamp"  fillcolor=white];
+2746894584365864526 [label = "flow_duration[p.flow_index40] = p.now_ts01 - p.start_ts01"  fillcolor=white];
+4164574518165950843 -> 4019475960438583022 ;
+4164574518165950843 -> 8006737280893263794 ;
+4164574518165950843 -> 5775798277178600601 ;
+4164574518165950843 -> 9059446917090722653 ;
+4164574518165950843 -> 8103361598836080060 ;
+4164574518165950843 -> 11338405670896210613 ;
+4164574518165950843 -> 16061032795029417443 ;
+4164574518165950843 -> 3114984533469083611 ;
+4164574518165950843 -> 2423186416876362779 ;
+4164574518165950843 -> 2746894584365864526 ;
+4019475960438583022 -> 9651909220468302688 ;
+4019475960438583022 -> 11338405670896210613 ;
+8006737280893263794 -> 17229034948881188856 ;
+8006737280893263794 -> 16061032795029417443 ;
+5775798277178600601 -> 6434416889596147977 ;
+5775798277178600601 -> 9941114747508428507 ;
+5775798277178600601 -> 3114984533469083611 ;
+9059446917090722653 -> 2423186416876362779 ;
+8103361598836080060 -> 2746894584365864526 ;
+6434416889596147977 -> 9941114747508428507 ;
+6434416889596147977 -> 3114984533469083611 ;
+9941114747508428507 -> 7043823229595318023 ;
+9941114747508428507 -> 2746894584365864526 ;
+4267533166220813415 -> 7043823229595318023 ;
+4267533166220813415 -> 2746894584365864526 ;
+11338405670896210613 -> 4019475960438583022 ;
+16061032795029417443 -> 8006737280893263794 ;
+3114984533469083611 -> 5775798277178600601 ;
+2423186416876362779 -> 9059446917090722653 ;
+2746894584365864526 -> 8103361598836080060 ;
+}
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+digraph pipeline_diagram {splines=true node [shape = box style="rounded,filled" fontsize = 10];
+9607132935620225185 [label = "p.flow_index40 = hash5(p.ipv4_src, p.ipv4_dst, p.tcp_src, p.tcp_dst, p.ipv4_proto) % 4096;
+"  pos = "0,0" fillcolor=white];
+13246601150152246818 [label = "p.now_ts01 = p.timestamp;
+"  pos = "0,75" fillcolor=white];
+12336017307364580864 [label = "p.bytes_counter00 = bytes_counter[p.flow_index40];
+bytes_counter[p.flow_index40] = p.bytes_counter00 + p.pkt_len;
+"  pos = "250,0" fillcolor=darkturquoise];
+16548700186434533240 [label = "p.packet_counter00 = packet_counter[p.flow_index40];
+packet_counter[p.flow_index40] = p.packet_counter00 + 1;
+"  pos = "250,75" fillcolor=darkturquoise];
+6644351465713548821 [label = "p.start_ts00 = start_ts[p.flow_index40];
+p.tmp00 = p.start_ts00 == 0;
+start_ts[p.flow_index40] = (p.tmp00) ? (p.timestamp) : p.start_ts00;
+"  pos = "250,150" fillcolor=darkturquoise];
+587441419400935320 [label = "p.now_ts00 = now_ts[p.flow_index40];
+now_ts[p.flow_index40] = p.timestamp;
+"  pos = "250,225" fillcolor=darkturquoise];
+17221132698161692141 [label = "p.bytes_counter01 = p.bytes_counter00 + p.pkt_len;
+"  pos = "500,0" fillcolor=white];
+6563229035370217898 [label = "p.packet_counter01 = p.packet_counter00 + 1;
+"  pos = "500,75" fillcolor=white];
+6642717948212466961 [label = "p.start_ts01 = (p.tmp00) ? (p.timestamp) : p.start_ts00;
+"  pos = "500,150" fillcolor=white];
+16096375474811719350 [label = "p.flow_duration00 = flow_duration[p.flow_index40];
+flow_duration[p.flow_index40] = p.now_ts01 - p.start_ts01;
+"  pos = "750,0" fillcolor=darkturquoise];
+9712609660013420204 [label = "p.flow_duration01 = p.now_ts01 - p.start_ts01;
+"  pos = "750,75" fillcolor=white];
+9607132935620225185 -> 12336017307364580864 ;
+9607132935620225185 -> 16548700186434533240 ;
+9607132935620225185 -> 6644351465713548821 ;
+9607132935620225185 -> 587441419400935320 ;
+9607132935620225185 -> 16096375474811719350 ;
+12336017307364580864 -> 17221132698161692141 ;
+16548700186434533240 -> 6563229035370217898 ;
+6644351465713548821 -> 6642717948212466961 ;
+6642717948212466961 -> 16096375474811719350 ;
+6642717948212466961 -> 9712609660013420204 ;
+13246601150152246818 -> 16096375474811719350 ;
+13246601150152246818 -> 9712609660013420204 ;
+}

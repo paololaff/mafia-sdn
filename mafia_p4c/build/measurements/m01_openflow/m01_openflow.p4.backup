@@ -1,0 +1,323 @@
+
+#include "../../parser.p4"
+#include <tofino/stateful_alu_blackbox.p4>
+
+header_type vlan_t {
+  fields{
+      pcp: 3;
+      dei: 1;
+      vid: 12;
+      ether_type: 16;
+  }
+}
+header vlan_t vlan;
+
+
+header_type ethernet_t {
+  fields{
+      dst: 48;
+      src: 48;
+      ether_type: 16;
+  }
+}
+header ethernet_t eth;
+
+
+header_type tcp_t {
+  fields{
+      src: 16;
+      dst: 16;
+      seq_n: 32;
+      ack_n: 32;
+      data_offset: 4;
+      res: 3;
+      ecn: 3;
+      ctrl: 6;
+      window: 16;
+      checksum: 16;
+      urgent: 16;
+  }
+}
+header tcp_t tcp;
+
+
+header_type ipv4_t {
+  fields{
+      version: 4;
+      ihl: 4;
+      tos: 8;
+      totalLen: 16;
+      identification: 16;
+      flags: 3;
+      fragOffset: 13;
+      ttl: 8;
+      protocol: 8;
+      checksum: 16;
+      src: 32;
+      dst: 32;
+  }
+}
+header ipv4_t ipv4;
+
+
+header_type intrinsic_metadata_t {
+  fields{
+      ingress_global_timestamp: 32;
+      lf_field_list: 32;
+      mcast_grp: 16;
+      egress_rid: 16;
+  }
+}
+metadata intrinsic_metadata_t intrinsic_metadata;
+
+
+header_type rng_metadata_t {
+  fields{
+      fake_metadata: 4096;
+  }
+}
+metadata rng_metadata_t rng_metadata;
+
+
+header_type mafia_metadata_t {
+  fields{
+      switch_id: 8;
+      is_first_hop: 1;
+      is_last_hop: 1;
+      pcsa_hash_0: 32;
+      pcsa_hash_1: 32;
+      hll_hash_0: 32;
+      hll_hash_1: 32;
+      flow_index: 64;
+      now_ts: 32;
+      byte_counter: 32;
+      packet_counter: 32;
+      start_ts: 32;
+      flow_duration: 32;
+      packet_counter_add_1_lambda_val: 32;
+      byte_counter_add_size_lambda_val: 32;
+      update_flow_duration_lambda_val: 32;
+  }
+}
+metadata mafia_metadata_t mafia_metadata;
+
+
+header_type queueing_metadata_t {
+  fields{
+      enq_ts: 48;
+      enq_qdepth: 16;
+      deq_timedelta: 32;
+      deq_qdepth: 16;
+      qid: 8;
+  }
+}
+metadata queueing_metadata_t queueing_metadata;
+
+
+
+
+field_list_calculation uniform_probability_hash {
+  input{ rng_input; }
+  algorithm: my_uniform_probability;
+  output_width: 32;
+}
+register packet_counter {
+  width: 32;
+  instance_count: 1024;
+}
+field_list sample_copy_fields {
+  mafia_metadata; standard_metadata; intrinsic_metadata;
+}
+register start_ts {
+  width: 32;
+  instance_count: 1024;
+}
+register byte_counter {
+  width: 32;
+  instance_count: 1024;
+}
+register now_ts {
+  width: 32;
+  instance_count: 1024;
+}
+field_list rng_input {
+  rng_metadata;
+}
+register flow_duration {
+  width: 32;
+  instance_count: 1024;
+}
+
+control ingress{
+ apply(t_match_ip_src){
+   hit{
+     apply(t_match_ip_dst){
+        hit{
+           apply(t_packet_counter_add_1);
+        
+           apply(t_byte_counter_add_size);
+             
+          //  apply(t_read_start_ts);
+          //  if(mafia_metadata.start_ts == 0){
+           apply(t_update_start_ts_if_0);
+          //  }
+        
+           apply(t_get_now_ts){
+               miss{
+                //  apply(t_read_now_ts);
+                  //  apply(t_update_flow_duration);
+                   apply(t_calculate_flow_duration);
+                   apply(t_write_flow_duration);
+               }
+           }
+        }
+     }
+   }
+ }
+}
+
+
+control egress{
+
+}
+
+table t_calculate_flow_duration{
+ actions{
+     a_calculate_flow_duration;
+ }
+}
+
+table t_get_now_ts{
+ actions{
+     a_get_now_ts;
+ }
+}
+
+table t_read_start_ts{
+ actions{
+     a_read_start_ts;
+ }
+}
+
+table t_update_start_ts_if_0{
+ actions{
+     a_update_start_ts_if_0;
+ }
+}
+// table t_update_flow_duration{
+//  actions{
+//      a_update_flow_duration;
+//  }
+// }
+// @pragma force_table_dependency t_update_flow_duration
+table t_write_flow_duration{
+ actions{
+     a_write_flow_duration;
+ }
+}
+table t_packet_counter_add_1{
+ actions{
+     a_packet_counter_add_1;
+ }
+}
+table t_byte_counter_add_size{
+ actions{
+     a_byte_counter_add_size;
+ }
+}
+ 
+table t_match_ip_src{
+ reads{
+     ipv4.src: lpm;
+ }
+ actions{
+     a_set_flow_index;_no_op;
+ }
+}
+table t_match_ip_dst{
+ reads{
+     ipv4.dst: lpm;
+ }
+ actions{
+     a_set_flow_index;_no_op;
+ }
+}
+
+action a_calculate_flow_duration(){
+  subtract(mafia_metadata.flow_duration, mafia_metadata.now_ts, mafia_metadata.start_ts);
+}
+
+blackbox stateful_alu salu_write_flow_duration{
+  reg: flow_duration;
+  update_lo_1_value: mafia_metadata.flow_duration;
+  output_value: alu_lo;
+  output_dst: mafia_metadata.flow_duration;
+}
+action a_write_flow_duration(){  
+  salu_write_flow_duration.execute_stateful_alu(mafia_metadata.flow_index);
+}
+
+
+
+blackbox stateful_alu salu_read_start_ts{
+  reg: start_ts;
+  update_lo_1_value: register_lo;
+  output_value: alu_lo;
+  output_dst: mafia_metadata.start_ts;
+}
+action a_read_start_ts(){
+  salu_read_start_ts.execute_stateful_alu(mafia_metadata.flow_index);
+}
+blackbox stateful_alu salu_update_start_ts{
+  reg: start_ts;
+  condition_lo: register_lo == 0;
+  update_lo_1_predicate: condition_lo;
+  update_lo_1_value: intrinsic_metadata.ingress_global_timestamp;
+  update_lo_2_predicate: not condition_lo;
+  update_lo_2_value: register_lo;
+  output_value: alu_lo;
+  output_dst: mafia_metadata.start_ts;
+}
+action a_update_start_ts_if_0(){
+  salu_update_start_ts.execute_stateful_alu(mafia_metadata.flow_index);
+}
+
+blackbox stateful_alu salu_now_ts{
+  reg: now_ts;
+  update_lo_1_value: intrinsic_metadata.ingress_global_timestamp;
+  output_value: alu_lo;
+  output_dst: mafia_metadata.now_ts;
+}
+action a_get_now_ts(){
+  salu_now_ts.execute_stateful_alu(mafia_metadata.flow_index);
+}
+
+
+blackbox stateful_alu salu_update_packet_counter{
+  reg: packet_counter;
+  update_lo_1_value: register_lo + 1;
+  output_value: alu_lo;
+  output_dst: mafia_metadata.packet_counter;
+}
+action a_packet_counter_add_1(){
+  salu_update_packet_counter.execute_stateful_alu(mafia_metadata.flow_index);
+}
+blackbox stateful_alu salu_update_byte_counter{
+  reg: byte_counter;
+  update_lo_1_value: register_lo + standard_metadata.packet_length;
+  output_value: alu_lo;
+  output_dst: mafia_metadata.byte_counter;
+}
+action a_byte_counter_add_size(){
+  salu_update_byte_counter.execute_stateful_alu(mafia_metadata.flow_index);
+}
+
+action a_set_flow_index(flow_index){
+  modify_field( mafia_metadata.flow_index, flow_index );
+}
+action _no_op(){
+  no_op();
+}
+
+
+

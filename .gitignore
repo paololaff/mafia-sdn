@@ -1,0 +1,4 @@
+# ignore all pyc
+*.pyc
+*.pcap
+__pycache__

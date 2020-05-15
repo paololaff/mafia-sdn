@@ -1,0 +1,2855 @@
+{
+    "__meta__": {
+        "version": [
+            2,
+            5
+        ],
+        "compiler": "https://github.com/p4lang/p4c-bm"
+    },
+    "header_types": [
+        {
+            "name": "standard_metadata_t",
+            "id": 0,
+            "fields": [
+                [
+                    "ingress_port",
+                    9
+                ],
+                [
+                    "packet_length",
+                    32
+                ],
+                [
+                    "egress_spec",
+                    9
+                ],
+                [
+                    "egress_port",
+                    9
+                ],
+                [
+                    "egress_instance",
+                    32
+                ],
+                [
+                    "instance_type",
+                    32
+                ],
+                [
+                    "clone_spec",
+                    32
+                ],
+                [
+                    "_padding",
+                    5
+                ]
+            ],
+            "length_exp": null,
+            "max_length": null
+        },
+        {
+            "name": "tcp_t",
+            "id": 1,
+            "fields": [
+                [
+                    "src",
+                    16
+                ],
+                [
+                    "dst",
+                    16
+                ],
+                [
+                    "seq_n",
+                    32
+                ],
+                [
+                    "ack_n",
+                    32
+                ],
+                [
+                    "data_offset",
+                    4
+                ],
+                [
+                    "res",
+                    3
+                ],
+                [
+                    "ecn",
+                    3
+                ],
+                [
+                    "ctrl",
+                    6
+                ],
+                [
+                    "window",
+                    16
+                ],
+                [
+                    "checksum",
+                    16
+                ],
+                [
+                    "urgent",
+                    16
+                ]
+            ],
+            "length_exp": null,
+            "max_length": null
+        },
+        {
+            "name": "vlan_t",
+            "id": 2,
+            "fields": [
+                [
+                    "pcp",
+                    3
+                ],
+                [
+                    "dei",
+                    1
+                ],
+                [
+                    "vid",
+                    12
+                ],
+                [
+                    "ether_type",
+                    16
+                ]
+            ],
+            "length_exp": null,
+            "max_length": null
+        },
+        {
+            "name": "ipv4_t",
+            "id": 3,
+            "fields": [
+                [
+                    "version",
+                    4
+                ],
+                [
+                    "ihl",
+                    4
+                ],
+                [
+                    "tos",
+                    8
+                ],
+                [
+                    "totalLen",
+                    16
+                ],
+                [
+                    "identification",
+                    16
+                ],
+                [
+                    "flags",
+                    3
+                ],
+                [
+                    "fragOffset",
+                    13
+                ],
+                [
+                    "ttl",
+                    8
+                ],
+                [
+                    "protocol",
+                    8
+                ],
+                [
+                    "checksum",
+                    16
+                ],
+                [
+                    "src",
+                    32
+                ],
+                [
+                    "dst",
+                    32
+                ]
+            ],
+            "length_exp": null,
+            "max_length": null
+        },
+        {
+            "name": "ethernet_t",
+            "id": 4,
+            "fields": [
+                [
+                    "dst",
+                    48
+                ],
+                [
+                    "src",
+                    48
+                ],
+                [
+                    "ether_type",
+                    16
+                ]
+            ],
+            "length_exp": null,
+            "max_length": null
+        },
+        {
+            "name": "mafia_metadata_t",
+            "id": 5,
+            "fields": [
+                [
+                    "switch_id",
+                    8
+                ],
+                [
+                    "is_first_hop",
+                    1
+                ],
+                [
+                    "is_last_hop",
+                    1
+                ],
+                [
+                    "pcsa_hash_0",
+                    32
+                ],
+                [
+                    "pcsa_hash_1",
+                    32
+                ],
+                [
+                    "hll_hash_0",
+                    32
+                ],
+                [
+                    "hll_hash_1",
+                    32
+                ],
+                [
+                    "flow_index",
+                    64
+                ],
+                [
+                    "veridp_hash_index_0",
+                    4
+                ],
+                [
+                    "veridp_hash_index_1",
+                    4
+                ],
+                [
+                    "veridp_hash_index_2",
+                    4
+                ],
+                [
+                    "bf",
+                    1
+                ],
+                [
+                    "bf_serialized",
+                    16
+                ],
+                [
+                    "tag_entry_switch_lambda_val",
+                    16
+                ],
+                [
+                    "tag_entry_port_lambda_val",
+                    16
+                ],
+                [
+                    "reset_checksum_lambda_val",
+                    16
+                ],
+                [
+                    "location_bf_lambda_val",
+                    1
+                ],
+                [
+                    "tag_location_bf_lambda_val",
+                    16
+                ],
+                [
+                    "reset_location_bf_lambda_val",
+                    1
+                ],
+                [
+                    "tag_exit_switch_lambda_val",
+                    16
+                ],
+                [
+                    "tag_exit_port_lambda_val",
+                    16
+                ],
+                [
+                    "_padding",
+                    7
+                ]
+            ],
+            "length_exp": null,
+            "max_length": null
+        },
+        {
+            "name": "intrinsic_metadata_t",
+            "id": 6,
+            "fields": [
+                [
+                    "ingress_global_timestamp",
+                    48
+                ],
+                [
+                    "lf_field_list",
+                    32
+                ],
+                [
+                    "mcast_grp",
+                    16
+                ],
+                [
+                    "egress_rid",
+                    16
+                ]
+            ],
+            "length_exp": null,
+            "max_length": null
+        }
+    ],
+    "headers": [
+        {
+            "name": "standard_metadata",
+            "id": 0,
+            "header_type": "standard_metadata_t",
+            "metadata": true
+        },
+        {
+            "name": "tcp",
+            "id": 1,
+            "header_type": "tcp_t",
+            "metadata": false
+        },
+        {
+            "name": "vlan",
+            "id": 2,
+            "header_type": "vlan_t",
+            "metadata": false
+        },
+        {
+            "name": "ipv4",
+            "id": 3,
+            "header_type": "ipv4_t",
+            "metadata": false
+        },
+        {
+            "name": "eth",
+            "id": 4,
+            "header_type": "ethernet_t",
+            "metadata": false
+        },
+        {
+            "name": "mafia_metadata",
+            "id": 5,
+            "header_type": "mafia_metadata_t",
+            "metadata": true
+        },
+        {
+            "name": "intrinsic_metadata",
+            "id": 6,
+            "header_type": "intrinsic_metadata_t",
+            "metadata": true
+        }
+    ],
+    "header_stacks": [],
+    "parsers": [
+        {
+            "name": "parser",
+            "id": 0,
+            "init_state": "start",
+            "parse_states": [
+                {
+                    "name": "start",
+                    "id": 0,
+                    "parser_ops": [],
+                    "transition_key": [],
+                    "transitions": [
+                        {
+                            "type": "default",
+                            "value": null,
+                            "mask": null,
+                            "next_state": "parse_ethernet"
+                        }
+                    ]
+                },
+                {
+                    "name": "parse_ethernet",
+                    "id": 1,
+                    "parser_ops": [
+                        {
+                            "op": "extract",
+                            "parameters": [
+                                {
+                                    "type": "regular",
+                                    "value": "eth"
+                                }
+                            ]
+                        }
+                    ],
+                    "transition_key": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "eth",
+                                "ether_type"
+                            ]
+                        }
+                    ],
+                    "transitions": [
+                        {
+                            "type": "hexstr",
+                            "value": "0x8100",
+                            "mask": null,
+                            "next_state": "parse_vlan"
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x0800",
+                            "mask": null,
+                            "next_state": "parse_ipv4"
+                        },
+                        {
+                            "type": "default",
+                            "value": null,
+                            "mask": null,
+                            "next_state": null
+                        }
+                    ]
+                },
+                {
+                    "name": "parse_vlan",
+                    "id": 2,
+                    "parser_ops": [
+                        {
+                            "op": "extract",
+                            "parameters": [
+                                {
+                                    "type": "regular",
+                                    "value": "vlan"
+                                }
+                            ]
+                        }
+                    ],
+                    "transition_key": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "vlan",
+                                "ether_type"
+                            ]
+                        }
+                    ],
+                    "transitions": [
+                        {
+                            "type": "hexstr",
+                            "value": "0x0800",
+                            "mask": null,
+                            "next_state": "parse_ipv4"
+                        },
+                        {
+                            "type": "default",
+                            "value": null,
+                            "mask": null,
+                            "next_state": null
+                        }
+                    ]
+                },
+                {
+                    "name": "parse_ipv4",
+                    "id": 3,
+                    "parser_ops": [
+                        {
+                            "op": "extract",
+                            "parameters": [
+                                {
+                                    "type": "regular",
+                                    "value": "ipv4"
+                                }
+                            ]
+                        }
+                    ],
+                    "transition_key": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "ipv4",
+                                "protocol"
+                            ]
+                        }
+                    ],
+                    "transitions": [
+                        {
+                            "type": "hexstr",
+                            "value": "0x06",
+                            "mask": null,
+                            "next_state": "parse_tcp"
+                        },
+                        {
+                            "type": "default",
+                            "value": null,
+                            "mask": null,
+                            "next_state": null
+                        }
+                    ]
+                },
+                {
+                    "name": "parse_tcp",
+                    "id": 4,
+                    "parser_ops": [
+                        {
+                            "op": "extract",
+                            "parameters": [
+                                {
+                                    "type": "regular",
+                                    "value": "tcp"
+                                }
+                            ]
+                        }
+                    ],
+                    "transition_key": [],
+                    "transitions": [
+                        {
+                            "type": "default",
+                            "value": null,
+                            "mask": null,
+                            "next_state": null
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "parse_vsets": [],
+    "deparsers": [
+        {
+            "name": "deparser",
+            "id": 0,
+            "order": [
+                "eth",
+                "vlan",
+                "ipv4",
+                "tcp"
+            ]
+        }
+    ],
+    "meter_arrays": [],
+    "actions": [
+        {
+            "name": "a_tag_exit_switch",
+            "id": 0,
+            "runtime_data": [],
+            "primitives": [
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "tag_exit_switch_lambda_val"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "switch_id"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "ipv4",
+                                "identification"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "tag_exit_switch_lambda_val"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "a_header_vlan",
+            "id": 1,
+            "runtime_data": [],
+            "primitives": [
+                {
+                    "op": "add_header",
+                    "parameters": [
+                        {
+                            "type": "header",
+                            "value": "vlan"
+                        }
+                    ]
+                },
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "vlan",
+                                "vid"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x9"
+                        }
+                    ]
+                },
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "vlan",
+                                "ether_type"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "eth",
+                                "ether_type"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "eth",
+                                "ether_type"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x8100"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "a_location_bf",
+            "id": 2,
+            "runtime_data": [],
+            "primitives": [
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "location_bf_lambda_val"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x1"
+                        }
+                    ]
+                },
+                {
+                    "op": "register_write",
+                    "parameters": [
+                        {
+                            "type": "register_array",
+                            "value": "bf"
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "veridp_hash_index_0"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "location_bf_lambda_val"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "location_bf_lambda_val"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x1"
+                        }
+                    ]
+                },
+                {
+                    "op": "register_write",
+                    "parameters": [
+                        {
+                            "type": "register_array",
+                            "value": "bf"
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "veridp_hash_index_1"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "location_bf_lambda_val"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "location_bf_lambda_val"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x1"
+                        }
+                    ]
+                },
+                {
+                    "op": "register_write",
+                    "parameters": [
+                        {
+                            "type": "register_array",
+                            "value": "bf"
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "veridp_hash_index_2"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "location_bf_lambda_val"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "a_tag_entry_switch",
+            "id": 3,
+            "runtime_data": [],
+            "primitives": [
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "tag_entry_switch_lambda_val"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "switch_id"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "ipv4",
+                                "identification"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "tag_entry_switch_lambda_val"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "a_tag_entry_port",
+            "id": 4,
+            "runtime_data": [],
+            "primitives": [
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "tag_entry_port_lambda_val"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "standard_metadata",
+                                "ingress_port"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "ipv4",
+                                "identification"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "tag_entry_port_lambda_val"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "a_is_exit_switch",
+            "id": 5,
+            "runtime_data": [
+                {
+                    "name": "is_last_hop",
+                    "bitwidth": 1
+                }
+            ],
+            "primitives": [
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "is_last_hop"
+                            ]
+                        },
+                        {
+                            "type": "runtime_data",
+                            "value": 0
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "a_collect_reports",
+            "id": 6,
+            "runtime_data": [],
+            "primitives": [
+                {
+                    "op": "clone_ingress_pkt_to_egress",
+                    "parameters": [
+                        {
+                            "type": "hexstr",
+                            "value": "0x1"
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x1"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "a_veridp_hash_reset_location_bf",
+            "id": 7,
+            "runtime_data": [],
+            "primitives": [
+                {
+                    "op": "modify_field_with_hash_based_offset",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "veridp_hash_index_0"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x0"
+                        },
+                        {
+                            "type": "calculation",
+                            "value": "veridp_hash_1"
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x10"
+                        }
+                    ]
+                },
+                {
+                    "op": "modify_field_with_hash_based_offset",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "veridp_hash_index_1"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x0"
+                        },
+                        {
+                            "type": "calculation",
+                            "value": "veridp_hash_2"
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x10"
+                        }
+                    ]
+                },
+                {
+                    "op": "modify_field_with_hash_based_offset",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "veridp_hash_index_2"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x0"
+                        },
+                        {
+                            "type": "calculation",
+                            "value": "veridp_hash_3"
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x10"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "a_tag_exit_port",
+            "id": 8,
+            "runtime_data": [],
+            "primitives": [
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "tag_exit_port_lambda_val"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "standard_metadata",
+                                "egress_port"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "ipv4",
+                                "identification"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "tag_exit_port_lambda_val"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "a_reset_checksum",
+            "id": 9,
+            "runtime_data": [],
+            "primitives": [
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "reset_checksum_lambda_val"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x0"
+                        }
+                    ]
+                },
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "tcp",
+                                "checksum"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "reset_checksum_lambda_val"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "a_tag_location_bf",
+            "id": 10,
+            "runtime_data": [],
+            "primitives": [
+                {
+                    "op": "register_read",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "register_array",
+                            "value": "bf"
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x0"
+                        }
+                    ]
+                },
+                {
+                    "op": "shift_left",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0xf"
+                        }
+                    ]
+                },
+                {
+                    "op": "register_read",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "register_array",
+                            "value": "bf"
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x1"
+                        }
+                    ]
+                },
+                {
+                    "op": "shift_left",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0xe"
+                        }
+                    ]
+                },
+                {
+                    "op": "register_read",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "register_array",
+                            "value": "bf"
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x2"
+                        }
+                    ]
+                },
+                {
+                    "op": "shift_left",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0xd"
+                        }
+                    ]
+                },
+                {
+                    "op": "register_read",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "register_array",
+                            "value": "bf"
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x3"
+                        }
+                    ]
+                },
+                {
+                    "op": "shift_left",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0xc"
+                        }
+                    ]
+                },
+                {
+                    "op": "register_read",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "register_array",
+                            "value": "bf"
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x4"
+                        }
+                    ]
+                },
+                {
+                    "op": "shift_left",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0xb"
+                        }
+                    ]
+                },
+                {
+                    "op": "register_read",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "register_array",
+                            "value": "bf"
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x5"
+                        }
+                    ]
+                },
+                {
+                    "op": "shift_left",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0xa"
+                        }
+                    ]
+                },
+                {
+                    "op": "register_read",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "register_array",
+                            "value": "bf"
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x6"
+                        }
+                    ]
+                },
+                {
+                    "op": "shift_left",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x9"
+                        }
+                    ]
+                },
+                {
+                    "op": "register_read",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "register_array",
+                            "value": "bf"
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x7"
+                        }
+                    ]
+                },
+                {
+                    "op": "shift_left",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x8"
+                        }
+                    ]
+                },
+                {
+                    "op": "register_read",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "register_array",
+                            "value": "bf"
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x8"
+                        }
+                    ]
+                },
+                {
+                    "op": "shift_left",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x7"
+                        }
+                    ]
+                },
+                {
+                    "op": "register_read",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "register_array",
+                            "value": "bf"
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x9"
+                        }
+                    ]
+                },
+                {
+                    "op": "shift_left",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x6"
+                        }
+                    ]
+                },
+                {
+                    "op": "register_read",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "register_array",
+                            "value": "bf"
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0xa"
+                        }
+                    ]
+                },
+                {
+                    "op": "shift_left",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x5"
+                        }
+                    ]
+                },
+                {
+                    "op": "register_read",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "register_array",
+                            "value": "bf"
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0xb"
+                        }
+                    ]
+                },
+                {
+                    "op": "shift_left",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x4"
+                        }
+                    ]
+                },
+                {
+                    "op": "register_read",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "register_array",
+                            "value": "bf"
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0xc"
+                        }
+                    ]
+                },
+                {
+                    "op": "shift_left",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x3"
+                        }
+                    ]
+                },
+                {
+                    "op": "register_read",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "register_array",
+                            "value": "bf"
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0xd"
+                        }
+                    ]
+                },
+                {
+                    "op": "shift_left",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x2"
+                        }
+                    ]
+                },
+                {
+                    "op": "register_read",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "register_array",
+                            "value": "bf"
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0xe"
+                        }
+                    ]
+                },
+                {
+                    "op": "shift_left",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x1"
+                        }
+                    ]
+                },
+                {
+                    "op": "register_read",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "register_array",
+                            "value": "bf"
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0xf"
+                        }
+                    ]
+                },
+                {
+                    "op": "shift_left",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x0"
+                        }
+                    ]
+                },
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "tag_location_bf_lambda_val"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "bf_serialized"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "op": "bit_or",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "tag_location_bf_lambda_val"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "tag_location_bf_lambda_val"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "tcp",
+                                "checksum"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "tcp",
+                                "checksum"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "tag_location_bf_lambda_val"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "a_is_entry_switch",
+            "id": 11,
+            "runtime_data": [
+                {
+                    "name": "is_first_hop",
+                    "bitwidth": 1
+                }
+            ],
+            "primitives": [
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "is_first_hop"
+                            ]
+                        },
+                        {
+                            "type": "runtime_data",
+                            "value": 0
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "a_veridp_hash_location_bf",
+            "id": 12,
+            "runtime_data": [],
+            "primitives": [
+                {
+                    "op": "modify_field_with_hash_based_offset",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "veridp_hash_index_0"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x0"
+                        },
+                        {
+                            "type": "calculation",
+                            "value": "veridp_hash_1"
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x10"
+                        }
+                    ]
+                },
+                {
+                    "op": "modify_field_with_hash_based_offset",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "veridp_hash_index_1"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x0"
+                        },
+                        {
+                            "type": "calculation",
+                            "value": "veridp_hash_2"
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x10"
+                        }
+                    ]
+                },
+                {
+                    "op": "modify_field_with_hash_based_offset",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "veridp_hash_index_2"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x0"
+                        },
+                        {
+                            "type": "calculation",
+                            "value": "veridp_hash_3"
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x10"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "a_reset_location_bf",
+            "id": 13,
+            "runtime_data": [],
+            "primitives": [
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "reset_location_bf_lambda_val"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x0"
+                        }
+                    ]
+                },
+                {
+                    "op": "register_write",
+                    "parameters": [
+                        {
+                            "type": "register_array",
+                            "value": "bf"
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "veridp_hash_index_0"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "reset_location_bf_lambda_val"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "reset_location_bf_lambda_val"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x0"
+                        }
+                    ]
+                },
+                {
+                    "op": "register_write",
+                    "parameters": [
+                        {
+                            "type": "register_array",
+                            "value": "bf"
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "veridp_hash_index_1"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "reset_location_bf_lambda_val"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "reset_location_bf_lambda_val"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x0"
+                        }
+                    ]
+                },
+                {
+                    "op": "register_write",
+                    "parameters": [
+                        {
+                            "type": "register_array",
+                            "value": "bf"
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "veridp_hash_index_2"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "reset_location_bf_lambda_val"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "pipelines": [
+        {
+            "name": "ingress",
+            "id": 0,
+            "init_table": "t_check_is_entry_switch",
+            "tables": [
+                {
+                    "name": "t_collect_reports",
+                    "id": 0,
+                    "match_type": "exact",
+                    "type": "simple",
+                    "max_size": 16384,
+                    "with_counters": false,
+                    "direct_meters": null,
+                    "support_timeout": false,
+                    "key": [],
+                    "actions": [
+                        "a_collect_reports"
+                    ],
+                    "next_tables": {
+                        "a_collect_reports": null
+                    },
+                    "base_default_next": null
+                },
+                {
+                    "name": "t_veridp_hash_location_bf",
+                    "id": 1,
+                    "match_type": "exact",
+                    "type": "simple",
+                    "max_size": 16384,
+                    "with_counters": false,
+                    "direct_meters": null,
+                    "support_timeout": false,
+                    "key": [],
+                    "actions": [
+                        "a_veridp_hash_location_bf"
+                    ],
+                    "next_tables": {
+                        "a_veridp_hash_location_bf": "t_location_bf"
+                    },
+                    "base_default_next": "t_location_bf"
+                },
+                {
+                    "name": "t_tag_entry_port",
+                    "id": 2,
+                    "match_type": "exact",
+                    "type": "simple",
+                    "max_size": 16384,
+                    "with_counters": false,
+                    "direct_meters": null,
+                    "support_timeout": false,
+                    "key": [],
+                    "actions": [
+                        "a_tag_entry_port"
+                    ],
+                    "next_tables": {
+                        "a_tag_entry_port": "t_reset_checksum"
+                    },
+                    "base_default_next": "t_reset_checksum"
+                },
+                {
+                    "name": "t_location_bf",
+                    "id": 3,
+                    "match_type": "exact",
+                    "type": "simple",
+                    "max_size": 16384,
+                    "with_counters": false,
+                    "direct_meters": null,
+                    "support_timeout": false,
+                    "key": [],
+                    "actions": [
+                        "a_location_bf"
+                    ],
+                    "next_tables": {
+                        "__HIT__": "t_check_is_exit_switch",
+                        "__MISS__": "t_tag_location_bf"
+                    },
+                    "base_default_next": "t_check_is_exit_switch"
+                },
+                {
+                    "name": "t_tag_exit_port",
+                    "id": 4,
+                    "match_type": "exact",
+                    "type": "simple",
+                    "max_size": 16384,
+                    "with_counters": false,
+                    "direct_meters": null,
+                    "support_timeout": false,
+                    "key": [],
+                    "actions": [
+                        "a_tag_exit_port"
+                    ],
+                    "next_tables": {
+                        "__HIT__": null,
+                        "__MISS__": "t_collect_reports"
+                    },
+                    "base_default_next": null
+                },
+                {
+                    "name": "t_tag_location_bf",
+                    "id": 5,
+                    "match_type": "exact",
+                    "type": "simple",
+                    "max_size": 16384,
+                    "with_counters": false,
+                    "direct_meters": null,
+                    "support_timeout": false,
+                    "key": [],
+                    "actions": [
+                        "a_tag_location_bf"
+                    ],
+                    "next_tables": {
+                        "__HIT__": "t_check_is_exit_switch",
+                        "__MISS__": "t_veridp_hash_reset_location_bf"
+                    },
+                    "base_default_next": "t_check_is_exit_switch"
+                },
+                {
+                    "name": "t_reset_checksum",
+                    "id": 6,
+                    "match_type": "exact",
+                    "type": "simple",
+                    "max_size": 16384,
+                    "with_counters": false,
+                    "direct_meters": null,
+                    "support_timeout": false,
+                    "key": [],
+                    "actions": [
+                        "a_reset_checksum"
+                    ],
+                    "next_tables": {
+                        "a_reset_checksum": "t_veridp_hash_location_bf"
+                    },
+                    "base_default_next": "t_veridp_hash_location_bf"
+                },
+                {
+                    "name": "t_reset_location_bf",
+                    "id": 7,
+                    "match_type": "exact",
+                    "type": "simple",
+                    "max_size": 16384,
+                    "with_counters": false,
+                    "direct_meters": null,
+                    "support_timeout": false,
+                    "key": [],
+                    "actions": [
+                        "a_reset_location_bf"
+                    ],
+                    "next_tables": {
+                        "a_reset_location_bf": "t_check_is_exit_switch"
+                    },
+                    "base_default_next": "t_check_is_exit_switch"
+                },
+                {
+                    "name": "t_tag_exit_switch",
+                    "id": 8,
+                    "match_type": "exact",
+                    "type": "simple",
+                    "max_size": 16384,
+                    "with_counters": false,
+                    "direct_meters": null,
+                    "support_timeout": false,
+                    "key": [],
+                    "actions": [
+                        "a_tag_exit_switch"
+                    ],
+                    "next_tables": {
+                        "a_tag_exit_switch": "t_tag_exit_port"
+                    },
+                    "base_default_next": "t_tag_exit_port"
+                },
+                {
+                    "name": "t_check_is_entry_switch",
+                    "id": 9,
+                    "match_type": "exact",
+                    "type": "simple",
+                    "max_size": 16384,
+                    "with_counters": false,
+                    "direct_meters": null,
+                    "support_timeout": false,
+                    "key": [
+                        {
+                            "match_type": "exact",
+                            "target": [
+                                "ipv4",
+                                "src"
+                            ],
+                            "mask": null
+                        },
+                        {
+                            "match_type": "exact",
+                            "target": [
+                                "ipv4",
+                                "dst"
+                            ],
+                            "mask": null
+                        }
+                    ],
+                    "actions": [
+                        "a_is_entry_switch"
+                    ],
+                    "next_tables": {
+                        "a_is_entry_switch": "_condition_0"
+                    },
+                    "base_default_next": "_condition_0"
+                },
+                {
+                    "name": "t_tag_entry_switch",
+                    "id": 10,
+                    "match_type": "exact",
+                    "type": "simple",
+                    "max_size": 16384,
+                    "with_counters": false,
+                    "direct_meters": null,
+                    "support_timeout": false,
+                    "key": [],
+                    "actions": [
+                        "a_tag_entry_switch"
+                    ],
+                    "next_tables": {
+                        "a_tag_entry_switch": "t_tag_entry_port"
+                    },
+                    "base_default_next": "t_tag_entry_port"
+                },
+                {
+                    "name": "t_check_is_exit_switch",
+                    "id": 11,
+                    "match_type": "exact",
+                    "type": "simple",
+                    "max_size": 16384,
+                    "with_counters": false,
+                    "direct_meters": null,
+                    "support_timeout": false,
+                    "key": [
+                        {
+                            "match_type": "exact",
+                            "target": [
+                                "ipv4",
+                                "src"
+                            ],
+                            "mask": null
+                        },
+                        {
+                            "match_type": "exact",
+                            "target": [
+                                "ipv4",
+                                "dst"
+                            ],
+                            "mask": null
+                        }
+                    ],
+                    "actions": [
+                        "a_is_exit_switch"
+                    ],
+                    "next_tables": {
+                        "a_is_exit_switch": "_condition_1"
+                    },
+                    "base_default_next": "_condition_1"
+                },
+                {
+                    "name": "t_veridp_hash_reset_location_bf",
+                    "id": 12,
+                    "match_type": "exact",
+                    "type": "simple",
+                    "max_size": 16384,
+                    "with_counters": false,
+                    "direct_meters": null,
+                    "support_timeout": false,
+                    "key": [],
+                    "actions": [
+                        "a_veridp_hash_reset_location_bf"
+                    ],
+                    "next_tables": {
+                        "__HIT__": "t_check_is_exit_switch",
+                        "__MISS__": "t_reset_location_bf"
+                    },
+                    "base_default_next": "t_check_is_exit_switch"
+                }
+            ],
+            "action_profiles": [],
+            "conditionals": [
+                {
+                    "name": "_condition_0",
+                    "id": 0,
+                    "expression": {
+                        "type": "expression",
+                        "value": {
+                            "op": "==",
+                            "left": {
+                                "type": "field",
+                                "value": [
+                                    "mafia_metadata",
+                                    "is_first_hop"
+                                ]
+                            },
+                            "right": {
+                                "type": "hexstr",
+                                "value": "0x1"
+                            }
+                        }
+                    },
+                    "true_next": "t_tag_entry_switch",
+                    "false_next": "t_veridp_hash_location_bf"
+                },
+                {
+                    "name": "_condition_1",
+                    "id": 1,
+                    "expression": {
+                        "type": "expression",
+                        "value": {
+                            "op": "==",
+                            "left": {
+                                "type": "field",
+                                "value": [
+                                    "mafia_metadata",
+                                    "is_last_hop"
+                                ]
+                            },
+                            "right": {
+                                "type": "hexstr",
+                                "value": "0x1"
+                            }
+                        }
+                    },
+                    "true_next": "t_tag_exit_switch",
+                    "false_next": null
+                }
+            ]
+        },
+        {
+            "name": "egress",
+            "id": 1,
+            "init_table": "_condition_2",
+            "tables": [
+                {
+                    "name": "t_send_reports",
+                    "id": 13,
+                    "match_type": "exact",
+                    "type": "simple",
+                    "max_size": 16384,
+                    "with_counters": false,
+                    "direct_meters": null,
+                    "support_timeout": false,
+                    "key": [],
+                    "actions": [
+                        "a_header_vlan"
+                    ],
+                    "next_tables": {
+                        "a_header_vlan": null
+                    },
+                    "base_default_next": null
+                }
+            ],
+            "action_profiles": [],
+            "conditionals": [
+                {
+                    "name": "_condition_2",
+                    "id": 2,
+                    "expression": {
+                        "type": "expression",
+                        "value": {
+                            "op": "==",
+                            "left": {
+                                "type": "field",
+                                "value": [
+                                    "standard_metadata",
+                                    "instance_type"
+                                ]
+                            },
+                            "right": {
+                                "type": "hexstr",
+                                "value": "0x1"
+                            }
+                        }
+                    },
+                    "true_next": "t_send_reports",
+                    "false_next": null
+                }
+            ]
+        }
+    ],
+    "calculations": [
+        {
+            "name": "veridp_hash_3",
+            "id": 0,
+            "input": [
+                {
+                    "type": "field",
+                    "value": [
+                        "standard_metadata",
+                        "ingress_port"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "mafia_metadata",
+                        "switch_id"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "standard_metadata",
+                        "egress_port"
+                    ]
+                }
+            ],
+            "algo": "murmur_3"
+        },
+        {
+            "name": "veridp_hash_1",
+            "id": 1,
+            "input": [
+                {
+                    "type": "field",
+                    "value": [
+                        "standard_metadata",
+                        "ingress_port"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "mafia_metadata",
+                        "switch_id"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "standard_metadata",
+                        "egress_port"
+                    ]
+                }
+            ],
+            "algo": "murmur_1"
+        },
+        {
+            "name": "veridp_hash_2",
+            "id": 2,
+            "input": [
+                {
+                    "type": "field",
+                    "value": [
+                        "standard_metadata",
+                        "ingress_port"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "mafia_metadata",
+                        "switch_id"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "standard_metadata",
+                        "egress_port"
+                    ]
+                }
+            ],
+            "algo": "murmur_2"
+        }
+    ],
+    "checksums": [],
+    "learn_lists": [],
+    "field_lists": [
+        {
+            "id": 1,
+            "name": "sample_copy_fields",
+            "elements": [
+                {
+                    "type": "field",
+                    "value": [
+                        "mafia_metadata",
+                        "switch_id"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "mafia_metadata",
+                        "is_first_hop"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "mafia_metadata",
+                        "is_last_hop"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "mafia_metadata",
+                        "pcsa_hash_0"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "mafia_metadata",
+                        "pcsa_hash_1"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "mafia_metadata",
+                        "hll_hash_0"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "mafia_metadata",
+                        "hll_hash_1"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "mafia_metadata",
+                        "flow_index"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "mafia_metadata",
+                        "veridp_hash_index_0"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "mafia_metadata",
+                        "veridp_hash_index_1"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "mafia_metadata",
+                        "veridp_hash_index_2"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "mafia_metadata",
+                        "bf"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "mafia_metadata",
+                        "bf_serialized"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "mafia_metadata",
+                        "tag_entry_switch_lambda_val"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "mafia_metadata",
+                        "tag_entry_port_lambda_val"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "mafia_metadata",
+                        "reset_checksum_lambda_val"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "mafia_metadata",
+                        "location_bf_lambda_val"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "mafia_metadata",
+                        "tag_location_bf_lambda_val"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "mafia_metadata",
+                        "reset_location_bf_lambda_val"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "mafia_metadata",
+                        "tag_exit_switch_lambda_val"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "mafia_metadata",
+                        "tag_exit_port_lambda_val"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "mafia_metadata",
+                        "_padding"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "standard_metadata",
+                        "ingress_port"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "standard_metadata",
+                        "packet_length"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "standard_metadata",
+                        "egress_spec"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "standard_metadata",
+                        "egress_port"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "standard_metadata",
+                        "egress_instance"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "standard_metadata",
+                        "instance_type"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "standard_metadata",
+                        "clone_spec"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "standard_metadata",
+                        "_padding"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "intrinsic_metadata",
+                        "ingress_global_timestamp"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "intrinsic_metadata",
+                        "lf_field_list"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "intrinsic_metadata",
+                        "mcast_grp"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "intrinsic_metadata",
+                        "egress_rid"
+                    ]
+                }
+            ]
+        }
+    ],
+    "counter_arrays": [],
+    "register_arrays": [
+        {
+            "name": "bf",
+            "id": 0,
+            "bitwidth": 1,
+            "size": 16
+        }
+    ],
+    "force_arith": [
+        [
+            "standard_metadata",
+            "ingress_port"
+        ],
+        [
+            "standard_metadata",
+            "packet_length"
+        ],
+        [
+            "standard_metadata",
+            "egress_spec"
+        ],
+        [
+            "standard_metadata",
+            "egress_port"
+        ],
+        [
+            "standard_metadata",
+            "egress_instance"
+        ],
+        [
+            "standard_metadata",
+            "instance_type"
+        ],
+        [
+            "standard_metadata",
+            "clone_spec"
+        ],
+        [
+            "standard_metadata",
+            "_padding"
+        ],
+        [
+            "intrinsic_metadata",
+            "ingress_global_timestamp"
+        ],
+        [
+            "intrinsic_metadata",
+            "lf_field_list"
+        ],
+        [
+            "intrinsic_metadata",
+            "mcast_grp"
+        ],
+        [
+            "intrinsic_metadata",
+            "egress_rid"
+        ]
+    ]
+}

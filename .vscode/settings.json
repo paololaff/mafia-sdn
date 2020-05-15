@@ -1,0 +1,28 @@
+{  
+    // "files.autoSave": "on", 
+    "workbench.colorCustomizations": {
+        "editorWarning.foreground": "#FFE602" // squiggly line
+    },
+    "explorer.autoReveal": false,
+    //"workbench.editor.enablePreview": false,
+    //"workbench.editor.enablePreviewFromQuickOpen": false,
+    "git.autofetch": false,
+
+    "python.pythonPath": "/usr/bin/python3",
+    "python.linting.pylintPath": "/usr/bin/pylint3",
+    "python.linting.lintOnSave": true,
+    "python.linting.pylintArgs": [
+        "--disable=C0111",      // C0111: Missing module|class|function docstring
+        "--disable=C0103",      // C0103: Invalid constant name
+        "--disable=C0301",      // C0301: Line too long
+        "--disable=C0326",      // C0326: Exactly one space required before assignment
+        "--disable=C0325",      // C0325: Unnecessary parens after 'print' keyword
+        "--disable=C0305",      // C0305: Trailing newlines
+        "--disable=C0321",      // C0321: More than one statement on a single line
+        "--disable=R0913",      // R0913: Too many arguments
+        "--disable=W0401",      // W0401: Wildcard import
+        "--disable=W0614",      // W0614: Unused import from widlcard import
+        "--disable=C0410"       // C0410: Multiple imports on one line
+    ],
+    "python.linting.pylintEnabled": false
+}

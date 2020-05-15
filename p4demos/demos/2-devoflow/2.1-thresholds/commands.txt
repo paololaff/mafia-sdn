@@ -1,0 +1,20 @@
+table_set_default table_drop _drop
+table_set_default byte_counter_table _no_op
+table_set_default packet_counter_table _no_op
+table_set_default clone_bytes do_clone_reason_threshold_bytes
+table_set_default clone_packets do_clone_reason_threshold_packets
+table_set_default notification _no_op
+mirroring_add 999 0
+table_add notification do_notification 1 =>
+table_add byte_counter_table do_count_bytes 10.0.0.1 10.0.0.2 80 => 0 1000
+table_add byte_counter_table do_count_bytes 10.0.0.1 10.0.0.3 80 => 1 1000
+table_add byte_counter_table do_count_bytes 10.0.0.2 10.0.0.1 80 => 2 1000
+table_add byte_counter_table do_count_bytes 10.0.0.2 10.0.0.3 80 => 3 1000
+table_add byte_counter_table do_count_bytes 10.0.0.3 10.0.0.1 80 => 4 1000
+table_add byte_counter_table do_count_bytes 10.0.0.3 10.0.0.2 80 => 5 1000
+table_add packet_counter_table do_count_packets 10.0.0.1 10.0.0.2 80 => 0 25
+table_add packet_counter_table do_count_packets 10.0.0.1 10.0.0.3 80 => 1 25
+table_add packet_counter_table do_count_packets 10.0.0.2 10.0.0.1 80 => 2 25
+table_add packet_counter_table do_count_packets 10.0.0.2 10.0.0.3 80 => 3 25
+table_add packet_counter_table do_count_packets 10.0.0.3 10.0.0.1 80 => 4 25
+table_add packet_counter_table do_count_packets 10.0.0.3 10.0.0.2 80 => 5 25

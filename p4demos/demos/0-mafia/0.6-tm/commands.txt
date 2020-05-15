@@ -1,0 +1,2 @@
+table_set_default t_set_border_tag a_set_border_tag
+table_set_default t_update_border_counter a_update_border_counter

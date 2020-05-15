@@ -1,0 +1,13 @@
+b table table_check_sample
+b table table_sample
+b table table_no_sample
+b table table_sample_redirect
+b action do_check_sample
+b action do_sample
+b action do_no_sample
+b action do_sample_redirect
+w my_sample_metadata.probability
+w my_sample_metadata.probability_hash_val
+
+show_wps
+show_bps

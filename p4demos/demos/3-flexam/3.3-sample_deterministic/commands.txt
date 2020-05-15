@@ -1,0 +1,12 @@
+table_set_default table_drop _drop
+table_set_default table_sample do_sample
+table_set_default table_sample_reset do_reset_sample_state
+table_set_default table_sample_skip do_update_sample_skipped
+table_set_default table_sample_take do_update_sample_taken
+table_set_default table_sample_redirect _no_op 
+table_set_default table_get_sampling_state _no_op
+table_add table_get_sampling_state do_get_sampling_state 192.168.0.0/16 10.0.0.1 6 => 0 100 5 0 255.255.255.255 65535
+table_add table_get_sampling_state do_get_sampling_state 192.168.0.0/16 10.0.0.2 6 => 0 50 1 50 255.255.255.255 65535
+table_add table_get_sampling_state do_get_sampling_state 192.168.0.0/16 10.0.0.3 6 => 0 100 25 50 255.255.255.255 65535
+table_add table_sample_redirect do_sample_redirect 1 =>
+mirroring_add 999 0

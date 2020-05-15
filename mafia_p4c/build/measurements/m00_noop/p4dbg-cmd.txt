@@ -1,0 +1,6 @@
+b table table_route_next_hop
+b action do_route_next_hop
+b action _drop
+
+show_wps
+show_bps

@@ -1,0 +1,3 @@
+table_set_default t_hll_hash_hll_sketch a_hll_hash_hll_sketch
+table_set_default t_hll_hash_tcam_lookup_zeroes_hll_sketch a_hll_hash_tcam_lookup_zeroes_hll_sketch
+table_set_default t_hll_sketch a_hll_sketch

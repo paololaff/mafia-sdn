@@ -1,0 +1,19 @@
+Total of 6 stages
+Maximum of 2 atoms/stage
+Total of 8 atoms
+SKETCH version 1.6.9
+Benchmark = /tmp/sketch6hhAkS.sk
+[SKETCH] DONE
+Total time = 816
+Sketch succeeded with random seed 1804289383 , input sketch available at /tmp/success.sk
+SKETCH version 1.6.9
+Benchmark = /tmp/sketchmli00U.sk
+[SKETCH] DONE
+Total time = 1927
+Sketch succeeded with random seed 846930886 , input sketch available at /tmp/success.sk
+SKETCH version 1.6.9
+Benchmark = /tmp/sketchd3X683.sk
+[SKETCH] DONE
+Total time = 22086
+Sketch succeeded with random seed 1681692777 , input sketch available at /tmp/success.sk
+DONE

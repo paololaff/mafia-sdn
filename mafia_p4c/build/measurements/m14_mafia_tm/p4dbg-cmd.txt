@@ -1,0 +1,16 @@
+b table t_set_border_tag
+b table t_update_border_counter
+b table table_route_next_hop
+b table table_src_mac_overwrite
+
+b action a_set_border_tag
+b action a_update_border_counter
+b action do_route_next_hop
+b action do_src_mac_overwrite
+
+b action _drop
+
+w ipv4.protocol
+
+show_wps
+show_bps

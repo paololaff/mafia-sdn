@@ -1,0 +1,12 @@
+table_set_default t_packet_counter_add_1 a_packet_counter_add_1
+table_set_default t_byte_counter_add_size a_byte_counter_add_size
+table_set_default t_load_start_ts a_load_start_ts
+table_set_default t_start_ts a_start_ts
+table_set_default t_now_ts a_now_ts
+table_set_default t_flow_duration_update a_flow_duration_update
+
+
+table_set_default   table_route_next_hop _drop
+table_add           table_route_next_hop                do_route_next_hop                            10.0.0.1/32     => 00:00:00:00:00:01 1
+table_add           table_route_next_hop                do_route_next_hop                            10.0.0.2/32     => 00:00:00:00:00:02 2
+table_add           table_route_next_hop                do_route_next_hop                            10.0.0.3/32     => 00:00:00:00:00:03 3

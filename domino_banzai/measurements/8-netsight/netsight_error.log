@@ -1,0 +1,7 @@
+// tag_input_port tag_input_port0
+// tag_output_port tag_output_port0
+// tag_switch_id tag_switch_id0
+digraph graph_output {splines=true node [shape = box style="rounded,filled"];
+}
+digraph pipeline_diagram {splines=true node [shape = box style="rounded,filled" fontsize = 10];
+}

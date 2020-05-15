@@ -1,0 +1,2975 @@
+{
+    "__meta__": {
+        "version": [
+            2,
+            5
+        ],
+        "compiler": "https://github.com/p4lang/p4c-bm"
+    },
+    "header_types": [
+        {
+            "name": "standard_metadata_t",
+            "id": 0,
+            "fields": [
+                [
+                    "ingress_port",
+                    9
+                ],
+                [
+                    "packet_length",
+                    32
+                ],
+                [
+                    "egress_spec",
+                    9
+                ],
+                [
+                    "egress_port",
+                    9
+                ],
+                [
+                    "egress_instance",
+                    32
+                ],
+                [
+                    "instance_type",
+                    32
+                ],
+                [
+                    "clone_spec",
+                    32
+                ],
+                [
+                    "_padding",
+                    5
+                ]
+            ],
+            "length_exp": null,
+            "max_length": null
+        },
+        {
+            "name": "ethernet_t",
+            "id": 1,
+            "fields": [
+                [
+                    "dstAddr",
+                    48
+                ],
+                [
+                    "srcAddr",
+                    48
+                ],
+                [
+                    "ethertype",
+                    16
+                ]
+            ],
+            "length_exp": null,
+            "max_length": null
+        },
+        {
+            "name": "vlan_t",
+            "id": 2,
+            "fields": [
+                [
+                    "pcp",
+                    3
+                ],
+                [
+                    "dei",
+                    1
+                ],
+                [
+                    "vid",
+                    12
+                ],
+                [
+                    "ethertype",
+                    16
+                ]
+            ],
+            "length_exp": null,
+            "max_length": null
+        },
+        {
+            "name": "ipv4_t",
+            "id": 3,
+            "fields": [
+                [
+                    "version",
+                    4
+                ],
+                [
+                    "ihl",
+                    4
+                ],
+                [
+                    "tos",
+                    8
+                ],
+                [
+                    "totalLen",
+                    16
+                ],
+                [
+                    "identification",
+                    16
+                ],
+                [
+                    "flags",
+                    3
+                ],
+                [
+                    "fragOffset",
+                    13
+                ],
+                [
+                    "ttl",
+                    8
+                ],
+                [
+                    "protocol",
+                    8
+                ],
+                [
+                    "hdrChecksum",
+                    16
+                ],
+                [
+                    "srcAddr",
+                    32
+                ],
+                [
+                    "dstAddr",
+                    32
+                ]
+            ],
+            "length_exp": null,
+            "max_length": null
+        },
+        {
+            "name": "tcp_t",
+            "id": 4,
+            "fields": [
+                [
+                    "srcPort",
+                    16
+                ],
+                [
+                    "dstPort",
+                    16
+                ],
+                [
+                    "seqNo",
+                    32
+                ],
+                [
+                    "ackNo",
+                    32
+                ],
+                [
+                    "dataOffset",
+                    4
+                ],
+                [
+                    "res",
+                    3
+                ],
+                [
+                    "ecn",
+                    3
+                ],
+                [
+                    "flags",
+                    6
+                ],
+                [
+                    "window",
+                    16
+                ],
+                [
+                    "checksum",
+                    16
+                ],
+                [
+                    "urgentPtr",
+                    16
+                ]
+            ],
+            "length_exp": null,
+            "max_length": null
+        },
+        {
+            "name": "veridp_t",
+            "id": 5,
+            "fields": [
+                [
+                    "bf_tag",
+                    16
+                ],
+                [
+                    "net_entry_port",
+                    8
+                ],
+                [
+                    "net_entry_switch",
+                    8
+                ],
+                [
+                    "net_exit_port",
+                    8
+                ],
+                [
+                    "net_exit_switch",
+                    8
+                ]
+            ],
+            "length_exp": null,
+            "max_length": null
+        },
+        {
+            "name": "veridp_metadata_t",
+            "id": 6,
+            "fields": [
+                [
+                    "input_port",
+                    8
+                ],
+                [
+                    "output_port",
+                    8
+                ],
+                [
+                    "switch_id",
+                    8
+                ],
+                [
+                    "bf_index_0",
+                    4
+                ],
+                [
+                    "bf_index_1",
+                    4
+                ],
+                [
+                    "bf_index_2",
+                    4
+                ],
+                [
+                    "murmur_hash",
+                    32
+                ],
+                [
+                    "bf_tag_value",
+                    16
+                ],
+                [
+                    "h1_x",
+                    16
+                ],
+                [
+                    "h2_x",
+                    16
+                ],
+                [
+                    "g0_x",
+                    16
+                ],
+                [
+                    "g1_x",
+                    16
+                ],
+                [
+                    "g2_x",
+                    16
+                ],
+                [
+                    "_padding",
+                    4
+                ]
+            ],
+            "length_exp": null,
+            "max_length": null
+        },
+        {
+            "name": "mafia_sketch_metadata_t",
+            "id": 7,
+            "fields": [
+                [
+                    "sketch_idx_1",
+                    4
+                ],
+                [
+                    "sketch_idx_2",
+                    4
+                ],
+                [
+                    "sketch_idx_3",
+                    4
+                ],
+                [
+                    "sketch_idx_4",
+                    4
+                ],
+                [
+                    "sketch_val_1",
+                    32
+                ],
+                [
+                    "sketch_val_2",
+                    32
+                ],
+                [
+                    "sketch_val_3",
+                    32
+                ],
+                [
+                    "sketch_val_4",
+                    32
+                ]
+            ],
+            "length_exp": null,
+            "max_length": null
+        },
+        {
+            "name": "intrinsic_metadata_t",
+            "id": 8,
+            "fields": [
+                [
+                    "ingress_global_timestamp",
+                    48
+                ],
+                [
+                    "lf_field_list",
+                    32
+                ],
+                [
+                    "mcast_grp",
+                    16
+                ],
+                [
+                    "egress_rid",
+                    16
+                ]
+            ],
+            "length_exp": null,
+            "max_length": null
+        },
+        {
+            "name": "fwd_metadata_t",
+            "id": 9,
+            "fields": [
+                [
+                    "nhop_ipv4",
+                    32
+                ]
+            ],
+            "length_exp": null,
+            "max_length": null
+        }
+    ],
+    "headers": [
+        {
+            "name": "standard_metadata",
+            "id": 0,
+            "header_type": "standard_metadata_t",
+            "metadata": true
+        },
+        {
+            "name": "fwd_metadata",
+            "id": 1,
+            "header_type": "fwd_metadata_t",
+            "metadata": true
+        },
+        {
+            "name": "veridp_metadata",
+            "id": 2,
+            "header_type": "veridp_metadata_t",
+            "metadata": true
+        },
+        {
+            "name": "intrinsic_metadata",
+            "id": 3,
+            "header_type": "intrinsic_metadata_t",
+            "metadata": true
+        },
+        {
+            "name": "sketch_metadata",
+            "id": 4,
+            "header_type": "mafia_sketch_metadata_t",
+            "metadata": true
+        },
+        {
+            "name": "ethernet",
+            "id": 5,
+            "header_type": "ethernet_t",
+            "metadata": false
+        },
+        {
+            "name": "vlan",
+            "id": 6,
+            "header_type": "vlan_t",
+            "metadata": false
+        },
+        {
+            "name": "ipv4",
+            "id": 7,
+            "header_type": "ipv4_t",
+            "metadata": false
+        },
+        {
+            "name": "tcp",
+            "id": 8,
+            "header_type": "tcp_t",
+            "metadata": false
+        },
+        {
+            "name": "veridp_h",
+            "id": 9,
+            "header_type": "veridp_t",
+            "metadata": false
+        }
+    ],
+    "header_stacks": [],
+    "parsers": [
+        {
+            "name": "parser",
+            "id": 0,
+            "init_state": "start",
+            "parse_states": [
+                {
+                    "name": "start",
+                    "id": 0,
+                    "parser_ops": [],
+                    "transition_key": [],
+                    "transitions": [
+                        {
+                            "type": "default",
+                            "value": null,
+                            "mask": null,
+                            "next_state": "parse_ethernet"
+                        }
+                    ]
+                },
+                {
+                    "name": "parse_ethernet",
+                    "id": 1,
+                    "parser_ops": [
+                        {
+                            "op": "extract",
+                            "parameters": [
+                                {
+                                    "type": "regular",
+                                    "value": "ethernet"
+                                }
+                            ]
+                        }
+                    ],
+                    "transition_key": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "ethernet",
+                                "ethertype"
+                            ]
+                        }
+                    ],
+                    "transitions": [
+                        {
+                            "type": "hexstr",
+                            "value": "0x8100",
+                            "mask": null,
+                            "next_state": "parse_vlan"
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x0800",
+                            "mask": null,
+                            "next_state": "parse_ipv4"
+                        },
+                        {
+                            "type": "default",
+                            "value": null,
+                            "mask": null,
+                            "next_state": null
+                        }
+                    ]
+                },
+                {
+                    "name": "parse_vlan",
+                    "id": 2,
+                    "parser_ops": [
+                        {
+                            "op": "extract",
+                            "parameters": [
+                                {
+                                    "type": "regular",
+                                    "value": "vlan"
+                                }
+                            ]
+                        }
+                    ],
+                    "transition_key": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "vlan",
+                                "ethertype"
+                            ]
+                        }
+                    ],
+                    "transitions": [
+                        {
+                            "type": "hexstr",
+                            "value": "0x0800",
+                            "mask": null,
+                            "next_state": "parse_ipv4"
+                        },
+                        {
+                            "type": "default",
+                            "value": null,
+                            "mask": null,
+                            "next_state": null
+                        }
+                    ]
+                },
+                {
+                    "name": "parse_ipv4",
+                    "id": 3,
+                    "parser_ops": [
+                        {
+                            "op": "extract",
+                            "parameters": [
+                                {
+                                    "type": "regular",
+                                    "value": "ipv4"
+                                }
+                            ]
+                        }
+                    ],
+                    "transition_key": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "ipv4",
+                                "protocol"
+                            ]
+                        }
+                    ],
+                    "transitions": [
+                        {
+                            "type": "hexstr",
+                            "value": "0x06",
+                            "mask": null,
+                            "next_state": "parse_tcp"
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0xed",
+                            "mask": null,
+                            "next_state": "parse_veridp"
+                        },
+                        {
+                            "type": "default",
+                            "value": null,
+                            "mask": null,
+                            "next_state": null
+                        }
+                    ]
+                },
+                {
+                    "name": "parse_tcp",
+                    "id": 4,
+                    "parser_ops": [
+                        {
+                            "op": "extract",
+                            "parameters": [
+                                {
+                                    "type": "regular",
+                                    "value": "tcp"
+                                }
+                            ]
+                        }
+                    ],
+                    "transition_key": [],
+                    "transitions": [
+                        {
+                            "type": "default",
+                            "value": null,
+                            "mask": null,
+                            "next_state": null
+                        }
+                    ]
+                },
+                {
+                    "name": "parse_veridp",
+                    "id": 5,
+                    "parser_ops": [
+                        {
+                            "op": "extract",
+                            "parameters": [
+                                {
+                                    "type": "regular",
+                                    "value": "tcp"
+                                }
+                            ]
+                        },
+                        {
+                            "op": "extract",
+                            "parameters": [
+                                {
+                                    "type": "regular",
+                                    "value": "veridp_h"
+                                }
+                            ]
+                        }
+                    ],
+                    "transition_key": [],
+                    "transitions": [
+                        {
+                            "type": "default",
+                            "value": null,
+                            "mask": null,
+                            "next_state": null
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "parse_vsets": [],
+    "deparsers": [
+        {
+            "name": "deparser",
+            "id": 0,
+            "order": [
+                "ethernet",
+                "vlan",
+                "ipv4",
+                "tcp",
+                "veridp_h"
+            ]
+        }
+    ],
+    "meter_arrays": [],
+    "actions": [
+        {
+            "name": "do_veridp_calculate_bf_indexes",
+            "id": 0,
+            "runtime_data": [],
+            "primitives": [
+                {
+                    "op": "modify_field_with_hash_based_offset",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "veridp_metadata",
+                                "murmur_hash"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x0"
+                        },
+                        {
+                            "type": "calculation",
+                            "value": "veridp_bf_hash"
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0xffffffff"
+                        }
+                    ]
+                },
+                {
+                    "op": "bit_and",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "veridp_metadata",
+                                "h2_x"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "veridp_metadata",
+                                "murmur_hash"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0xffff"
+                        }
+                    ]
+                },
+                {
+                    "op": "shift_right",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "veridp_metadata",
+                                "h1_x"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "veridp_metadata",
+                                "murmur_hash"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x10"
+                        }
+                    ]
+                },
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "veridp_metadata",
+                                "g0_x"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "veridp_metadata",
+                                "h1_x"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "veridp_metadata",
+                                "g1_x"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "veridp_metadata",
+                                "h2_x"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "op": "add_to_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "veridp_metadata",
+                                "g1_x"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "veridp_metadata",
+                                "h1_x"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "veridp_metadata",
+                                "g2_x"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "veridp_metadata",
+                                "h2_x"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "op": "shift_left",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "veridp_metadata",
+                                "g2_x"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "veridp_metadata",
+                                "g2_x"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x1"
+                        }
+                    ]
+                },
+                {
+                    "op": "add_to_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "veridp_metadata",
+                                "g2_x"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "veridp_metadata",
+                                "h1_x"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "op": "bit_and",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "veridp_metadata",
+                                "bf_index_0"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "veridp_metadata",
+                                "g0_x"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0xf"
+                        }
+                    ]
+                },
+                {
+                    "op": "bit_and",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "veridp_metadata",
+                                "bf_index_1"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "veridp_metadata",
+                                "g1_x"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0xf"
+                        }
+                    ]
+                },
+                {
+                    "op": "bit_and",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "veridp_metadata",
+                                "bf_index_2"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "veridp_metadata",
+                                "g2_x"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0xf"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "do_dst_mac_overwrite",
+            "id": 1,
+            "runtime_data": [
+                {
+                    "name": "dmac",
+                    "bitwidth": 48
+                }
+            ],
+            "primitives": [
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "ethernet",
+                                "dstAddr"
+                            ]
+                        },
+                        {
+                            "type": "runtime_data",
+                            "value": 0
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "do_sketch_read_changes",
+            "id": 2,
+            "runtime_data": [],
+            "primitives": [
+                {
+                    "op": "register_read",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "sketch_metadata",
+                                "sketch_val_1"
+                            ]
+                        },
+                        {
+                            "type": "register_array",
+                            "value": "sketch_path_changes"
+                        },
+                        {
+                            "type": "expression",
+                            "value": {
+                                "type": "expression",
+                                "value": {
+                                    "op": "+",
+                                    "left": {
+                                        "type": "hexstr",
+                                        "value": "0x0"
+                                    },
+                                    "right": {
+                                        "type": "field",
+                                        "value": [
+                                            "sketch_metadata",
+                                            "sketch_idx_1"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "op": "register_read",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "sketch_metadata",
+                                "sketch_val_2"
+                            ]
+                        },
+                        {
+                            "type": "register_array",
+                            "value": "sketch_path_changes"
+                        },
+                        {
+                            "type": "expression",
+                            "value": {
+                                "type": "expression",
+                                "value": {
+                                    "op": "+",
+                                    "left": {
+                                        "type": "hexstr",
+                                        "value": "0x10"
+                                    },
+                                    "right": {
+                                        "type": "field",
+                                        "value": [
+                                            "sketch_metadata",
+                                            "sketch_idx_2"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "op": "register_read",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "sketch_metadata",
+                                "sketch_val_3"
+                            ]
+                        },
+                        {
+                            "type": "register_array",
+                            "value": "sketch_path_changes"
+                        },
+                        {
+                            "type": "expression",
+                            "value": {
+                                "type": "expression",
+                                "value": {
+                                    "op": "+",
+                                    "left": {
+                                        "type": "hexstr",
+                                        "value": "0x20"
+                                    },
+                                    "right": {
+                                        "type": "field",
+                                        "value": [
+                                            "sketch_metadata",
+                                            "sketch_idx_3"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "op": "register_read",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "sketch_metadata",
+                                "sketch_val_4"
+                            ]
+                        },
+                        {
+                            "type": "register_array",
+                            "value": "sketch_path_changes"
+                        },
+                        {
+                            "type": "expression",
+                            "value": {
+                                "type": "expression",
+                                "value": {
+                                    "op": "+",
+                                    "left": {
+                                        "type": "hexstr",
+                                        "value": "0x30"
+                                    },
+                                    "right": {
+                                        "type": "field",
+                                        "value": [
+                                            "sketch_metadata",
+                                            "sketch_idx_4"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "do_veridp_tag_entry",
+            "id": 3,
+            "runtime_data": [],
+            "primitives": [
+                {
+                    "op": "add_header",
+                    "parameters": [
+                        {
+                            "type": "header",
+                            "value": "veridp_h"
+                        }
+                    ]
+                },
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "ipv4",
+                                "protocol"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0xed"
+                        }
+                    ]
+                },
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "veridp_h",
+                                "net_entry_port"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "veridp_metadata",
+                                "input_port"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "veridp_h",
+                                "net_entry_switch"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "veridp_metadata",
+                                "switch_id"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "_drop",
+            "id": 4,
+            "runtime_data": [],
+            "primitives": [
+                {
+                    "op": "drop",
+                    "parameters": []
+                }
+            ]
+        },
+        {
+            "name": "_no_op",
+            "id": 5,
+            "runtime_data": [],
+            "primitives": [
+                {
+                    "op": "no_op",
+                    "parameters": []
+                }
+            ]
+        },
+        {
+            "name": "do_veridp_update_bf_tag",
+            "id": 6,
+            "runtime_data": [
+                {
+                    "name": "tag_mask",
+                    "bitwidth": 16
+                }
+            ],
+            "primitives": [
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "veridp_metadata",
+                                "bf_tag_value"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "veridp_h",
+                                "bf_tag"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "op": "bit_or",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "veridp_metadata",
+                                "bf_tag_value"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "veridp_metadata",
+                                "bf_tag_value"
+                            ]
+                        },
+                        {
+                            "type": "runtime_data",
+                            "value": 0
+                        }
+                    ]
+                },
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "veridp_h",
+                                "bf_tag"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "veridp_metadata",
+                                "bf_tag_value"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "do_src_mac_overwrite",
+            "id": 7,
+            "runtime_data": [
+                {
+                    "name": "smac",
+                    "bitwidth": 48
+                }
+            ],
+            "primitives": [
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "ethernet",
+                                "srcAddr"
+                            ]
+                        },
+                        {
+                            "type": "runtime_data",
+                            "value": 0
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "do_sketch_indexes",
+            "id": 8,
+            "runtime_data": [],
+            "primitives": [
+                {
+                    "op": "modify_field_with_hash_based_offset",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "sketch_metadata",
+                                "sketch_idx_1"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x0"
+                        },
+                        {
+                            "type": "calculation",
+                            "value": "hash_1"
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x10"
+                        }
+                    ]
+                },
+                {
+                    "op": "modify_field_with_hash_based_offset",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "sketch_metadata",
+                                "sketch_idx_2"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x0"
+                        },
+                        {
+                            "type": "calculation",
+                            "value": "hash_2"
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x10"
+                        }
+                    ]
+                },
+                {
+                    "op": "modify_field_with_hash_based_offset",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "sketch_metadata",
+                                "sketch_idx_3"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x0"
+                        },
+                        {
+                            "type": "calculation",
+                            "value": "hash_3"
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x10"
+                        }
+                    ]
+                },
+                {
+                    "op": "modify_field_with_hash_based_offset",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "sketch_metadata",
+                                "sketch_idx_4"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x0"
+                        },
+                        {
+                            "type": "calculation",
+                            "value": "hash_4"
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x10"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "do_veridp_in_out_port",
+            "id": 9,
+            "runtime_data": [
+                {
+                    "name": "input_port",
+                    "bitwidth": 8
+                }
+            ],
+            "primitives": [
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "veridp_metadata",
+                                "input_port"
+                            ]
+                        },
+                        {
+                            "type": "runtime_data",
+                            "value": 0
+                        }
+                    ]
+                },
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "veridp_metadata",
+                                "output_port"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "standard_metadata",
+                                "egress_spec"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "do_veridp_tag_exit",
+            "id": 10,
+            "runtime_data": [],
+            "primitives": [
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "veridp_h",
+                                "net_exit_port"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "standard_metadata",
+                                "egress_spec"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "veridp_h",
+                                "net_exit_switch"
+                            ]
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "veridp_metadata",
+                                "switch_id"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "do_route_next_hop",
+            "id": 11,
+            "runtime_data": [
+                {
+                    "name": "nhop_ipv4",
+                    "bitwidth": 32
+                },
+                {
+                    "name": "port",
+                    "bitwidth": 9
+                }
+            ],
+            "primitives": [
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "fwd_metadata",
+                                "nhop_ipv4"
+                            ]
+                        },
+                        {
+                            "type": "runtime_data",
+                            "value": 0
+                        }
+                    ]
+                },
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "standard_metadata",
+                                "egress_spec"
+                            ]
+                        },
+                        {
+                            "type": "runtime_data",
+                            "value": 1
+                        }
+                    ]
+                },
+                {
+                    "op": "add_to_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "ipv4",
+                                "ttl"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "-0x1"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "do_sketch_update_path_tags",
+            "id": 12,
+            "runtime_data": [],
+            "primitives": [
+                {
+                    "op": "register_write",
+                    "parameters": [
+                        {
+                            "type": "register_array",
+                            "value": "sketch_path_tags"
+                        },
+                        {
+                            "type": "expression",
+                            "value": {
+                                "type": "expression",
+                                "value": {
+                                    "op": "+",
+                                    "left": {
+                                        "type": "hexstr",
+                                        "value": "0x0"
+                                    },
+                                    "right": {
+                                        "type": "field",
+                                        "value": [
+                                            "sketch_metadata",
+                                            "sketch_idx_1"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "veridp_h",
+                                "bf_tag"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "op": "register_write",
+                    "parameters": [
+                        {
+                            "type": "register_array",
+                            "value": "sketch_path_tags"
+                        },
+                        {
+                            "type": "expression",
+                            "value": {
+                                "type": "expression",
+                                "value": {
+                                    "op": "+",
+                                    "left": {
+                                        "type": "hexstr",
+                                        "value": "0x10"
+                                    },
+                                    "right": {
+                                        "type": "field",
+                                        "value": [
+                                            "sketch_metadata",
+                                            "sketch_idx_2"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "veridp_h",
+                                "bf_tag"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "op": "register_write",
+                    "parameters": [
+                        {
+                            "type": "register_array",
+                            "value": "sketch_path_tags"
+                        },
+                        {
+                            "type": "expression",
+                            "value": {
+                                "type": "expression",
+                                "value": {
+                                    "op": "+",
+                                    "left": {
+                                        "type": "hexstr",
+                                        "value": "0x20"
+                                    },
+                                    "right": {
+                                        "type": "field",
+                                        "value": [
+                                            "sketch_metadata",
+                                            "sketch_idx_3"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "veridp_h",
+                                "bf_tag"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "op": "register_write",
+                    "parameters": [
+                        {
+                            "type": "register_array",
+                            "value": "sketch_path_tags"
+                        },
+                        {
+                            "type": "expression",
+                            "value": {
+                                "type": "expression",
+                                "value": {
+                                    "op": "+",
+                                    "left": {
+                                        "type": "hexstr",
+                                        "value": "0x30"
+                                    },
+                                    "right": {
+                                        "type": "field",
+                                        "value": [
+                                            "sketch_metadata",
+                                            "sketch_idx_4"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "veridp_h",
+                                "bf_tag"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "do_veridp_load_switch_id",
+            "id": 13,
+            "runtime_data": [
+                {
+                    "name": "switch_id",
+                    "bitwidth": 8
+                }
+            ],
+            "primitives": [
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "veridp_metadata",
+                                "switch_id"
+                            ]
+                        },
+                        {
+                            "type": "runtime_data",
+                            "value": 0
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "do_sketch_update_changes",
+            "id": 14,
+            "runtime_data": [],
+            "primitives": [
+                {
+                    "op": "add_to_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "sketch_metadata",
+                                "sketch_val_1"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x1"
+                        }
+                    ]
+                },
+                {
+                    "op": "register_write",
+                    "parameters": [
+                        {
+                            "type": "register_array",
+                            "value": "sketch_path_changes"
+                        },
+                        {
+                            "type": "expression",
+                            "value": {
+                                "type": "expression",
+                                "value": {
+                                    "op": "+",
+                                    "left": {
+                                        "type": "hexstr",
+                                        "value": "0x0"
+                                    },
+                                    "right": {
+                                        "type": "field",
+                                        "value": [
+                                            "sketch_metadata",
+                                            "sketch_idx_1"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "sketch_metadata",
+                                "sketch_val_1"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "op": "add_to_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "sketch_metadata",
+                                "sketch_val_2"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x1"
+                        }
+                    ]
+                },
+                {
+                    "op": "register_write",
+                    "parameters": [
+                        {
+                            "type": "register_array",
+                            "value": "sketch_path_changes"
+                        },
+                        {
+                            "type": "expression",
+                            "value": {
+                                "type": "expression",
+                                "value": {
+                                    "op": "+",
+                                    "left": {
+                                        "type": "hexstr",
+                                        "value": "0x10"
+                                    },
+                                    "right": {
+                                        "type": "field",
+                                        "value": [
+                                            "sketch_metadata",
+                                            "sketch_idx_2"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "sketch_metadata",
+                                "sketch_val_2"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "op": "add_to_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "sketch_metadata",
+                                "sketch_val_3"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x1"
+                        }
+                    ]
+                },
+                {
+                    "op": "register_write",
+                    "parameters": [
+                        {
+                            "type": "register_array",
+                            "value": "sketch_path_changes"
+                        },
+                        {
+                            "type": "expression",
+                            "value": {
+                                "type": "expression",
+                                "value": {
+                                    "op": "+",
+                                    "left": {
+                                        "type": "hexstr",
+                                        "value": "0x20"
+                                    },
+                                    "right": {
+                                        "type": "field",
+                                        "value": [
+                                            "sketch_metadata",
+                                            "sketch_idx_3"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "sketch_metadata",
+                                "sketch_val_3"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "op": "add_to_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "sketch_metadata",
+                                "sketch_val_4"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x1"
+                        }
+                    ]
+                },
+                {
+                    "op": "register_write",
+                    "parameters": [
+                        {
+                            "type": "register_array",
+                            "value": "sketch_path_changes"
+                        },
+                        {
+                            "type": "expression",
+                            "value": {
+                                "type": "expression",
+                                "value": {
+                                    "op": "+",
+                                    "left": {
+                                        "type": "hexstr",
+                                        "value": "0x30"
+                                    },
+                                    "right": {
+                                        "type": "field",
+                                        "value": [
+                                            "sketch_metadata",
+                                            "sketch_idx_4"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "sketch_metadata",
+                                "sketch_val_4"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "do_sketch_read_path_tags",
+            "id": 15,
+            "runtime_data": [],
+            "primitives": [
+                {
+                    "op": "register_read",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "sketch_metadata",
+                                "sketch_val_1"
+                            ]
+                        },
+                        {
+                            "type": "register_array",
+                            "value": "sketch_path_tags"
+                        },
+                        {
+                            "type": "expression",
+                            "value": {
+                                "type": "expression",
+                                "value": {
+                                    "op": "+",
+                                    "left": {
+                                        "type": "hexstr",
+                                        "value": "0x0"
+                                    },
+                                    "right": {
+                                        "type": "field",
+                                        "value": [
+                                            "sketch_metadata",
+                                            "sketch_idx_1"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "op": "register_read",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "sketch_metadata",
+                                "sketch_val_2"
+                            ]
+                        },
+                        {
+                            "type": "register_array",
+                            "value": "sketch_path_tags"
+                        },
+                        {
+                            "type": "expression",
+                            "value": {
+                                "type": "expression",
+                                "value": {
+                                    "op": "+",
+                                    "left": {
+                                        "type": "hexstr",
+                                        "value": "0x10"
+                                    },
+                                    "right": {
+                                        "type": "field",
+                                        "value": [
+                                            "sketch_metadata",
+                                            "sketch_idx_2"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "op": "register_read",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "sketch_metadata",
+                                "sketch_val_3"
+                            ]
+                        },
+                        {
+                            "type": "register_array",
+                            "value": "sketch_path_tags"
+                        },
+                        {
+                            "type": "expression",
+                            "value": {
+                                "type": "expression",
+                                "value": {
+                                    "op": "+",
+                                    "left": {
+                                        "type": "hexstr",
+                                        "value": "0x20"
+                                    },
+                                    "right": {
+                                        "type": "field",
+                                        "value": [
+                                            "sketch_metadata",
+                                            "sketch_idx_3"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "op": "register_read",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "sketch_metadata",
+                                "sketch_val_4"
+                            ]
+                        },
+                        {
+                            "type": "register_array",
+                            "value": "sketch_path_tags"
+                        },
+                        {
+                            "type": "expression",
+                            "value": {
+                                "type": "expression",
+                                "value": {
+                                    "op": "+",
+                                    "left": {
+                                        "type": "hexstr",
+                                        "value": "0x30"
+                                    },
+                                    "right": {
+                                        "type": "field",
+                                        "value": [
+                                            "sketch_metadata",
+                                            "sketch_idx_4"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "pipelines": [
+        {
+            "name": "ingress",
+            "id": 0,
+            "init_table": "table_route_next_hop",
+            "tables": [
+                {
+                    "name": "table_route_next_hop",
+                    "id": 0,
+                    "match_type": "lpm",
+                    "type": "simple",
+                    "max_size": 1024,
+                    "with_counters": false,
+                    "direct_meters": null,
+                    "support_timeout": false,
+                    "key": [
+                        {
+                            "match_type": "lpm",
+                            "target": [
+                                "ipv4",
+                                "dstAddr"
+                            ],
+                            "mask": null
+                        }
+                    ],
+                    "actions": [
+                        "do_route_next_hop",
+                        "_drop"
+                    ],
+                    "next_tables": {
+                        "do_route_next_hop": "table_dst_mac_overwrite",
+                        "_drop": "table_dst_mac_overwrite"
+                    },
+                    "base_default_next": "table_dst_mac_overwrite"
+                },
+                {
+                    "name": "table_dst_mac_overwrite",
+                    "id": 1,
+                    "match_type": "exact",
+                    "type": "simple",
+                    "max_size": 64,
+                    "with_counters": false,
+                    "direct_meters": null,
+                    "support_timeout": false,
+                    "key": [
+                        {
+                            "match_type": "exact",
+                            "target": [
+                                "fwd_metadata",
+                                "nhop_ipv4"
+                            ],
+                            "mask": null
+                        }
+                    ],
+                    "actions": [
+                        "do_dst_mac_overwrite",
+                        "_drop"
+                    ],
+                    "next_tables": {
+                        "do_dst_mac_overwrite": null,
+                        "_drop": null
+                    },
+                    "base_default_next": null
+                }
+            ],
+            "action_profiles": [],
+            "conditionals": []
+        },
+        {
+            "name": "egress",
+            "id": 1,
+            "init_table": "table_veridp_load_switch_id",
+            "tables": [
+                {
+                    "name": "table_src_mac_overwrite",
+                    "id": 2,
+                    "match_type": "exact",
+                    "type": "simple",
+                    "max_size": 64,
+                    "with_counters": false,
+                    "direct_meters": null,
+                    "support_timeout": false,
+                    "key": [
+                        {
+                            "match_type": "exact",
+                            "target": [
+                                "standard_metadata",
+                                "egress_port"
+                            ],
+                            "mask": null
+                        }
+                    ],
+                    "actions": [
+                        "do_src_mac_overwrite",
+                        "_drop"
+                    ],
+                    "next_tables": {
+                        "do_src_mac_overwrite": null,
+                        "_drop": null
+                    },
+                    "base_default_next": null
+                },
+                {
+                    "name": "table_veridp_load_switch_id",
+                    "id": 3,
+                    "match_type": "exact",
+                    "type": "simple",
+                    "max_size": 16384,
+                    "with_counters": false,
+                    "direct_meters": null,
+                    "support_timeout": false,
+                    "key": [],
+                    "actions": [
+                        "do_veridp_load_switch_id"
+                    ],
+                    "next_tables": {
+                        "do_veridp_load_switch_id": "table_veridp_in_out_port"
+                    },
+                    "base_default_next": "table_veridp_in_out_port"
+                },
+                {
+                    "name": "table_veridp_in_out_port",
+                    "id": 4,
+                    "match_type": "exact",
+                    "type": "simple",
+                    "max_size": 128,
+                    "with_counters": false,
+                    "direct_meters": null,
+                    "support_timeout": false,
+                    "key": [
+                        {
+                            "match_type": "exact",
+                            "target": [
+                                "veridp_metadata",
+                                "switch_id"
+                            ],
+                            "mask": null
+                        },
+                        {
+                            "match_type": "exact",
+                            "target": [
+                                "ethernet",
+                                "srcAddr"
+                            ],
+                            "mask": null
+                        }
+                    ],
+                    "actions": [
+                        "do_veridp_in_out_port",
+                        "_no_op"
+                    ],
+                    "next_tables": {
+                        "do_veridp_in_out_port": "table_veridp_switch_net_entry",
+                        "_no_op": "table_veridp_switch_net_entry"
+                    },
+                    "base_default_next": "table_veridp_switch_net_entry"
+                },
+                {
+                    "name": "table_veridp_switch_net_entry",
+                    "id": 5,
+                    "match_type": "exact",
+                    "type": "simple",
+                    "max_size": 1024,
+                    "with_counters": false,
+                    "direct_meters": null,
+                    "support_timeout": false,
+                    "key": [
+                        {
+                            "match_type": "exact",
+                            "target": [
+                                "ethernet",
+                                "srcAddr"
+                            ],
+                            "mask": null
+                        }
+                    ],
+                    "actions": [
+                        "_no_op"
+                    ],
+                    "next_tables": {
+                        "__HIT__": "_condition_0",
+                        "__MISS__": "_condition_1"
+                    },
+                    "base_default_next": "_condition_1"
+                },
+                {
+                    "name": "table_veridp_switch_net_exit",
+                    "id": 6,
+                    "match_type": "exact",
+                    "type": "simple",
+                    "max_size": 1024,
+                    "with_counters": false,
+                    "direct_meters": null,
+                    "support_timeout": false,
+                    "key": [
+                        {
+                            "match_type": "exact",
+                            "target": [
+                                "ethernet",
+                                "dstAddr"
+                            ],
+                            "mask": null
+                        }
+                    ],
+                    "actions": [
+                        "_no_op"
+                    ],
+                    "next_tables": {
+                        "__HIT__": "_condition_2",
+                        "__MISS__": "table_src_mac_overwrite"
+                    },
+                    "base_default_next": "table_src_mac_overwrite"
+                },
+                {
+                    "name": "table_veridp_tag_entry",
+                    "id": 7,
+                    "match_type": "exact",
+                    "type": "simple",
+                    "max_size": 16384,
+                    "with_counters": false,
+                    "direct_meters": null,
+                    "support_timeout": false,
+                    "key": [],
+                    "actions": [
+                        "do_veridp_tag_entry"
+                    ],
+                    "next_tables": {
+                        "do_veridp_tag_entry": "_condition_1"
+                    },
+                    "base_default_next": "_condition_1"
+                },
+                {
+                    "name": "table_veridp_tag_exit",
+                    "id": 8,
+                    "match_type": "exact",
+                    "type": "simple",
+                    "max_size": 16384,
+                    "with_counters": false,
+                    "direct_meters": null,
+                    "support_timeout": false,
+                    "key": [],
+                    "actions": [
+                        "do_veridp_tag_exit"
+                    ],
+                    "next_tables": {
+                        "do_veridp_tag_exit": "table_sketch_indexes"
+                    },
+                    "base_default_next": "table_sketch_indexes"
+                },
+                {
+                    "name": "table_veridp_calculate_bf_indexes",
+                    "id": 9,
+                    "match_type": "exact",
+                    "type": "simple",
+                    "max_size": 16384,
+                    "with_counters": false,
+                    "direct_meters": null,
+                    "support_timeout": false,
+                    "key": [],
+                    "actions": [
+                        "do_veridp_calculate_bf_indexes"
+                    ],
+                    "next_tables": {
+                        "do_veridp_calculate_bf_indexes": "table_veridp_update_bf_0"
+                    },
+                    "base_default_next": "table_veridp_update_bf_0"
+                },
+                {
+                    "name": "table_veridp_update_bf_0",
+                    "id": 10,
+                    "match_type": "exact",
+                    "type": "simple",
+                    "max_size": 16,
+                    "with_counters": false,
+                    "direct_meters": null,
+                    "support_timeout": false,
+                    "key": [
+                        {
+                            "match_type": "exact",
+                            "target": [
+                                "veridp_metadata",
+                                "bf_index_0"
+                            ],
+                            "mask": null
+                        }
+                    ],
+                    "actions": [
+                        "do_veridp_update_bf_tag",
+                        "_no_op"
+                    ],
+                    "next_tables": {
+                        "do_veridp_update_bf_tag": "table_veridp_update_bf_1",
+                        "_no_op": "table_veridp_update_bf_1"
+                    },
+                    "base_default_next": "table_veridp_update_bf_1"
+                },
+                {
+                    "name": "table_veridp_update_bf_1",
+                    "id": 11,
+                    "match_type": "exact",
+                    "type": "simple",
+                    "max_size": 16,
+                    "with_counters": false,
+                    "direct_meters": null,
+                    "support_timeout": false,
+                    "key": [
+                        {
+                            "match_type": "exact",
+                            "target": [
+                                "veridp_metadata",
+                                "bf_index_1"
+                            ],
+                            "mask": null
+                        }
+                    ],
+                    "actions": [
+                        "do_veridp_update_bf_tag",
+                        "_no_op"
+                    ],
+                    "next_tables": {
+                        "do_veridp_update_bf_tag": "table_veridp_update_bf_2",
+                        "_no_op": "table_veridp_update_bf_2"
+                    },
+                    "base_default_next": "table_veridp_update_bf_2"
+                },
+                {
+                    "name": "table_veridp_update_bf_2",
+                    "id": 12,
+                    "match_type": "exact",
+                    "type": "simple",
+                    "max_size": 16,
+                    "with_counters": false,
+                    "direct_meters": null,
+                    "support_timeout": false,
+                    "key": [
+                        {
+                            "match_type": "exact",
+                            "target": [
+                                "veridp_metadata",
+                                "bf_index_2"
+                            ],
+                            "mask": null
+                        }
+                    ],
+                    "actions": [
+                        "do_veridp_update_bf_tag",
+                        "_no_op"
+                    ],
+                    "next_tables": {
+                        "do_veridp_update_bf_tag": "table_veridp_switch_net_exit",
+                        "_no_op": "table_veridp_switch_net_exit"
+                    },
+                    "base_default_next": "table_veridp_switch_net_exit"
+                },
+                {
+                    "name": "table_sketch_indexes",
+                    "id": 13,
+                    "match_type": "exact",
+                    "type": "simple",
+                    "max_size": 16384,
+                    "with_counters": false,
+                    "direct_meters": null,
+                    "support_timeout": false,
+                    "key": [],
+                    "actions": [
+                        "do_sketch_indexes"
+                    ],
+                    "next_tables": {
+                        "do_sketch_indexes": "table_sketch_read_path_tags"
+                    },
+                    "base_default_next": "table_sketch_read_path_tags"
+                },
+                {
+                    "name": "table_sketch_read_path_tags",
+                    "id": 14,
+                    "match_type": "exact",
+                    "type": "simple",
+                    "max_size": 16384,
+                    "with_counters": false,
+                    "direct_meters": null,
+                    "support_timeout": false,
+                    "key": [],
+                    "actions": [
+                        "do_sketch_read_path_tags"
+                    ],
+                    "next_tables": {
+                        "do_sketch_read_path_tags": "_condition_3"
+                    },
+                    "base_default_next": "_condition_3"
+                },
+                {
+                    "name": "table_sketch_update_path_tags",
+                    "id": 15,
+                    "match_type": "exact",
+                    "type": "simple",
+                    "max_size": 16384,
+                    "with_counters": false,
+                    "direct_meters": null,
+                    "support_timeout": false,
+                    "key": [],
+                    "actions": [
+                        "do_sketch_update_path_tags"
+                    ],
+                    "next_tables": {
+                        "do_sketch_update_path_tags": "table_sketch_read_changes"
+                    },
+                    "base_default_next": "table_sketch_read_changes"
+                },
+                {
+                    "name": "table_sketch_read_changes",
+                    "id": 16,
+                    "match_type": "exact",
+                    "type": "simple",
+                    "max_size": 16384,
+                    "with_counters": false,
+                    "direct_meters": null,
+                    "support_timeout": false,
+                    "key": [],
+                    "actions": [
+                        "do_sketch_read_changes"
+                    ],
+                    "next_tables": {
+                        "do_sketch_read_changes": "table_sketch_update_changes"
+                    },
+                    "base_default_next": "table_sketch_update_changes"
+                },
+                {
+                    "name": "table_sketch_update_changes",
+                    "id": 17,
+                    "match_type": "exact",
+                    "type": "simple",
+                    "max_size": 16384,
+                    "with_counters": false,
+                    "direct_meters": null,
+                    "support_timeout": false,
+                    "key": [],
+                    "actions": [
+                        "do_sketch_update_changes"
+                    ],
+                    "next_tables": {
+                        "do_sketch_update_changes": "table_src_mac_overwrite"
+                    },
+                    "base_default_next": "table_src_mac_overwrite"
+                }
+            ],
+            "action_profiles": [],
+            "conditionals": [
+                {
+                    "name": "_condition_0",
+                    "id": 0,
+                    "expression": {
+                        "type": "expression",
+                        "value": {
+                            "op": "not",
+                            "left": null,
+                            "right": {
+                                "type": "expression",
+                                "value": {
+                                    "op": "valid",
+                                    "left": null,
+                                    "right": {
+                                        "type": "header",
+                                        "value": "veridp_h"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "true_next": "table_veridp_tag_entry",
+                    "false_next": "_condition_1"
+                },
+                {
+                    "name": "_condition_1",
+                    "id": 1,
+                    "expression": {
+                        "type": "expression",
+                        "value": {
+                            "op": "valid",
+                            "left": null,
+                            "right": {
+                                "type": "header",
+                                "value": "veridp_h"
+                            }
+                        }
+                    },
+                    "true_next": "table_veridp_calculate_bf_indexes",
+                    "false_next": "table_veridp_switch_net_exit"
+                },
+                {
+                    "name": "_condition_2",
+                    "id": 2,
+                    "expression": {
+                        "type": "expression",
+                        "value": {
+                            "op": "valid",
+                            "left": null,
+                            "right": {
+                                "type": "header",
+                                "value": "veridp_h"
+                            }
+                        }
+                    },
+                    "true_next": "table_veridp_tag_exit",
+                    "false_next": "table_src_mac_overwrite"
+                },
+                {
+                    "name": "_condition_3",
+                    "id": 3,
+                    "expression": {
+                        "type": "expression",
+                        "value": {
+                            "op": "and",
+                            "left": {
+                                "type": "expression",
+                                "value": {
+                                    "op": "and",
+                                    "left": {
+                                        "type": "expression",
+                                        "value": {
+                                            "op": "and",
+                                            "left": {
+                                                "type": "expression",
+                                                "value": {
+                                                    "op": "!=",
+                                                    "left": {
+                                                        "type": "field",
+                                                        "value": [
+                                                            "veridp_h",
+                                                            "bf_tag"
+                                                        ]
+                                                    },
+                                                    "right": {
+                                                        "type": "field",
+                                                        "value": [
+                                                            "sketch_metadata",
+                                                            "sketch_val_1"
+                                                        ]
+                                                    }
+                                                }
+                                            },
+                                            "right": {
+                                                "type": "expression",
+                                                "value": {
+                                                    "op": "!=",
+                                                    "left": {
+                                                        "type": "field",
+                                                        "value": [
+                                                            "veridp_h",
+                                                            "bf_tag"
+                                                        ]
+                                                    },
+                                                    "right": {
+                                                        "type": "field",
+                                                        "value": [
+                                                            "sketch_metadata",
+                                                            "sketch_val_2"
+                                                        ]
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "right": {
+                                        "type": "expression",
+                                        "value": {
+                                            "op": "!=",
+                                            "left": {
+                                                "type": "field",
+                                                "value": [
+                                                    "veridp_h",
+                                                    "bf_tag"
+                                                ]
+                                            },
+                                            "right": {
+                                                "type": "field",
+                                                "value": [
+                                                    "sketch_metadata",
+                                                    "sketch_val_3"
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "right": {
+                                "type": "expression",
+                                "value": {
+                                    "op": "!=",
+                                    "left": {
+                                        "type": "field",
+                                        "value": [
+                                            "veridp_h",
+                                            "bf_tag"
+                                        ]
+                                    },
+                                    "right": {
+                                        "type": "field",
+                                        "value": [
+                                            "sketch_metadata",
+                                            "sketch_val_4"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "true_next": "table_sketch_update_path_tags",
+                    "false_next": "table_src_mac_overwrite"
+                }
+            ]
+        }
+    ],
+    "calculations": [
+        {
+            "name": "hash_1",
+            "id": 0,
+            "input": [
+                {
+                    "type": "field",
+                    "value": [
+                        "ipv4",
+                        "srcAddr"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "ipv4",
+                        "dstAddr"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "ipv4",
+                        "protocol"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "tcp",
+                        "srcPort"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "tcp",
+                        "dstPort"
+                    ]
+                }
+            ],
+            "algo": "murmur_1"
+        },
+        {
+            "name": "hash_2",
+            "id": 1,
+            "input": [
+                {
+                    "type": "field",
+                    "value": [
+                        "ipv4",
+                        "srcAddr"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "ipv4",
+                        "dstAddr"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "ipv4",
+                        "protocol"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "tcp",
+                        "srcPort"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "tcp",
+                        "dstPort"
+                    ]
+                }
+            ],
+            "algo": "murmur_2"
+        },
+        {
+            "name": "hash_3",
+            "id": 2,
+            "input": [
+                {
+                    "type": "field",
+                    "value": [
+                        "ipv4",
+                        "srcAddr"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "ipv4",
+                        "dstAddr"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "ipv4",
+                        "protocol"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "tcp",
+                        "srcPort"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "tcp",
+                        "dstPort"
+                    ]
+                }
+            ],
+            "algo": "murmur_3"
+        },
+        {
+            "name": "hash_4",
+            "id": 3,
+            "input": [
+                {
+                    "type": "field",
+                    "value": [
+                        "ipv4",
+                        "srcAddr"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "ipv4",
+                        "dstAddr"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "ipv4",
+                        "protocol"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "tcp",
+                        "srcPort"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "tcp",
+                        "dstPort"
+                    ]
+                }
+            ],
+            "algo": "murmur_4"
+        },
+        {
+            "name": "veridp_bf_hash",
+            "id": 4,
+            "input": [
+                {
+                    "type": "field",
+                    "value": [
+                        "veridp_metadata",
+                        "input_port"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "veridp_metadata",
+                        "switch_id"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "veridp_metadata",
+                        "output_port"
+                    ]
+                }
+            ],
+            "algo": "murmur_22"
+        }
+    ],
+    "checksums": [],
+    "learn_lists": [],
+    "field_lists": [],
+    "counter_arrays": [],
+    "register_arrays": [
+        {
+            "name": "sketch_path_tags",
+            "id": 0,
+            "bitwidth": 16,
+            "size": 64
+        },
+        {
+            "name": "sketch_path_changes",
+            "id": 1,
+            "bitwidth": 32,
+            "size": 64
+        }
+    ],
+    "force_arith": [
+        [
+            "standard_metadata",
+            "ingress_port"
+        ],
+        [
+            "standard_metadata",
+            "packet_length"
+        ],
+        [
+            "standard_metadata",
+            "egress_spec"
+        ],
+        [
+            "standard_metadata",
+            "egress_port"
+        ],
+        [
+            "standard_metadata",
+            "egress_instance"
+        ],
+        [
+            "standard_metadata",
+            "instance_type"
+        ],
+        [
+            "standard_metadata",
+            "clone_spec"
+        ],
+        [
+            "standard_metadata",
+            "_padding"
+        ],
+        [
+            "intrinsic_metadata",
+            "ingress_global_timestamp"
+        ],
+        [
+            "intrinsic_metadata",
+            "lf_field_list"
+        ],
+        [
+            "intrinsic_metadata",
+            "mcast_grp"
+        ],
+        [
+            "intrinsic_metadata",
+            "egress_rid"
+        ]
+    ]
+}

@@ -1,0 +1,41 @@
+// bf bf0
+// bf_idx1 bf_idx10
+// bf_idx2 bf_idx20
+// bf_idx3 bf_idx30
+// local_bf local_bf2
+digraph graph_output {splines=true node [shape = box style="rounded,filled"];
+13734568856339414784 [label = "p.bf_idx30 = hash3(p.input_port, p.switch_id, p.output_port) % 16"  fillcolor=white];
+15012051173196100273 [label = "p.tmp2 = 1 << p.bf_idx30"  fillcolor=white];
+11849303466078129254 [label = "p.local_bf0 = p.local_bf | p.tmp2"  fillcolor=white];
+5422027253675119581 [label = "p.local_bf1 = p.local_bf0 | p.tmp2"  fillcolor=white];
+16130483285185836098 [label = "p.local_bf2 = p.local_bf1 | p.tmp2"  fillcolor=white];
+15942028066455660009 [label = "p.bf0 = p.bf | p.local_bf2"  fillcolor=white];
+13734568856339414784 -> 15012051173196100273 ;
+15012051173196100273 -> 11849303466078129254 ;
+15012051173196100273 -> 5422027253675119581 ;
+15012051173196100273 -> 16130483285185836098 ;
+11849303466078129254 -> 5422027253675119581 ;
+5422027253675119581 -> 16130483285185836098 ;
+16130483285185836098 -> 15942028066455660009 ;
+}
+digraph pipeline_diagram {splines=true node [shape = box style="rounded,filled" fontsize = 10];
+14095587089070855019 [label = "p.bf_idx30 = hash3(p.input_port, p.switch_id, p.output_port) % 16;
+"  pos = "0,0" fillcolor=white];
+6252673335975744981 [label = "p.tmp2 = 1 << p.bf_idx30;
+"  pos = "250,0" fillcolor=white];
+1467388876100734372 [label = "p.local_bf0 = p.local_bf | p.tmp2;
+"  pos = "500,0" fillcolor=white];
+15671152509202141204 [label = "p.local_bf1 = p.local_bf0 | p.tmp2;
+"  pos = "750,0" fillcolor=white];
+1372947672407459508 [label = "p.local_bf2 = p.local_bf1 | p.tmp2;
+"  pos = "1000,0" fillcolor=white];
+511367809469598054 [label = "p.bf0 = p.bf | p.local_bf2;
+"  pos = "1250,0" fillcolor=white];
+14095587089070855019 -> 6252673335975744981 ;
+6252673335975744981 -> 1467388876100734372 ;
+6252673335975744981 -> 15671152509202141204 ;
+6252673335975744981 -> 1372947672407459508 ;
+1467388876100734372 -> 15671152509202141204 ;
+15671152509202141204 -> 1372947672407459508 ;
+1372947672407459508 -> 511367809469598054 ;
+}

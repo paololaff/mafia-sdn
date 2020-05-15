@@ -1,0 +1,42 @@
+// pcsa_sketch_idx pcsa_sketch_idx0
+// hash_output_bitmap hash_output_bitmap0
+// hash_output_index hash_output_index0
+// pcsa_hash pcsa_hash0
+// pcsa_sketch0 pcsa_sketch01
+// pcsa_sketch_idx0 pcsa_sketch_idx00
+digraph graph_output {splines=true node [shape = box style="rounded,filled"];
+3865095974289858239 [label = "p.tmp0 = p.hash_output_bitmap * 32"  fillcolor=white];
+10615066343862267265 [label = "p.pcsa_sketch_idx00 = p.tmp0 + p.hash_output_index"  fillcolor=white];
+3666506041118869931 [label = "p.pcsa_sketch00 = pcsa_sketch[p.pcsa_sketch_idx00]"  fillcolor=white];
+7174269517235030489 [label = "p.pcsa_hash0 = hash5(p.ipv4_src, p.ipv4_dst, p.tcp_src, p.tcp_dst, p.ipv4_proto) % 512"  fillcolor=white];
+12203421669058128943 [label = "p.hash_output_bitmap0 = p.pcsa_hash0 >> 28"  fillcolor=white];
+17602127306567779180 [label = "p.hash_output_index0 = p.pcsa_hash0 & 268435455"  fillcolor=white];
+1729677216014436105 [label = "pcsa_sketch[p.pcsa_sketch_idx00] = 1"  fillcolor=white];
+3865095974289858239 -> 10615066343862267265 ;
+10615066343862267265 -> 3666506041118869931 ;
+10615066343862267265 -> 1729677216014436105 ;
+3666506041118869931 -> 1729677216014436105 ;
+7174269517235030489 -> 12203421669058128943 ;
+7174269517235030489 -> 17602127306567779180 ;
+1729677216014436105 -> 3666506041118869931 ;
+}
+// Warning: edge already exists, ignoring add_edge command
+digraph pipeline_diagram {splines=true node [shape = box style="rounded,filled" fontsize = 10];
+5112223033762078836 [label = "p.tmp0 = p.hash_output_bitmap * 32;
+"  pos = "0,0" fillcolor=white];
+3433248834620898227 [label = "p.pcsa_hash0 = hash5(p.ipv4_src, p.ipv4_dst, p.tcp_src, p.tcp_dst, p.ipv4_proto) % 512;
+"  pos = "0,75" fillcolor=white];
+16565617985621771136 [label = "p.pcsa_sketch_idx00 = p.tmp0 + p.hash_output_index;
+"  pos = "250,0" fillcolor=white];
+14677165852987434786 [label = "p.hash_output_bitmap0 = p.pcsa_hash0 >> 28;
+"  pos = "250,75" fillcolor=white];
+1624596515802569032 [label = "p.hash_output_index0 = p.pcsa_hash0 & 268435455;
+"  pos = "250,150" fillcolor=white];
+1957413307146035737 [label = "p.pcsa_sketch00 = pcsa_sketch[p.pcsa_sketch_idx00];
+pcsa_sketch[p.pcsa_sketch_idx00] = 1;
+"  pos = "500,0" fillcolor=darkturquoise];
+5112223033762078836 -> 16565617985621771136 ;
+16565617985621771136 -> 1957413307146035737 ;
+3433248834620898227 -> 14677165852987434786 ;
+3433248834620898227 -> 1624596515802569032 ;
+}

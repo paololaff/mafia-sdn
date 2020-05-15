@@ -1,0 +1,9 @@
+b table t_set_border_tag
+b table t_update_border_counter
+
+b action a_set_border_tag
+b action a_update_border_counter
+
+w ipv4.tos
+show_wps
+show_bps

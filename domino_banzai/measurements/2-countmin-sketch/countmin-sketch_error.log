@@ -1,0 +1,132 @@
+// sketch1_idx sketch1_idx0
+// sketch2_idx sketch2_idx0
+// sketch3_idx sketch3_idx0
+// sketch4_idx sketch4_idx0
+// hash_output_h1 hash_output_h10
+// hash_output_h2 hash_output_h20
+// hash_output_h3 hash_output_h30
+// hash_output_h4 hash_output_h40
+// hash_output_idx1 hash_output_idx10
+// hash_output_idx2 hash_output_idx20
+// hash_output_idx3 hash_output_idx30
+// hash_output_idx4 hash_output_idx40
+// sketch1_idx0 sketch1_idx00
+// sketch2_idx0 sketch2_idx00
+// sketch3_idx0 sketch3_idx00
+// sketch4_idx0 sketch4_idx00
+// sketch_cnt0 sketch_cnt01
+// sketch_cnt1 sketch_cnt11
+// sketch_cnt2 sketch_cnt21
+// sketch_cnt3 sketch_cnt31
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+digraph graph_output {splines=true node [shape = box style="rounded,filled"];
+5885059754401823759 [label = "p.tmp0 = p.hash_output_h1 * 256"  fillcolor=white];
+18311669909098575188 [label = "p.sketch1_idx00 = p.tmp0 + p.hash_output_idx1"  fillcolor=white];
+18267860703406146198 [label = "p.sketch_cnt00 = sketch_cnt[p.sketch1_idx00]"  fillcolor=white];
+18309957138961896267 [label = "p.tmp1 = p.hash_output_h2 * 256"  fillcolor=white];
+8525010417175461170 [label = "p.sketch2_idx00 = p.tmp1 + p.hash_output_idx2"  fillcolor=white];
+6280505189212238575 [label = "p.sketch_cnt10 = sketch_cnt[p.sketch2_idx00]"  fillcolor=white];
+4514713249577907250 [label = "p.tmp2 = p.hash_output_h3 * 256"  fillcolor=white];
+17424519937886846242 [label = "p.sketch3_idx00 = p.tmp2 + p.hash_output_idx3"  fillcolor=white];
+3390959017860385707 [label = "p.sketch_cnt20 = sketch_cnt[p.sketch3_idx00]"  fillcolor=white];
+7097609567240339930 [label = "p.tmp3 = p.hash_output_h4 * 256"  fillcolor=white];
+2325878791130869546 [label = "p.sketch4_idx00 = p.tmp3 + p.hash_output_idx4"  fillcolor=white];
+4244455825232223078 [label = "p.sketch_cnt30 = sketch_cnt[p.sketch4_idx00]"  fillcolor=white];
+1758853976996843332 [label = "p.tmp7 = hash5(p.ipv4_src, p.ipv4_dst, p.tcp_src, p.tcp_dst, p.ipv4_proto) % 256"  fillcolor=white];
+14404589634994436727 [label = "p.hash_output_idx40 = p.tmp7 * 4"  fillcolor=white];
+10209609462502321533 [label = "p.sketch_cnt01 = p.sketch_cnt00 + 1"  fillcolor=white];
+5401604228675999727 [label = "p.sketch_cnt11 = p.sketch_cnt10 + 1"  fillcolor=white];
+18218146918052636857 [label = "p.sketch_cnt21 = p.sketch_cnt20 + 1"  fillcolor=white];
+16514121019918578138 [label = "p.sketch_cnt31 = p.sketch_cnt30 + 1"  fillcolor=white];
+10020426679075892910 [label = "sketch_cnt[p.sketch1_idx00] = p.sketch_cnt00 + 1"  fillcolor=white];
+10207858134276580470 [label = "sketch_cnt[p.sketch2_idx00] = p.sketch_cnt10 + 1"  fillcolor=white];
+11586069899609320508 [label = "sketch_cnt[p.sketch3_idx00] = p.sketch_cnt20 + 1"  fillcolor=white];
+11804859356033334569 [label = "sketch_cnt[p.sketch4_idx00] = p.sketch_cnt30 + 1"  fillcolor=white];
+5885059754401823759 -> 18311669909098575188 ;
+18311669909098575188 -> 18267860703406146198 ;
+18311669909098575188 -> 10020426679075892910 ;
+18267860703406146198 -> 10209609462502321533 ;
+18267860703406146198 -> 10020426679075892910 ;
+18309957138961896267 -> 8525010417175461170 ;
+8525010417175461170 -> 6280505189212238575 ;
+8525010417175461170 -> 10207858134276580470 ;
+6280505189212238575 -> 5401604228675999727 ;
+6280505189212238575 -> 10207858134276580470 ;
+4514713249577907250 -> 17424519937886846242 ;
+17424519937886846242 -> 3390959017860385707 ;
+17424519937886846242 -> 11586069899609320508 ;
+3390959017860385707 -> 18218146918052636857 ;
+3390959017860385707 -> 11586069899609320508 ;
+7097609567240339930 -> 2325878791130869546 ;
+2325878791130869546 -> 4244455825232223078 ;
+2325878791130869546 -> 11804859356033334569 ;
+4244455825232223078 -> 16514121019918578138 ;
+4244455825232223078 -> 11804859356033334569 ;
+1758853976996843332 -> 14404589634994436727 ;
+10020426679075892910 -> 18267860703406146198 ;
+10207858134276580470 -> 6280505189212238575 ;
+11586069899609320508 -> 3390959017860385707 ;
+11804859356033334569 -> 4244455825232223078 ;
+}
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+digraph pipeline_diagram {splines=true node [shape = box style="rounded,filled" fontsize = 10];
+6636859021583115411 [label = "p.tmp0 = p.hash_output_h1 * 256;
+"  pos = "0,0" fillcolor=white];
+16386153533350502191 [label = "p.tmp1 = p.hash_output_h2 * 256;
+"  pos = "0,75" fillcolor=white];
+10942097241813074275 [label = "p.tmp7 = hash5(p.ipv4_src, p.ipv4_dst, p.tcp_src, p.tcp_dst, p.ipv4_proto) % 256;
+"  pos = "0,150" fillcolor=white];
+4719260017689350135 [label = "p.tmp2 = p.hash_output_h3 * 256;
+"  pos = "0,225" fillcolor=white];
+12475287066889659547 [label = "p.tmp3 = p.hash_output_h4 * 256;
+"  pos = "0,300" fillcolor=white];
+7501089794436435014 [label = "p.sketch1_idx00 = p.tmp0 + p.hash_output_idx1;
+"  pos = "250,0" fillcolor=white];
+15656833494705233153 [label = "p.hash_output_idx40 = p.tmp7 * 4;
+"  pos = "250,75" fillcolor=white];
+9721563593560828343 [label = "p.sketch4_idx00 = p.tmp3 + p.hash_output_idx4;
+"  pos = "250,150" fillcolor=white];
+12223951572578906229 [label = "p.sketch3_idx00 = p.tmp2 + p.hash_output_idx3;
+"  pos = "250,225" fillcolor=white];
+5526101988645289807 [label = "p.sketch2_idx00 = p.tmp1 + p.hash_output_idx2;
+"  pos = "250,300" fillcolor=white];
+14950329023733680080 [label = "p.sketch_cnt20 = sketch_cnt[p.sketch3_idx00];
+sketch_cnt[p.sketch3_idx00] = p.sketch_cnt20 + 1;
+"  pos = "500,0" fillcolor=darkturquoise];
+9830775155199357749 [label = "p.sketch_cnt10 = sketch_cnt[p.sketch2_idx00];
+sketch_cnt[p.sketch2_idx00] = p.sketch_cnt10 + 1;
+"  pos = "500,75" fillcolor=darkturquoise];
+6306482973474305021 [label = "p.sketch_cnt30 = sketch_cnt[p.sketch4_idx00];
+sketch_cnt[p.sketch4_idx00] = p.sketch_cnt30 + 1;
+"  pos = "500,150" fillcolor=darkturquoise];
+4574876100427466367 [label = "p.sketch_cnt00 = sketch_cnt[p.sketch1_idx00];
+sketch_cnt[p.sketch1_idx00] = p.sketch_cnt00 + 1;
+"  pos = "500,225" fillcolor=darkturquoise];
+12315303437726602514 [label = "p.sketch_cnt01 = p.sketch_cnt00 + 1;
+"  pos = "750,0" fillcolor=white];
+14463381657882096998 [label = "p.sketch_cnt11 = p.sketch_cnt10 + 1;
+"  pos = "750,75" fillcolor=white];
+15443082531143218516 [label = "p.sketch_cnt21 = p.sketch_cnt20 + 1;
+"  pos = "750,150" fillcolor=white];
+16418422882110243625 [label = "p.sketch_cnt31 = p.sketch_cnt30 + 1;
+"  pos = "750,225" fillcolor=white];
+6636859021583115411 -> 7501089794436435014 ;
+7501089794436435014 -> 4574876100427466367 ;
+4574876100427466367 -> 12315303437726602514 ;
+16386153533350502191 -> 5526101988645289807 ;
+5526101988645289807 -> 9830775155199357749 ;
+9830775155199357749 -> 14463381657882096998 ;
+4719260017689350135 -> 12223951572578906229 ;
+12223951572578906229 -> 14950329023733680080 ;
+14950329023733680080 -> 15443082531143218516 ;
+12475287066889659547 -> 9721563593560828343 ;
+9721563593560828343 -> 6306482973474305021 ;
+6306482973474305021 -> 16418422882110243625 ;
+10942097241813074275 -> 15656833494705233153 ;
+}

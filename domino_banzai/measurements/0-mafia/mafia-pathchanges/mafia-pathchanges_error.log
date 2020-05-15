@@ -1,0 +1,435 @@
+// sketch1_idx sketch1_idx0
+// sketch2_idx sketch2_idx0
+// sketch3_idx sketch3_idx0
+// sketch4_idx sketch4_idx0
+// sketch1_idx sketch1_idx1
+// sketch2_idx sketch2_idx1
+// sketch3_idx sketch3_idx1
+// sketch4_idx sketch4_idx1
+// bf bf0
+// bf_idx1 bf_idx10
+// bf_idx2 bf_idx20
+// bf_idx3 bf_idx30
+// hash_output_h1 hash_output_h10
+// hash_output_h2 hash_output_h20
+// hash_output_h3 hash_output_h30
+// hash_output_h4 hash_output_h40
+// hash_output_idx1 hash_output_idx10
+// hash_output_idx2 hash_output_idx20
+// hash_output_idx3 hash_output_idx30
+// hash_output_idx4 hash_output_idx40
+// local_bf local_bf2
+// sketch1_idx0 sketch1_idx00
+// sketch1_idx1 sketch1_idx10
+// sketch2_idx0 sketch2_idx00
+// sketch2_idx1 sketch2_idx10
+// sketch3_idx0 sketch3_idx00
+// sketch3_idx1 sketch3_idx10
+// sketch4_idx0 sketch4_idx00
+// sketch4_idx1 sketch4_idx10
+// sketch_changes0 sketch_changes01
+// sketch_changes1 sketch_changes11
+// sketch_changes2 sketch_changes21
+// sketch_changes3 sketch_changes31
+// sketch_paths0 sketch_paths01
+// sketch_paths1 sketch_paths11
+// sketch_paths2 sketch_paths21
+// sketch_paths3 sketch_paths31
+// tmp0 tmp00
+// tmp1 tmp10
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+digraph graph_output {splines=true node [shape = box style="rounded,filled"];
+16891824746629897642 [label = "p.tmp47 = p.hash_output_h1 * 256"  fillcolor=white];
+1594017434311857112 [label = "p.tmp6 = p.tmp47 + p.hash_output_idx1"  fillcolor=white];
+16354753169459857010 [label = "p.sketch1_idx00 = (p.tmp0) ? p.tmp6 : p.sketch1_idx"  fillcolor=white];
+3143682631109564896 [label = "p.sketch_changes00 = sketch_changes[p.sketch1_idx00]"  fillcolor=white];
+17809795849908604302 [label = "p.tmp48 = p.hash_output_h2 * 256"  fillcolor=white];
+14580404159680820284 [label = "p.tmp7 = p.tmp48 + p.hash_output_idx2"  fillcolor=white];
+15522356592526275493 [label = "p.sketch2_idx00 = (p.tmp0) ? p.tmp7 : p.sketch2_idx"  fillcolor=white];
+4337988513288760587 [label = "p.sketch_changes10 = sketch_changes[p.sketch2_idx00]"  fillcolor=white];
+12415462477835736981 [label = "p.tmp49 = p.hash_output_h3 * 256"  fillcolor=white];
+12799473082932112952 [label = "p.tmp8 = p.tmp49 + p.hash_output_idx3"  fillcolor=white];
+14624359151691214354 [label = "p.sketch3_idx00 = (p.tmp0) ? p.tmp8 : p.sketch3_idx"  fillcolor=white];
+12548737490304962621 [label = "p.sketch_changes20 = sketch_changes[p.sketch3_idx00]"  fillcolor=white];
+2456890136406948005 [label = "p.tmp50 = p.hash_output_h4 * 256"  fillcolor=white];
+9809999712920991344 [label = "p.tmp9 = p.tmp50 + p.hash_output_idx4"  fillcolor=white];
+17633374754134314964 [label = "p.sketch4_idx00 = (p.tmp0) ? p.tmp9 : p.sketch4_idx"  fillcolor=white];
+15332814724581325879 [label = "p.sketch_changes30 = sketch_changes[p.sketch4_idx00]"  fillcolor=white];
+13099202695069433654 [label = "p.sketch1_idx10 = (p.tmp0) ? p.tmp6 : p.sketch1_idx"  fillcolor=white];
+12602241273183571919 [label = "p.sketch_paths00 = sketch_paths[p.sketch1_idx10]"  fillcolor=white];
+12821572934020014544 [label = "p.sketch2_idx10 = (p.tmp0) ? p.tmp7 : p.sketch2_idx"  fillcolor=white];
+611232047274777203 [label = "p.sketch_paths10 = sketch_paths[p.sketch2_idx10]"  fillcolor=white];
+4649232534482339169 [label = "p.sketch3_idx10 = (p.tmp0) ? p.tmp8 : p.sketch3_idx"  fillcolor=white];
+1915540070020518406 [label = "p.sketch_paths20 = sketch_paths[p.sketch3_idx10]"  fillcolor=white];
+12105502693193332354 [label = "p.sketch4_idx10 = (p.tmp0) ? p.tmp9 : p.sketch4_idx"  fillcolor=white];
+12540898979531458254 [label = "p.sketch_paths30 = sketch_paths[p.sketch4_idx10]"  fillcolor=white];
+13734568856339414784 [label = "p.bf_idx30 = hash3(p.input_port, p.switch_id, p.output_port) % 16"  fillcolor=white];
+6177970890913950901 [label = "p.tmp13 = 1 << p.bf_idx30"  fillcolor=white];
+6770597196414674168 [label = "p.local_bf0 = p.local_bf | p.tmp13"  fillcolor=white];
+2789252093173007971 [label = "p.local_bf1 = p.local_bf0 | p.tmp13"  fillcolor=white];
+17760972350000561066 [label = "p.local_bf2 = p.local_bf1 | p.tmp13"  fillcolor=white];
+15942028066455660009 [label = "p.bf0 = p.bf | p.local_bf2"  fillcolor=white];
+8273480129425998588 [label = "p.tmp00 = p.is_exit_switch == 1"  fillcolor=white];
+3446881356496530468 [label = "p.tmp54 = hash5(p.ipv4_src, p.ipv4_dst, p.tcp_src, p.tcp_dst, p.ipv4_proto) % 256"  fillcolor=white];
+15110323778863928884 [label = "p.tmp17 = p.tmp54 * 4"  fillcolor=white];
+5135509820997850008 [label = "p.hash_output_idx10 = (p.tmp00) ? p.tmp17 : p.hash_output_idx1"  fillcolor=white];
+5812154412521951370 [label = "p.hash_output_idx20 = (p.tmp00) ? p.tmp17 : p.hash_output_idx2"  fillcolor=white];
+3822356160718922597 [label = "p.hash_output_idx30 = (p.tmp00) ? p.tmp17 : p.hash_output_idx3"  fillcolor=white];
+4070233885291275130 [label = "p.hash_output_idx40 = (p.tmp00) ? p.tmp17 : p.hash_output_idx4"  fillcolor=white];
+2773521369392511246 [label = "p.hash_output_h10 = (p.tmp00) ? (0) : p.hash_output_h1"  fillcolor=white];
+1934183109236683896 [label = "p.hash_output_h20 = (p.tmp00) ? (1) : p.hash_output_h2"  fillcolor=white];
+6993165765568405447 [label = "p.hash_output_h30 = (p.tmp00) ? (2) : p.hash_output_h3"  fillcolor=white];
+10196218831284750320 [label = "p.hash_output_h40 = (p.tmp00) ? (3) : p.hash_output_h4"  fillcolor=white];
+7786557365858616676 [label = "p.tmp56 = p.bf0 != p.sketch_paths00"  fillcolor=white];
+2575777115350868535 [label = "p.tmp55 = p.tmp56 && p.tmp56"  fillcolor=white];
+16166986936665855521 [label = "p.tmp18 = p.tmp55 && p.tmp56"  fillcolor=white];
+7856066605888858915 [label = "p.tmp10 = (p.tmp00) ? p.tmp18 : 0"  fillcolor=white];
+8950274960617821769 [label = "p.tmp42 = (p.tmp00) && p.tmp10"  fillcolor=white];
+9197506936606879529 [label = "p.tmp32 = p.sketch_changes00 + 1"  fillcolor=white];
+565603987491369785 [label = "p.sketch_changes01 = p.tmp42 ? p.tmp32 : p.sketch_changes00"  fillcolor=white];
+4119947964870146235 [label = "p.tmp34 = p.sketch_changes10 + 1"  fillcolor=white];
+3199360039255299338 [label = "p.sketch_changes11 = p.tmp42 ? p.tmp34 : p.sketch_changes10"  fillcolor=white];
+13812782652340430958 [label = "p.tmp36 = p.sketch_changes20 + 1"  fillcolor=white];
+15385350202255216442 [label = "p.sketch_changes21 = p.tmp42 ? p.tmp36 : p.sketch_changes20"  fillcolor=white];
+17581452621336141943 [label = "p.tmp38 = p.sketch_changes30 + 1"  fillcolor=white];
+16686080857692930043 [label = "p.sketch_changes31 = p.tmp42 ? p.tmp38 : p.sketch_changes30"  fillcolor=white];
+2190804073397113711 [label = "p.sketch_paths01 = p.tmp42 ? (p.bf0) : p.sketch_paths00"  fillcolor=white];
+4123791573929981681 [label = "p.sketch_paths11 = p.tmp42 ? (p.bf0) : p.sketch_paths10"  fillcolor=white];
+9103498039577812304 [label = "p.sketch_paths21 = p.tmp42 ? (p.bf0) : p.sketch_paths20"  fillcolor=white];
+4502181402189802920 [label = "p.sketch_paths31 = p.tmp42 ? (p.bf0) : p.sketch_paths30"  fillcolor=white];
+2552458956538569352 [label = "sketch_changes[p.sketch1_idx00] = p.tmp42 ? p.tmp32 : p.sketch_changes00"  fillcolor=white];
+15661331212234511096 [label = "sketch_changes[p.sketch2_idx00] = p.tmp42 ? p.tmp34 : p.sketch_changes10"  fillcolor=white];
+7227516249231250465 [label = "sketch_changes[p.sketch3_idx00] = p.tmp42 ? p.tmp36 : p.sketch_changes20"  fillcolor=white];
+16162436301905419207 [label = "sketch_changes[p.sketch4_idx00] = p.tmp42 ? p.tmp38 : p.sketch_changes30"  fillcolor=white];
+2417205029598416513 [label = "sketch_paths[p.sketch1_idx10] = p.tmp42 ? (p.bf0) : p.sketch_paths00"  fillcolor=white];
+4656382612698693558 [label = "sketch_paths[p.sketch2_idx10] = p.tmp42 ? (p.bf0) : p.sketch_paths10"  fillcolor=white];
+16265641870884932408 [label = "sketch_paths[p.sketch3_idx10] = p.tmp42 ? (p.bf0) : p.sketch_paths20"  fillcolor=white];
+8593062652314158965 [label = "sketch_paths[p.sketch4_idx10] = p.tmp42 ? (p.bf0) : p.sketch_paths30"  fillcolor=white];
+16891824746629897642 -> 1594017434311857112 ;
+1594017434311857112 -> 16354753169459857010 ;
+1594017434311857112 -> 13099202695069433654 ;
+16354753169459857010 -> 3143682631109564896 ;
+16354753169459857010 -> 2552458956538569352 ;
+3143682631109564896 -> 9197506936606879529 ;
+3143682631109564896 -> 565603987491369785 ;
+3143682631109564896 -> 2552458956538569352 ;
+17809795849908604302 -> 14580404159680820284 ;
+14580404159680820284 -> 15522356592526275493 ;
+14580404159680820284 -> 12821572934020014544 ;
+15522356592526275493 -> 4337988513288760587 ;
+15522356592526275493 -> 15661331212234511096 ;
+4337988513288760587 -> 4119947964870146235 ;
+4337988513288760587 -> 3199360039255299338 ;
+4337988513288760587 -> 15661331212234511096 ;
+12415462477835736981 -> 12799473082932112952 ;
+12799473082932112952 -> 14624359151691214354 ;
+12799473082932112952 -> 4649232534482339169 ;
+14624359151691214354 -> 12548737490304962621 ;
+14624359151691214354 -> 7227516249231250465 ;
+12548737490304962621 -> 13812782652340430958 ;
+12548737490304962621 -> 15385350202255216442 ;
+12548737490304962621 -> 7227516249231250465 ;
+2456890136406948005 -> 9809999712920991344 ;
+9809999712920991344 -> 17633374754134314964 ;
+9809999712920991344 -> 12105502693193332354 ;
+17633374754134314964 -> 15332814724581325879 ;
+17633374754134314964 -> 16162436301905419207 ;
+15332814724581325879 -> 17581452621336141943 ;
+15332814724581325879 -> 16686080857692930043 ;
+15332814724581325879 -> 16162436301905419207 ;
+13099202695069433654 -> 12602241273183571919 ;
+13099202695069433654 -> 2417205029598416513 ;
+12602241273183571919 -> 7786557365858616676 ;
+12602241273183571919 -> 2190804073397113711 ;
+12602241273183571919 -> 2417205029598416513 ;
+12821572934020014544 -> 611232047274777203 ;
+12821572934020014544 -> 4656382612698693558 ;
+611232047274777203 -> 4123791573929981681 ;
+611232047274777203 -> 4656382612698693558 ;
+4649232534482339169 -> 1915540070020518406 ;
+4649232534482339169 -> 16265641870884932408 ;
+1915540070020518406 -> 9103498039577812304 ;
+1915540070020518406 -> 16265641870884932408 ;
+12105502693193332354 -> 12540898979531458254 ;
+12105502693193332354 -> 8593062652314158965 ;
+12540898979531458254 -> 4502181402189802920 ;
+12540898979531458254 -> 8593062652314158965 ;
+13734568856339414784 -> 6177970890913950901 ;
+6177970890913950901 -> 6770597196414674168 ;
+6177970890913950901 -> 2789252093173007971 ;
+6177970890913950901 -> 17760972350000561066 ;
+6770597196414674168 -> 2789252093173007971 ;
+2789252093173007971 -> 17760972350000561066 ;
+17760972350000561066 -> 15942028066455660009 ;
+15942028066455660009 -> 7786557365858616676 ;
+15942028066455660009 -> 2190804073397113711 ;
+15942028066455660009 -> 4123791573929981681 ;
+15942028066455660009 -> 9103498039577812304 ;
+15942028066455660009 -> 4502181402189802920 ;
+15942028066455660009 -> 2417205029598416513 ;
+15942028066455660009 -> 4656382612698693558 ;
+15942028066455660009 -> 16265641870884932408 ;
+15942028066455660009 -> 8593062652314158965 ;
+8273480129425998588 -> 5135509820997850008 ;
+8273480129425998588 -> 5812154412521951370 ;
+8273480129425998588 -> 3822356160718922597 ;
+8273480129425998588 -> 4070233885291275130 ;
+8273480129425998588 -> 2773521369392511246 ;
+8273480129425998588 -> 1934183109236683896 ;
+8273480129425998588 -> 6993165765568405447 ;
+8273480129425998588 -> 10196218831284750320 ;
+8273480129425998588 -> 7856066605888858915 ;
+8273480129425998588 -> 8950274960617821769 ;
+3446881356496530468 -> 15110323778863928884 ;
+15110323778863928884 -> 5135509820997850008 ;
+15110323778863928884 -> 5812154412521951370 ;
+15110323778863928884 -> 3822356160718922597 ;
+15110323778863928884 -> 4070233885291275130 ;
+7786557365858616676 -> 2575777115350868535 ;
+7786557365858616676 -> 16166986936665855521 ;
+2575777115350868535 -> 16166986936665855521 ;
+16166986936665855521 -> 7856066605888858915 ;
+7856066605888858915 -> 8950274960617821769 ;
+8950274960617821769 -> 565603987491369785 ;
+8950274960617821769 -> 3199360039255299338 ;
+8950274960617821769 -> 15385350202255216442 ;
+8950274960617821769 -> 16686080857692930043 ;
+8950274960617821769 -> 2190804073397113711 ;
+8950274960617821769 -> 4123791573929981681 ;
+8950274960617821769 -> 9103498039577812304 ;
+8950274960617821769 -> 4502181402189802920 ;
+8950274960617821769 -> 2552458956538569352 ;
+8950274960617821769 -> 15661331212234511096 ;
+8950274960617821769 -> 7227516249231250465 ;
+8950274960617821769 -> 16162436301905419207 ;
+8950274960617821769 -> 2417205029598416513 ;
+8950274960617821769 -> 4656382612698693558 ;
+8950274960617821769 -> 16265641870884932408 ;
+8950274960617821769 -> 8593062652314158965 ;
+9197506936606879529 -> 565603987491369785 ;
+9197506936606879529 -> 2552458956538569352 ;
+4119947964870146235 -> 3199360039255299338 ;
+4119947964870146235 -> 15661331212234511096 ;
+13812782652340430958 -> 15385350202255216442 ;
+13812782652340430958 -> 7227516249231250465 ;
+17581452621336141943 -> 16686080857692930043 ;
+17581452621336141943 -> 16162436301905419207 ;
+2552458956538569352 -> 3143682631109564896 ;
+15661331212234511096 -> 4337988513288760587 ;
+7227516249231250465 -> 12548737490304962621 ;
+16162436301905419207 -> 15332814724581325879 ;
+2417205029598416513 -> 12602241273183571919 ;
+4656382612698693558 -> 611232047274777203 ;
+16265641870884932408 -> 1915540070020518406 ;
+8593062652314158965 -> 12540898979531458254 ;
+}
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+digraph pipeline_diagram {splines=true node [shape = box style="rounded,filled" fontsize = 10];
+2016754597963449473 [label = "p.tmp47 = p.hash_output_h1 * 256;
+"  pos = "0,0" fillcolor=white];
+13134045997512035395 [label = "p.tmp48 = p.hash_output_h2 * 256;
+"  pos = "0,75" fillcolor=white];
+15966825590998832815 [label = "p.tmp49 = p.hash_output_h3 * 256;
+"  pos = "0,150" fillcolor=white];
+16613919819049421590 [label = "p.tmp54 = hash5(p.ipv4_src, p.ipv4_dst, p.tcp_src, p.tcp_dst, p.ipv4_proto) % 256;
+"  pos = "0,225" fillcolor=white];
+336423267109748120 [label = "p.tmp00 = p.is_exit_switch == 1;
+"  pos = "0,300" fillcolor=white];
+3816202394128906002 [label = "p.tmp50 = p.hash_output_h4 * 256;
+"  pos = "0,375" fillcolor=white];
+14095587089070855019 [label = "p.bf_idx30 = hash3(p.input_port, p.switch_id, p.output_port) % 16;
+"  pos = "0,450" fillcolor=white];
+8795703833266708028 [label = "p.tmp6 = p.tmp47 + p.hash_output_idx1;
+"  pos = "250,0" fillcolor=white];
+5925884239514408545 [label = "p.hash_output_h40 = (p.tmp00) ? (3) : p.hash_output_h4;
+"  pos = "250,75" fillcolor=white];
+2662471616545355745 [label = "p.hash_output_h30 = (p.tmp00) ? (2) : p.hash_output_h3;
+"  pos = "250,150" fillcolor=white];
+16043038957529961188 [label = "p.hash_output_h20 = (p.tmp00) ? (1) : p.hash_output_h2;
+"  pos = "250,225" fillcolor=white];
+14047945586990659835 [label = "p.hash_output_h10 = (p.tmp00) ? (0) : p.hash_output_h1;
+"  pos = "250,300" fillcolor=white];
+351531832987756376 [label = "p.tmp17 = p.tmp54 * 4;
+"  pos = "250,375" fillcolor=white];
+17038216975466555250 [label = "p.tmp13 = 1 << p.bf_idx30;
+"  pos = "250,450" fillcolor=white];
+4286888385629549564 [label = "p.tmp8 = p.tmp49 + p.hash_output_idx3;
+"  pos = "250,525" fillcolor=white];
+17006606391476618685 [label = "p.tmp7 = p.tmp48 + p.hash_output_idx2;
+"  pos = "250,600" fillcolor=white];
+3383448620018877892 [label = "p.tmp9 = p.tmp50 + p.hash_output_idx4;
+"  pos = "250,675" fillcolor=white];
+9551622893277502296 [label = "p.hash_output_idx40 = (p.tmp00) ? p.tmp17 : p.hash_output_idx4;
+"  pos = "500,0" fillcolor=white];
+12361211920184159360 [label = "p.hash_output_idx30 = (p.tmp00) ? p.tmp17 : p.hash_output_idx3;
+"  pos = "500,75" fillcolor=white];
+1839271424580645861 [label = "p.hash_output_idx20 = (p.tmp00) ? p.tmp17 : p.hash_output_idx2;
+"  pos = "500,150" fillcolor=white];
+14055044653262428602 [label = "p.hash_output_idx10 = (p.tmp00) ? p.tmp17 : p.hash_output_idx1;
+"  pos = "500,225" fillcolor=white];
+17985785291251458971 [label = "p.sketch2_idx00 = (p.tmp0) ? p.tmp7 : p.sketch2_idx;
+"  pos = "500,300" fillcolor=white];
+4381798394234500977 [label = "p.sketch3_idx00 = (p.tmp0) ? p.tmp8 : p.sketch3_idx;
+"  pos = "500,375" fillcolor=white];
+16166773499711238315 [label = "p.local_bf0 = p.local_bf | p.tmp13;
+"  pos = "500,450" fillcolor=white];
+6057653166029048416 [label = "p.sketch4_idx10 = (p.tmp0) ? p.tmp9 : p.sketch4_idx;
+"  pos = "500,525" fillcolor=white];
+5911355248514919117 [label = "p.sketch1_idx00 = (p.tmp0) ? p.tmp6 : p.sketch1_idx;
+"  pos = "500,600" fillcolor=white];
+5319273083817988343 [label = "p.sketch3_idx10 = (p.tmp0) ? p.tmp8 : p.sketch3_idx;
+"  pos = "500,675" fillcolor=white];
+14095941831530262693 [label = "p.sketch2_idx10 = (p.tmp0) ? p.tmp7 : p.sketch2_idx;
+"  pos = "500,750" fillcolor=white];
+3750025593029683588 [label = "p.sketch1_idx10 = (p.tmp0) ? p.tmp6 : p.sketch1_idx;
+"  pos = "500,825" fillcolor=white];
+14812844121279644443 [label = "p.sketch4_idx00 = (p.tmp0) ? p.tmp9 : p.sketch4_idx;
+"  pos = "500,900" fillcolor=white];
+6977393748965832514 [label = "p.local_bf1 = p.local_bf0 | p.tmp13;
+"  pos = "750,0" fillcolor=white];
+1408465132197519472 [label = "p.local_bf2 = p.local_bf1 | p.tmp13;
+"  pos = "1000,0" fillcolor=white];
+511367809469598054 [label = "p.bf0 = p.bf | p.local_bf2;
+"  pos = "1250,0" fillcolor=white];
+7593671042749210634 [label = "p.sketch_paths00 = sketch_paths[p.sketch1_idx10];
+p.tmp56 = p.bf0 != p.sketch_paths00;
+p.tmp55 = p.tmp56 && p.tmp56;
+p.tmp18 = p.tmp55 && p.tmp56;
+p.tmp10 = (p.tmp00) ? p.tmp18 : 0;
+p.tmp42 = (p.tmp00) && p.tmp10;
+sketch_paths[p.sketch1_idx10] = p.tmp42 ? (p.bf0) : p.sketch_paths00;
+"  pos = "1500,0" fillcolor=darkturquoise];
+15499023678501188689 [label = "p.sketch_changes00 = sketch_changes[p.sketch1_idx00];
+p.tmp32 = p.sketch_changes00 + 1;
+sketch_changes[p.sketch1_idx00] = p.tmp42 ? p.tmp32 : p.sketch_changes00;
+"  pos = "1750,0" fillcolor=darkturquoise];
+573199832019545817 [label = "p.sketch_paths01 = p.tmp42 ? (p.bf0) : p.sketch_paths00;
+"  pos = "1750,75" fillcolor=white];
+13048985377919049008 [label = "p.sketch_changes30 = sketch_changes[p.sketch4_idx00];
+p.tmp38 = p.sketch_changes30 + 1;
+sketch_changes[p.sketch4_idx00] = p.tmp42 ? p.tmp38 : p.sketch_changes30;
+"  pos = "1750,150" fillcolor=darkturquoise];
+14967280105189341934 [label = "p.sketch_changes10 = sketch_changes[p.sketch2_idx00];
+p.tmp34 = p.sketch_changes10 + 1;
+sketch_changes[p.sketch2_idx00] = p.tmp42 ? p.tmp34 : p.sketch_changes10;
+"  pos = "1750,225" fillcolor=darkturquoise];
+14569717549458928342 [label = "p.sketch_changes20 = sketch_changes[p.sketch3_idx00];
+p.tmp36 = p.sketch_changes20 + 1;
+sketch_changes[p.sketch3_idx00] = p.tmp42 ? p.tmp36 : p.sketch_changes20;
+"  pos = "1750,300" fillcolor=darkturquoise];
+9833118739676884429 [label = "p.sketch_paths30 = sketch_paths[p.sketch4_idx10];
+sketch_paths[p.sketch4_idx10] = p.tmp42 ? (p.bf0) : p.sketch_paths30;
+"  pos = "1750,375" fillcolor=darkturquoise];
+18363178271477303333 [label = "p.sketch_paths20 = sketch_paths[p.sketch3_idx10];
+sketch_paths[p.sketch3_idx10] = p.tmp42 ? (p.bf0) : p.sketch_paths20;
+"  pos = "1750,450" fillcolor=darkturquoise];
+9963019769462593111 [label = "p.sketch_paths10 = sketch_paths[p.sketch2_idx10];
+sketch_paths[p.sketch2_idx10] = p.tmp42 ? (p.bf0) : p.sketch_paths10;
+"  pos = "1750,525" fillcolor=darkturquoise];
+2984280684570879949 [label = "p.sketch_changes01 = p.tmp42 ? p.tmp32 : p.sketch_changes00;
+"  pos = "2000,0" fillcolor=white];
+12437544753655666647 [label = "p.sketch_changes11 = p.tmp42 ? p.tmp34 : p.sketch_changes10;
+"  pos = "2000,75" fillcolor=white];
+5357331014442138626 [label = "p.sketch_changes21 = p.tmp42 ? p.tmp36 : p.sketch_changes20;
+"  pos = "2000,150" fillcolor=white];
+2730676698245543141 [label = "p.sketch_changes31 = p.tmp42 ? p.tmp38 : p.sketch_changes30;
+"  pos = "2000,225" fillcolor=white];
+3257043735995619722 [label = "p.sketch_paths11 = p.tmp42 ? (p.bf0) : p.sketch_paths10;
+"  pos = "2000,300" fillcolor=white];
+7932635087916485688 [label = "p.sketch_paths21 = p.tmp42 ? (p.bf0) : p.sketch_paths20;
+"  pos = "2000,375" fillcolor=white];
+7530320773649420121 [label = "p.sketch_paths31 = p.tmp42 ? (p.bf0) : p.sketch_paths30;
+"  pos = "2000,450" fillcolor=white];
+2016754597963449473 -> 8795703833266708028 ;
+8795703833266708028 -> 5911355248514919117 ;
+8795703833266708028 -> 3750025593029683588 ;
+5911355248514919117 -> 15499023678501188689 ;
+15499023678501188689 -> 2984280684570879949 ;
+13134045997512035395 -> 17006606391476618685 ;
+17006606391476618685 -> 17985785291251458971 ;
+17006606391476618685 -> 14095941831530262693 ;
+17985785291251458971 -> 14967280105189341934 ;
+14967280105189341934 -> 12437544753655666647 ;
+15966825590998832815 -> 4286888385629549564 ;
+4286888385629549564 -> 4381798394234500977 ;
+4286888385629549564 -> 5319273083817988343 ;
+4381798394234500977 -> 14569717549458928342 ;
+14569717549458928342 -> 5357331014442138626 ;
+3816202394128906002 -> 3383448620018877892 ;
+3383448620018877892 -> 14812844121279644443 ;
+3383448620018877892 -> 6057653166029048416 ;
+14812844121279644443 -> 13048985377919049008 ;
+13048985377919049008 -> 2730676698245543141 ;
+3750025593029683588 -> 7593671042749210634 ;
+7593671042749210634 -> 15499023678501188689 ;
+7593671042749210634 -> 14967280105189341934 ;
+7593671042749210634 -> 14569717549458928342 ;
+7593671042749210634 -> 13048985377919049008 ;
+7593671042749210634 -> 9963019769462593111 ;
+7593671042749210634 -> 18363178271477303333 ;
+7593671042749210634 -> 9833118739676884429 ;
+7593671042749210634 -> 2984280684570879949 ;
+7593671042749210634 -> 12437544753655666647 ;
+7593671042749210634 -> 5357331014442138626 ;
+7593671042749210634 -> 2730676698245543141 ;
+7593671042749210634 -> 573199832019545817 ;
+7593671042749210634 -> 3257043735995619722 ;
+7593671042749210634 -> 7932635087916485688 ;
+7593671042749210634 -> 7530320773649420121 ;
+14095941831530262693 -> 9963019769462593111 ;
+9963019769462593111 -> 3257043735995619722 ;
+5319273083817988343 -> 18363178271477303333 ;
+18363178271477303333 -> 7932635087916485688 ;
+6057653166029048416 -> 9833118739676884429 ;
+9833118739676884429 -> 7530320773649420121 ;
+14095587089070855019 -> 17038216975466555250 ;
+17038216975466555250 -> 16166773499711238315 ;
+17038216975466555250 -> 6977393748965832514 ;
+17038216975466555250 -> 1408465132197519472 ;
+16166773499711238315 -> 6977393748965832514 ;
+6977393748965832514 -> 1408465132197519472 ;
+1408465132197519472 -> 511367809469598054 ;
+511367809469598054 -> 7593671042749210634 ;
+511367809469598054 -> 9963019769462593111 ;
+511367809469598054 -> 18363178271477303333 ;
+511367809469598054 -> 9833118739676884429 ;
+511367809469598054 -> 573199832019545817 ;
+511367809469598054 -> 3257043735995619722 ;
+511367809469598054 -> 7932635087916485688 ;
+511367809469598054 -> 7530320773649420121 ;
+336423267109748120 -> 7593671042749210634 ;
+336423267109748120 -> 14055044653262428602 ;
+336423267109748120 -> 1839271424580645861 ;
+336423267109748120 -> 12361211920184159360 ;
+336423267109748120 -> 9551622893277502296 ;
+336423267109748120 -> 14047945586990659835 ;
+336423267109748120 -> 16043038957529961188 ;
+336423267109748120 -> 2662471616545355745 ;
+336423267109748120 -> 5925884239514408545 ;
+16613919819049421590 -> 351531832987756376 ;
+351531832987756376 -> 14055044653262428602 ;
+351531832987756376 -> 1839271424580645861 ;
+351531832987756376 -> 12361211920184159360 ;
+351531832987756376 -> 9551622893277502296 ;
+}

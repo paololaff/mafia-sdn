@@ -1,0 +1,1456 @@
+{
+    "__meta__": {
+        "version": [
+            2,
+            5
+        ],
+        "compiler": "https://github.com/p4lang/p4c-bm"
+    },
+    "header_types": [
+        {
+            "name": "standard_metadata_t",
+            "id": 0,
+            "fields": [
+                [
+                    "ingress_port",
+                    9
+                ],
+                [
+                    "packet_length",
+                    32
+                ],
+                [
+                    "egress_spec",
+                    9
+                ],
+                [
+                    "egress_port",
+                    9
+                ],
+                [
+                    "egress_instance",
+                    32
+                ],
+                [
+                    "instance_type",
+                    32
+                ],
+                [
+                    "clone_spec",
+                    32
+                ],
+                [
+                    "_padding",
+                    5
+                ]
+            ],
+            "length_exp": null,
+            "max_length": null
+        },
+        {
+            "name": "tcp_t",
+            "id": 1,
+            "fields": [
+                [
+                    "src",
+                    16
+                ],
+                [
+                    "dst",
+                    16
+                ],
+                [
+                    "seq_n",
+                    32
+                ],
+                [
+                    "ack_n",
+                    32
+                ],
+                [
+                    "data_offset",
+                    4
+                ],
+                [
+                    "res",
+                    3
+                ],
+                [
+                    "ecn",
+                    3
+                ],
+                [
+                    "ctrl",
+                    6
+                ],
+                [
+                    "window",
+                    16
+                ],
+                [
+                    "checksum",
+                    16
+                ],
+                [
+                    "urgent",
+                    16
+                ]
+            ],
+            "length_exp": null,
+            "max_length": null
+        },
+        {
+            "name": "ipv4_t",
+            "id": 2,
+            "fields": [
+                [
+                    "version",
+                    4
+                ],
+                [
+                    "ihl",
+                    4
+                ],
+                [
+                    "tos",
+                    8
+                ],
+                [
+                    "totalLen",
+                    16
+                ],
+                [
+                    "identification",
+                    16
+                ],
+                [
+                    "flags",
+                    3
+                ],
+                [
+                    "fragOffset",
+                    13
+                ],
+                [
+                    "ttl",
+                    8
+                ],
+                [
+                    "protocol",
+                    8
+                ],
+                [
+                    "checksum",
+                    16
+                ],
+                [
+                    "src",
+                    32
+                ],
+                [
+                    "dst",
+                    32
+                ]
+            ],
+            "length_exp": null,
+            "max_length": null
+        },
+        {
+            "name": "vlan_t",
+            "id": 3,
+            "fields": [
+                [
+                    "pcp",
+                    3
+                ],
+                [
+                    "dei",
+                    1
+                ],
+                [
+                    "vid",
+                    12
+                ],
+                [
+                    "ether_type",
+                    16
+                ]
+            ],
+            "length_exp": null,
+            "max_length": null
+        },
+        {
+            "name": "ethernet_t",
+            "id": 4,
+            "fields": [
+                [
+                    "dst",
+                    48
+                ],
+                [
+                    "src",
+                    48
+                ],
+                [
+                    "ether_type",
+                    16
+                ]
+            ],
+            "length_exp": null,
+            "max_length": null
+        },
+        {
+            "name": "mafia_metadata_t",
+            "id": 5,
+            "fields": [
+                [
+                    "switch_id",
+                    8
+                ],
+                [
+                    "is_first_hop",
+                    1
+                ],
+                [
+                    "is_last_hop",
+                    1
+                ],
+                [
+                    "pcsa_hash_0",
+                    32
+                ],
+                [
+                    "pcsa_hash_1",
+                    32
+                ],
+                [
+                    "hll_hash_0",
+                    32
+                ],
+                [
+                    "hll_hash_1",
+                    32
+                ],
+                [
+                    "flow_index",
+                    64
+                ],
+                [
+                    "countmin_hash_h_0",
+                    2
+                ],
+                [
+                    "countmin_hash_index_0",
+                    8
+                ],
+                [
+                    "countmin_hash_h_1",
+                    2
+                ],
+                [
+                    "countmin_hash_index_1",
+                    8
+                ],
+                [
+                    "countmin_hash_h_2",
+                    2
+                ],
+                [
+                    "countmin_hash_index_2",
+                    8
+                ],
+                [
+                    "countmin_hash_h_3",
+                    2
+                ],
+                [
+                    "countmin_hash_index_3",
+                    8
+                ],
+                [
+                    "countmin_sketch",
+                    32
+                ],
+                [
+                    "countmin_sketch_lambda_val",
+                    32
+                ],
+                [
+                    "_padding",
+                    6
+                ]
+            ],
+            "length_exp": null,
+            "max_length": null
+        },
+        {
+            "name": "intrinsic_metadata_t",
+            "id": 6,
+            "fields": [
+                [
+                    "ingress_global_timestamp",
+                    48
+                ],
+                [
+                    "lf_field_list",
+                    32
+                ],
+                [
+                    "mcast_grp",
+                    16
+                ],
+                [
+                    "egress_rid",
+                    16
+                ]
+            ],
+            "length_exp": null,
+            "max_length": null
+        }
+    ],
+    "headers": [
+        {
+            "name": "standard_metadata",
+            "id": 0,
+            "header_type": "standard_metadata_t",
+            "metadata": true
+        },
+        {
+            "name": "tcp",
+            "id": 1,
+            "header_type": "tcp_t",
+            "metadata": false
+        },
+        {
+            "name": "ipv4",
+            "id": 2,
+            "header_type": "ipv4_t",
+            "metadata": false
+        },
+        {
+            "name": "vlan",
+            "id": 3,
+            "header_type": "vlan_t",
+            "metadata": false
+        },
+        {
+            "name": "eth",
+            "id": 4,
+            "header_type": "ethernet_t",
+            "metadata": false
+        },
+        {
+            "name": "mafia_metadata",
+            "id": 5,
+            "header_type": "mafia_metadata_t",
+            "metadata": true
+        },
+        {
+            "name": "intrinsic_metadata",
+            "id": 6,
+            "header_type": "intrinsic_metadata_t",
+            "metadata": true
+        }
+    ],
+    "header_stacks": [],
+    "parsers": [
+        {
+            "name": "parser",
+            "id": 0,
+            "init_state": "start",
+            "parse_states": [
+                {
+                    "name": "start",
+                    "id": 0,
+                    "parser_ops": [],
+                    "transition_key": [],
+                    "transitions": [
+                        {
+                            "type": "default",
+                            "value": null,
+                            "mask": null,
+                            "next_state": "parse_ethernet"
+                        }
+                    ]
+                },
+                {
+                    "name": "parse_ethernet",
+                    "id": 1,
+                    "parser_ops": [
+                        {
+                            "op": "extract",
+                            "parameters": [
+                                {
+                                    "type": "regular",
+                                    "value": "eth"
+                                }
+                            ]
+                        }
+                    ],
+                    "transition_key": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "eth",
+                                "ether_type"
+                            ]
+                        }
+                    ],
+                    "transitions": [
+                        {
+                            "type": "hexstr",
+                            "value": "0x8100",
+                            "mask": null,
+                            "next_state": "parse_vlan"
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x0800",
+                            "mask": null,
+                            "next_state": "parse_ipv4"
+                        },
+                        {
+                            "type": "default",
+                            "value": null,
+                            "mask": null,
+                            "next_state": null
+                        }
+                    ]
+                },
+                {
+                    "name": "parse_vlan",
+                    "id": 2,
+                    "parser_ops": [
+                        {
+                            "op": "extract",
+                            "parameters": [
+                                {
+                                    "type": "regular",
+                                    "value": "vlan"
+                                }
+                            ]
+                        }
+                    ],
+                    "transition_key": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "vlan",
+                                "ether_type"
+                            ]
+                        }
+                    ],
+                    "transitions": [
+                        {
+                            "type": "hexstr",
+                            "value": "0x0800",
+                            "mask": null,
+                            "next_state": "parse_ipv4"
+                        },
+                        {
+                            "type": "default",
+                            "value": null,
+                            "mask": null,
+                            "next_state": null
+                        }
+                    ]
+                },
+                {
+                    "name": "parse_ipv4",
+                    "id": 3,
+                    "parser_ops": [
+                        {
+                            "op": "extract",
+                            "parameters": [
+                                {
+                                    "type": "regular",
+                                    "value": "ipv4"
+                                }
+                            ]
+                        }
+                    ],
+                    "transition_key": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "ipv4",
+                                "protocol"
+                            ]
+                        }
+                    ],
+                    "transitions": [
+                        {
+                            "type": "hexstr",
+                            "value": "0x06",
+                            "mask": null,
+                            "next_state": "parse_tcp"
+                        },
+                        {
+                            "type": "default",
+                            "value": null,
+                            "mask": null,
+                            "next_state": null
+                        }
+                    ]
+                },
+                {
+                    "name": "parse_tcp",
+                    "id": 4,
+                    "parser_ops": [
+                        {
+                            "op": "extract",
+                            "parameters": [
+                                {
+                                    "type": "regular",
+                                    "value": "tcp"
+                                }
+                            ]
+                        }
+                    ],
+                    "transition_key": [],
+                    "transitions": [
+                        {
+                            "type": "default",
+                            "value": null,
+                            "mask": null,
+                            "next_state": null
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "parse_vsets": [],
+    "deparsers": [
+        {
+            "name": "deparser",
+            "id": 0,
+            "order": [
+                "eth",
+                "vlan",
+                "ipv4",
+                "tcp"
+            ]
+        }
+    ],
+    "meter_arrays": [],
+    "actions": [
+        {
+            "name": "a_countmin_hash_countmin_sketch",
+            "id": 0,
+            "runtime_data": [],
+            "primitives": [
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "countmin_hash_h_0"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x0"
+                        }
+                    ]
+                },
+                {
+                    "op": "modify_field_with_hash_based_offset",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "countmin_hash_index_0"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x0"
+                        },
+                        {
+                            "type": "calculation",
+                            "value": "countmin_hash_1"
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x100"
+                        }
+                    ]
+                },
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "countmin_hash_h_1"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x1"
+                        }
+                    ]
+                },
+                {
+                    "op": "modify_field_with_hash_based_offset",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "countmin_hash_index_1"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x0"
+                        },
+                        {
+                            "type": "calculation",
+                            "value": "countmin_hash_2"
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x100"
+                        }
+                    ]
+                },
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "countmin_hash_h_2"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x2"
+                        }
+                    ]
+                },
+                {
+                    "op": "modify_field_with_hash_based_offset",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "countmin_hash_index_2"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x0"
+                        },
+                        {
+                            "type": "calculation",
+                            "value": "countmin_hash_3"
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x100"
+                        }
+                    ]
+                },
+                {
+                    "op": "modify_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "countmin_hash_h_3"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x3"
+                        }
+                    ]
+                },
+                {
+                    "op": "modify_field_with_hash_based_offset",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "countmin_hash_index_3"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x0"
+                        },
+                        {
+                            "type": "calculation",
+                            "value": "countmin_hash_4"
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x100"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "a_countmin_sketch",
+            "id": 1,
+            "runtime_data": [],
+            "primitives": [
+                {
+                    "op": "register_read",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "countmin_sketch_lambda_val"
+                            ]
+                        },
+                        {
+                            "type": "register_array",
+                            "value": "countmin_sketch"
+                        },
+                        {
+                            "type": "expression",
+                            "value": {
+                                "type": "expression",
+                                "value": {
+                                    "op": "+",
+                                    "left": {
+                                        "type": "expression",
+                                        "value": {
+                                            "op": "*",
+                                            "left": {
+                                                "type": "field",
+                                                "value": [
+                                                    "mafia_metadata",
+                                                    "countmin_hash_h_0"
+                                                ]
+                                            },
+                                            "right": {
+                                                "type": "hexstr",
+                                                "value": "0x100"
+                                            }
+                                        }
+                                    },
+                                    "right": {
+                                        "type": "field",
+                                        "value": [
+                                            "mafia_metadata",
+                                            "countmin_hash_index_0"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "op": "add_to_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "countmin_sketch_lambda_val"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x1"
+                        }
+                    ]
+                },
+                {
+                    "op": "register_write",
+                    "parameters": [
+                        {
+                            "type": "register_array",
+                            "value": "countmin_sketch"
+                        },
+                        {
+                            "type": "expression",
+                            "value": {
+                                "type": "expression",
+                                "value": {
+                                    "op": "+",
+                                    "left": {
+                                        "type": "expression",
+                                        "value": {
+                                            "op": "*",
+                                            "left": {
+                                                "type": "field",
+                                                "value": [
+                                                    "mafia_metadata",
+                                                    "countmin_hash_h_0"
+                                                ]
+                                            },
+                                            "right": {
+                                                "type": "hexstr",
+                                                "value": "0x100"
+                                            }
+                                        }
+                                    },
+                                    "right": {
+                                        "type": "field",
+                                        "value": [
+                                            "mafia_metadata",
+                                            "countmin_hash_index_0"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "countmin_sketch_lambda_val"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "op": "register_read",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "countmin_sketch_lambda_val"
+                            ]
+                        },
+                        {
+                            "type": "register_array",
+                            "value": "countmin_sketch"
+                        },
+                        {
+                            "type": "expression",
+                            "value": {
+                                "type": "expression",
+                                "value": {
+                                    "op": "+",
+                                    "left": {
+                                        "type": "expression",
+                                        "value": {
+                                            "op": "*",
+                                            "left": {
+                                                "type": "field",
+                                                "value": [
+                                                    "mafia_metadata",
+                                                    "countmin_hash_h_1"
+                                                ]
+                                            },
+                                            "right": {
+                                                "type": "hexstr",
+                                                "value": "0x100"
+                                            }
+                                        }
+                                    },
+                                    "right": {
+                                        "type": "field",
+                                        "value": [
+                                            "mafia_metadata",
+                                            "countmin_hash_index_1"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "op": "add_to_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "countmin_sketch_lambda_val"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x1"
+                        }
+                    ]
+                },
+                {
+                    "op": "register_write",
+                    "parameters": [
+                        {
+                            "type": "register_array",
+                            "value": "countmin_sketch"
+                        },
+                        {
+                            "type": "expression",
+                            "value": {
+                                "type": "expression",
+                                "value": {
+                                    "op": "+",
+                                    "left": {
+                                        "type": "expression",
+                                        "value": {
+                                            "op": "*",
+                                            "left": {
+                                                "type": "field",
+                                                "value": [
+                                                    "mafia_metadata",
+                                                    "countmin_hash_h_1"
+                                                ]
+                                            },
+                                            "right": {
+                                                "type": "hexstr",
+                                                "value": "0x100"
+                                            }
+                                        }
+                                    },
+                                    "right": {
+                                        "type": "field",
+                                        "value": [
+                                            "mafia_metadata",
+                                            "countmin_hash_index_1"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "countmin_sketch_lambda_val"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "op": "register_read",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "countmin_sketch_lambda_val"
+                            ]
+                        },
+                        {
+                            "type": "register_array",
+                            "value": "countmin_sketch"
+                        },
+                        {
+                            "type": "expression",
+                            "value": {
+                                "type": "expression",
+                                "value": {
+                                    "op": "+",
+                                    "left": {
+                                        "type": "expression",
+                                        "value": {
+                                            "op": "*",
+                                            "left": {
+                                                "type": "field",
+                                                "value": [
+                                                    "mafia_metadata",
+                                                    "countmin_hash_h_2"
+                                                ]
+                                            },
+                                            "right": {
+                                                "type": "hexstr",
+                                                "value": "0x100"
+                                            }
+                                        }
+                                    },
+                                    "right": {
+                                        "type": "field",
+                                        "value": [
+                                            "mafia_metadata",
+                                            "countmin_hash_index_2"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "op": "add_to_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "countmin_sketch_lambda_val"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x1"
+                        }
+                    ]
+                },
+                {
+                    "op": "register_write",
+                    "parameters": [
+                        {
+                            "type": "register_array",
+                            "value": "countmin_sketch"
+                        },
+                        {
+                            "type": "expression",
+                            "value": {
+                                "type": "expression",
+                                "value": {
+                                    "op": "+",
+                                    "left": {
+                                        "type": "expression",
+                                        "value": {
+                                            "op": "*",
+                                            "left": {
+                                                "type": "field",
+                                                "value": [
+                                                    "mafia_metadata",
+                                                    "countmin_hash_h_2"
+                                                ]
+                                            },
+                                            "right": {
+                                                "type": "hexstr",
+                                                "value": "0x100"
+                                            }
+                                        }
+                                    },
+                                    "right": {
+                                        "type": "field",
+                                        "value": [
+                                            "mafia_metadata",
+                                            "countmin_hash_index_2"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "countmin_sketch_lambda_val"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "op": "register_read",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "countmin_sketch_lambda_val"
+                            ]
+                        },
+                        {
+                            "type": "register_array",
+                            "value": "countmin_sketch"
+                        },
+                        {
+                            "type": "expression",
+                            "value": {
+                                "type": "expression",
+                                "value": {
+                                    "op": "+",
+                                    "left": {
+                                        "type": "expression",
+                                        "value": {
+                                            "op": "*",
+                                            "left": {
+                                                "type": "field",
+                                                "value": [
+                                                    "mafia_metadata",
+                                                    "countmin_hash_h_3"
+                                                ]
+                                            },
+                                            "right": {
+                                                "type": "hexstr",
+                                                "value": "0x100"
+                                            }
+                                        }
+                                    },
+                                    "right": {
+                                        "type": "field",
+                                        "value": [
+                                            "mafia_metadata",
+                                            "countmin_hash_index_3"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "op": "add_to_field",
+                    "parameters": [
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "countmin_sketch_lambda_val"
+                            ]
+                        },
+                        {
+                            "type": "hexstr",
+                            "value": "0x1"
+                        }
+                    ]
+                },
+                {
+                    "op": "register_write",
+                    "parameters": [
+                        {
+                            "type": "register_array",
+                            "value": "countmin_sketch"
+                        },
+                        {
+                            "type": "expression",
+                            "value": {
+                                "type": "expression",
+                                "value": {
+                                    "op": "+",
+                                    "left": {
+                                        "type": "expression",
+                                        "value": {
+                                            "op": "*",
+                                            "left": {
+                                                "type": "field",
+                                                "value": [
+                                                    "mafia_metadata",
+                                                    "countmin_hash_h_3"
+                                                ]
+                                            },
+                                            "right": {
+                                                "type": "hexstr",
+                                                "value": "0x100"
+                                            }
+                                        }
+                                    },
+                                    "right": {
+                                        "type": "field",
+                                        "value": [
+                                            "mafia_metadata",
+                                            "countmin_hash_index_3"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "type": "field",
+                            "value": [
+                                "mafia_metadata",
+                                "countmin_sketch_lambda_val"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "pipelines": [
+        {
+            "name": "ingress",
+            "id": 0,
+            "init_table": "t_countmin_hash_countmin_sketch",
+            "tables": [
+                {
+                    "name": "t_countmin_sketch",
+                    "id": 0,
+                    "match_type": "exact",
+                    "type": "simple",
+                    "max_size": 16384,
+                    "with_counters": false,
+                    "direct_meters": null,
+                    "support_timeout": false,
+                    "key": [],
+                    "actions": [
+                        "a_countmin_sketch"
+                    ],
+                    "next_tables": {
+                        "a_countmin_sketch": null
+                    },
+                    "base_default_next": null
+                },
+                {
+                    "name": "t_countmin_hash_countmin_sketch",
+                    "id": 1,
+                    "match_type": "exact",
+                    "type": "simple",
+                    "max_size": 16384,
+                    "with_counters": false,
+                    "direct_meters": null,
+                    "support_timeout": false,
+                    "key": [],
+                    "actions": [
+                        "a_countmin_hash_countmin_sketch"
+                    ],
+                    "next_tables": {
+                        "a_countmin_hash_countmin_sketch": "t_countmin_sketch"
+                    },
+                    "base_default_next": "t_countmin_sketch"
+                }
+            ],
+            "action_profiles": [],
+            "conditionals": []
+        },
+        {
+            "name": "egress",
+            "id": 1,
+            "init_table": null,
+            "tables": [],
+            "action_profiles": [],
+            "conditionals": []
+        }
+    ],
+    "calculations": [
+        {
+            "name": "countmin_hash_3",
+            "id": 0,
+            "input": [
+                {
+                    "type": "field",
+                    "value": [
+                        "ipv4",
+                        "src"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "ipv4",
+                        "dst"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "tcp",
+                        "src"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "tcp",
+                        "dst"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "ipv4",
+                        "protocol"
+                    ]
+                }
+            ],
+            "algo": "murmur_3"
+        },
+        {
+            "name": "countmin_hash_2",
+            "id": 1,
+            "input": [
+                {
+                    "type": "field",
+                    "value": [
+                        "ipv4",
+                        "src"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "ipv4",
+                        "dst"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "tcp",
+                        "src"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "tcp",
+                        "dst"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "ipv4",
+                        "protocol"
+                    ]
+                }
+            ],
+            "algo": "murmur_2"
+        },
+        {
+            "name": "countmin_hash_1",
+            "id": 2,
+            "input": [
+                {
+                    "type": "field",
+                    "value": [
+                        "ipv4",
+                        "src"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "ipv4",
+                        "dst"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "tcp",
+                        "src"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "tcp",
+                        "dst"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "ipv4",
+                        "protocol"
+                    ]
+                }
+            ],
+            "algo": "murmur_1"
+        },
+        {
+            "name": "countmin_hash_4",
+            "id": 3,
+            "input": [
+                {
+                    "type": "field",
+                    "value": [
+                        "ipv4",
+                        "src"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "ipv4",
+                        "dst"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "tcp",
+                        "src"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "tcp",
+                        "dst"
+                    ]
+                },
+                {
+                    "type": "field",
+                    "value": [
+                        "ipv4",
+                        "protocol"
+                    ]
+                }
+            ],
+            "algo": "murmur_4"
+        }
+    ],
+    "checksums": [],
+    "learn_lists": [],
+    "field_lists": [],
+    "counter_arrays": [],
+    "register_arrays": [
+        {
+            "name": "countmin_sketch",
+            "id": 0,
+            "bitwidth": 32,
+            "size": 1024
+        }
+    ],
+    "force_arith": [
+        [
+            "standard_metadata",
+            "ingress_port"
+        ],
+        [
+            "standard_metadata",
+            "packet_length"
+        ],
+        [
+            "standard_metadata",
+            "egress_spec"
+        ],
+        [
+            "standard_metadata",
+            "egress_port"
+        ],
+        [
+            "standard_metadata",
+            "egress_instance"
+        ],
+        [
+            "standard_metadata",
+            "instance_type"
+        ],
+        [
+            "standard_metadata",
+            "clone_spec"
+        ],
+        [
+            "standard_metadata",
+            "_padding"
+        ],
+        [
+            "intrinsic_metadata",
+            "ingress_global_timestamp"
+        ],
+        [
+            "intrinsic_metadata",
+            "lf_field_list"
+        ],
+        [
+            "intrinsic_metadata",
+            "mcast_grp"
+        ],
+        [
+            "intrinsic_metadata",
+            "egress_rid"
+        ]
+    ]
+}

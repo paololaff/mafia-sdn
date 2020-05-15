@@ -1,0 +1,71 @@
+// flow_index flow_index0
+// flow_index flow_index1
+// bytes_counter0 bytes_counter01
+// bytes_th_exceeded bytes_th_exceeded0
+// flow_index0 flow_index00
+// flow_index1 flow_index10
+// pkt_counter0 pkt_counter01
+// pkts_th_exceeded pkts_th_exceeded0
+// tmp0 tmp00
+// tmp1 tmp10
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+digraph graph_output {splines=true node [shape = box style="rounded,filled"];
+9498538683929299888 [label = "p.flow_index10 = hash5(p.ipv4_src, p.ipv4_dst, p.tcp_src, p.tcp_dst, p.ipv4_proto) % 4096"  fillcolor=white];
+7191856371558237491 [label = "p.pkt_counter00 = pkt_counter[p.flow_index10]"  fillcolor=white];
+12874834027083525416 [label = "p.bytes_counter00 = bytes_counter[p.flow_index10]"  fillcolor=white];
+10015885142464628273 [label = "p.pkt_counter01 = p.pkt_counter00 + 1"  fillcolor=white];
+9651909220468302688 [label = "p.bytes_counter01 = p.bytes_counter00 + p.pkt_len"  fillcolor=white];
+17928166222120159703 [label = "p.tmp00 = p.pkt_counter01 > 999"  fillcolor=white];
+1878286731230149099 [label = "p.pkts_th_exceeded0 = (p.tmp00) ? (1) : p.pkts_th_exceeded"  fillcolor=white];
+17719093779431821602 [label = "p.tmp10 = p.bytes_counter01 > 999"  fillcolor=white];
+15868979332206825750 [label = "p.bytes_th_exceeded0 = (p.tmp10) ? (1) : p.bytes_th_exceeded"  fillcolor=white];
+18180865169698102719 [label = "pkt_counter[p.flow_index10] = p.pkt_counter00 + 1"  fillcolor=white];
+17185452238728581347 [label = "bytes_counter[p.flow_index10] = p.bytes_counter00 + p.pkt_len"  fillcolor=white];
+9498538683929299888 -> 7191856371558237491 ;
+9498538683929299888 -> 12874834027083525416 ;
+9498538683929299888 -> 18180865169698102719 ;
+9498538683929299888 -> 17185452238728581347 ;
+7191856371558237491 -> 10015885142464628273 ;
+7191856371558237491 -> 18180865169698102719 ;
+12874834027083525416 -> 9651909220468302688 ;
+12874834027083525416 -> 17185452238728581347 ;
+10015885142464628273 -> 17928166222120159703 ;
+9651909220468302688 -> 17719093779431821602 ;
+17928166222120159703 -> 1878286731230149099 ;
+17719093779431821602 -> 15868979332206825750 ;
+18180865169698102719 -> 7191856371558237491 ;
+17185452238728581347 -> 12874834027083525416 ;
+}
+// Warning: edge already exists, ignoring add_edge command
+// Warning: edge already exists, ignoring add_edge command
+digraph pipeline_diagram {splines=true node [shape = box style="rounded,filled" fontsize = 10];
+14530467531862835697 [label = "p.flow_index10 = hash5(p.ipv4_src, p.ipv4_dst, p.tcp_src, p.tcp_dst, p.ipv4_proto) % 4096;
+"  pos = "0,0" fillcolor=white];
+4286972451178946628 [label = "p.pkt_counter00 = pkt_counter[p.flow_index10];
+pkt_counter[p.flow_index10] = p.pkt_counter00 + 1;
+"  pos = "250,0" fillcolor=darkturquoise];
+5738149789479770911 [label = "p.bytes_counter00 = bytes_counter[p.flow_index10];
+bytes_counter[p.flow_index10] = p.bytes_counter00 + p.pkt_len;
+"  pos = "250,75" fillcolor=darkturquoise];
+2334057058035523613 [label = "p.pkt_counter01 = p.pkt_counter00 + 1;
+"  pos = "500,0" fillcolor=white];
+17221132698161692141 [label = "p.bytes_counter01 = p.bytes_counter00 + p.pkt_len;
+"  pos = "500,75" fillcolor=white];
+12697289440322015715 [label = "p.tmp00 = p.pkt_counter01 > 999;
+"  pos = "750,0" fillcolor=white];
+10348173428488290143 [label = "p.tmp10 = p.bytes_counter01 > 999;
+"  pos = "750,75" fillcolor=white];
+11643876369544975627 [label = "p.pkts_th_exceeded0 = (p.tmp00) ? (1) : p.pkts_th_exceeded;
+"  pos = "1000,0" fillcolor=white];
+1864087807678454685 [label = "p.bytes_th_exceeded0 = (p.tmp10) ? (1) : p.bytes_th_exceeded;
+"  pos = "1000,75" fillcolor=white];
+14530467531862835697 -> 4286972451178946628 ;
+14530467531862835697 -> 5738149789479770911 ;
+4286972451178946628 -> 2334057058035523613 ;
+5738149789479770911 -> 17221132698161692141 ;
+2334057058035523613 -> 12697289440322015715 ;
+17221132698161692141 -> 10348173428488290143 ;
+12697289440322015715 -> 11643876369544975627 ;
+10348173428488290143 -> 1864087807678454685 ;
+}

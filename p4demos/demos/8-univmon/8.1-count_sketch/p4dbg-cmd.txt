@@ -1,0 +1,31 @@
+b table table_countsketch_hashes
+b table table_countsketch_update_1
+b table table_countsketch_update_2
+b table table_countsketch_update_3
+b table table_countsketch_update_4
+
+b action do_countsketch_increment_1
+b action do_countsketch_increment_2
+b action do_countsketch_increment_3
+b action do_countsketch_increment_4
+b action do_countsketch_decrement_1
+b action do_countsketch_decrement_2
+b action do_countsketch_decrement_3
+b action do_countsketch_decrement_4
+
+w countsketch_metadata.flowkey
+w countsketch_metadata.countsketch_val
+
+w countsketch_metadata.g1_x
+w countsketch_metadata.g2_x
+w countsketch_metadata.g3_x
+w countsketch_metadata.g4_x
+
+w countsketch_metadata.h1_x
+w countsketch_metadata.h2_x
+w countsketch_metadata.h3_x
+w countsketch_metadata.h4_x
+
+
+show_wps
+show_bps

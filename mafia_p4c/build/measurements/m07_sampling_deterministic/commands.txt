@@ -1,0 +1,12 @@
+table_set_default t_n_increment a_n_increment
+table_set_default t_delta_increment a_delta_increment
+table_set_default t_load_delta a_load_delta
+table_set_default t_load_m a_load_m
+table_set_default t_m_increment a_m_increment
+table_set_default t_sample a_sample
+mirroring_add 1 0
+table_set_default t_load_n a_load_n
+table_set_default t_n_reset a_n_reset
+table_set_default t_m_reset a_m_reset
+table_set_default t_delta_reset a_delta_reset
+table_set_default t_samples a_samples

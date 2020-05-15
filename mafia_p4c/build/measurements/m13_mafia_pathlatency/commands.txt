@@ -1,0 +1,6 @@
+table_set_default t_is_last_switch a_is_last_switch
+table_set_default t_ts_change a_ts_change
+table_set_default t_generate_segway_report a_generate_segway_report
+mirroring_add 1 0
+table_set_default t_tag_end_update a_tag_end_update
+table_set_default t_send_segway_report a_send_segway_report

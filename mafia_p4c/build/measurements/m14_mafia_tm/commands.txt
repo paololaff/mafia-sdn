@@ -1,0 +1,8 @@
+table_set_default t_set_border_tag a_set_border_tag
+table_set_default t_update_border_counter a_update_border_counter
+
+
+table_set_default   table_route_next_hop _drop
+table_add           table_route_next_hop                do_route_next_hop                            10.0.0.1/32     => 00:00:00:00:00:01 1
+table_add           table_route_next_hop                do_route_next_hop                            10.0.0.2/32     => 00:00:00:00:00:02 2
+table_add           table_route_next_hop                do_route_next_hop                            10.0.0.3/32     => 00:00:00:00:00:03 3

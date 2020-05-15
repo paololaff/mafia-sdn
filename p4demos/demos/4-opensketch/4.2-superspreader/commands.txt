@@ -1,0 +1,2 @@
+table_set_default table_drop _drop
+table_set_default table_ssd do_ssd_sketch

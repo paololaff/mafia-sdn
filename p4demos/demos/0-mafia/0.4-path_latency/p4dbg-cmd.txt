@@ -1,0 +1,35 @@
+b table table_veridp_load_switch_id
+b table table_veridp_sample_interval
+b table table_veridp_select
+b table table_veridp_in_out_port
+b table table_veridp_calculate_bf_indexes
+b table table_veridp_switch_net_entry
+b table table_veridp_switch_net_exit
+b table table_veridp_report
+b action do_veridp_report
+b action do_veridp_load_switch_id
+b action do_veridp_in_out_port
+b action do_veridp_switch_entry
+b action do_veridp_switch_exit
+b action do_veridp_sample_interval
+b action do_veridp_select
+b action do_veridp_update_bf_tag
+b action do_veridp_calculate_bf_indexes
+w veridp_metadata.switch_id
+w veridp_metadata.input_port
+w veridp_metadata.output_port
+w veridp_metadata.murmur_hash
+w veridp_metadata.h1_x
+w veridp_metadata.h2_x
+w veridp_metadata.g0_x
+w veridp_metadata.g1_x
+w veridp_metadata.g2_x
+w veridp_metadata.bf_index_0
+w veridp_metadata.bf_index_1
+w veridp_metadata.bf_index_2
+w ipv4.tos
+w veridp_metadata.marker
+w veridp_metadata.bf_tag_value
+w veridp_h.bf_tag
+show_wps
+show_bps

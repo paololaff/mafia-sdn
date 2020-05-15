@@ -1,0 +1,39 @@
+
+// #include "hashes.h"
+// Relative path from where the domino compiler is located
+#include "../domino-compiler/examples/hashes.h"
+
+#define low_th 100
+#define hi_th  1000
+
+struct Packet {
+  int ipv4_src;
+  int ipv4_dst;
+  int tcp_src;
+  int tcp_dst;
+  int ipv4_proto;
+
+  int sketch1_idx;
+  int sketch2_idx;
+  int sketch3_idx;
+  int sketch4_idx;
+};
+
+#define NUM_ENTRIES 256
+
+int sketch_cnt_1[NUM_ENTRIES] = {0};
+int sketch_cnt_2[NUM_ENTRIES] = {0};
+int sketch_cnt_3[NUM_ENTRIES] = {0};
+int sketch_cnt_4[NUM_ENTRIES] = {0};
+
+void func(struct Packet p) {
+  p.sketch1_idx = hash5(p.ipv4_src, p.ipv4_dst, p.tcp_src, p.tcp_dst, p.ipv4_proto) % NUM_ENTRIES;
+  p.sketch2_idx = hash5(p.ipv4_src, p.ipv4_dst, p.tcp_src, p.tcp_dst, p.ipv4_proto) % NUM_ENTRIES;
+  p.sketch3_idx = hash5(p.ipv4_src, p.ipv4_dst, p.tcp_src, p.tcp_dst, p.ipv4_proto) % NUM_ENTRIES;
+  p.sketch4_idx = hash5(p.ipv4_src, p.ipv4_dst, p.tcp_src, p.tcp_dst, p.ipv4_proto) % NUM_ENTRIES;
+
+  sketch_cnt_1[p.sketch1_idx]+= 1;
+	sketch_cnt_2[p.sketch2_idx]+= 1;
+	sketch_cnt_3[p.sketch3_idx]+= 1;
+  sketch_cnt_4[p.sketch4_idx]+= 1;
+}

@@ -1,0 +1,10 @@
+b table table_netsight
+b table table_postcard
+b action do_netsight_postcard
+b action do_postcard
+w netsight_metadata.input_port
+w netsight_metadata.output_port
+w netsight_metadata.switch_id
+
+show_wps
+show_bps

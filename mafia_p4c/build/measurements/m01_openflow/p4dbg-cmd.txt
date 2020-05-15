@@ -1,0 +1,12 @@
+b table counter_table
+b table duration_table
+b action do_count
+b action update_start_ts
+b action update_duration
+w my_metadata.pkt_count
+w my_metadata.byte_count
+w my_metadata.pkt_ts
+w my_metadata.tmp_ts
+
+show_wps
+show_bps

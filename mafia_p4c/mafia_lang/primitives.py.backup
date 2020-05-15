@@ -1,0 +1,173 @@
+
+import re
+
+from .p4code            import *
+from .p4objects         import *
+from .operators         import Operator
+from .util.lambdacode   import get_lambda_source
+
+class Match(Operator):
+
+    def __init__(self, name, lambda_f, obj = None):
+        super(Match, self).__init__()
+        self.name = name
+        self.lambda_f = lambda_f
+        self.lambda_str = get_lambda_source(self.lambda_f)
+        self.obj = obj
+        self.p4object = None
+
+    def on_next(self, item):
+        if self.lambda_f(item):
+            self._notify_next(item)
+            return True
+        return False
+
+    def on_compile(self, p4_ast, action_list = list(), table_list = list()):
+        regex = re.search( r'lambda (.*):\s*(.+)\s*([=]{2}|>|<)\s*(.+)\s*', self.lambda_str, re.M|re.I)
+        if(regex):
+            self.p4object = P4Table(self.name, None, {regex.group(2).strip(): 'exact'}, [regex.group(4).strip()], p4_ast)
+        else:
+            raise RuntimeError
+        if(action_list):
+            self.p4object.add_action( '_'.join("%s" % a for a in action_list))
+            action_list.clear()
+        table_list.append(self.name)
+        # self._compile()
+
+    # def _compile(self):
+    #     print( self.p4object )
+    #     self.p4table.output_p4_code()
+
+    def __repr__(self):
+        return "match: %s" % get_lambda_source(self.lambda_f)
+
+class Trigger(Operator):
+
+    def __init__(self, name, lambda_f, obj = None):
+        super(Trigger, self).__init__()
+        self.name = name
+        self.lambda_f = lambda_f
+        self.lambda_str = get_lambda_source(self.lambda_f)
+        self.obj = obj
+        self.p4object = None
+
+    def on_next(self, item):
+        if self.lambda_f(item):
+            self._notify_next(item)
+            return True
+        return False
+
+    def on_compile(self, p4_ast, action_list = list(), table_list = list()):
+        regex = re.search( r'lambda (.*):\s*(.+)\s*([=]{2}|>|<)\s*(.+)\s*', self.lambda_str, re.M|re.I)
+        if(regex):
+            self.p4object = P4Table(self.name, 'my_metadata.' + regex.group(2).strip() + '' + regex.group(3).strip() + '' + regex.group(4).strip(), {}, [], p4_ast)
+        else:
+            raise RuntimeError
+        if(action_list):
+            self.p4object.add_action( '_'.join("%s" % a for a in action_list))
+            action_list.clear()
+        table_list.append(self.name)
+        # self._compile()
+
+    # def _compile(self):
+    #     print( self.p4object )
+    #     self.p4table.output_p4_code()
+
+    def __repr__(self):
+        return "trigger: %s" % get_lambda_source(self.lambda_f)
+
+class Counter_op(Operator):
+
+    def __init__(self, name, lambda_f, counter):
+        super(Counter_op, self).__init__()
+        self.name = name
+        self.lambda_f = lambda_f
+        self.lambda_str = get_lambda_source(self.lambda_f)
+        self.p4object = None
+        if(not isinstance(counter, Counter)):
+            raise TypeError('Counter_op works only on Counter object types')
+        self.counter = counter
+
+    def on_next(self, item):
+        # self.counter.add(self.lambda_f(item))
+        self.lambda_f(item)
+        self._notify_next(item)
+        return True
+
+    def on_compile(self, p4_ast, action_list = list(), table_list = list()):
+        # regex = re.findall( r'lambda pkt:\s*([a-zA-Z0-9\(\)\._]+)\s*(([+])\s*([^,]+))*[,\s*]+(<.+>)', get_short_lambda_source(self.updater), re.M|re.I)
+        regex = re.search( r'lambda (.*):\s*([a-zA-Z0-9\(\)\._]+)\s*(([+|-]|[<|>]+)\s*([^,]+))*[,\s*]*', self.lambda_str, re.M|re.I)
+        if(regex):
+            self.p4object = P4Action(self.name, regex.group(4), regex.group(2), regex.group(5), ["index"], p4_ast)
+        else:
+            raise RuntimeError
+        action_list.append(self.name)
+        # self._compile()
+
+    # def _compile(self):
+    #     print( self.p4object )
+        # self.p4action.output_p4_code()
+
+    def __repr__(self):
+        return "Counter_op: %s, %s" % (get_lambda_source(self.lambda_f), self.counter)
+
+
+class Timestamp_get(Operator):
+
+    def __init__(self, name, timestamp):
+        super(Timestamp_get, self).__init__()
+        self.name = name
+        self.p4action = None
+        if(not isinstance(timestamp, Timestamp)):
+            raise TypeError('Timestamp_get works only on Timestamp object types')
+        self.timestamp = timestamp
+
+    def on_next(self, item):
+        self._notify_next(item)
+        return True
+
+    def on_compile(self, p4_ast, action_list = list(), table_list = list()):
+        pass
+
+    def _compile(self):
+        pass
+
+    def __repr__(self):
+        return "Timestamp_get: %s" % self.timestamp
+
+
+class Counter(object):
+
+    def __init__(self, name, n = -1, width = -1):
+        self.name = name
+        self.n = n
+        self.width = width
+        self.val = 0
+
+    def value(self):
+        return self.val
+
+    def add(self, val):
+        print("%s add value %s" % (self.name, str(val)))
+        self.val += val
+
+    def sub(self, val):
+        print("%s sub value %s" % (self.name, str(val)))
+        self.val -= val
+
+    def __add__(self, v):
+        if isinstance(v, int):
+            self.add(v)
+        else:
+            raise TypeError
+
+    def __sub__(self, v):
+        if isinstance(v, int):
+            self.sub(v)
+        else:
+            raise TypeError
+
+
+class Timestamp(object):
+    def __init__(self):
+        pass

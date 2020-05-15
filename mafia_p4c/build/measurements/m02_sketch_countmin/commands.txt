@@ -1,0 +1,2 @@
+table_set_default t_countmin_hash_countmin_sketch a_countmin_hash_countmin_sketch
+table_set_default t_countmin_sketch a_countmin_sketch

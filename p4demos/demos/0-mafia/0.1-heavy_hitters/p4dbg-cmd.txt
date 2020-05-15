@@ -1,0 +1,21 @@
+b table table_bf_write
+b table table_countmin_sketch
+b table table_flow_counter
+b table table_global_counter
+b action table_index_bf
+b action table_bf_read
+w my_metadata.bf_val_1
+w my_metadata.bf_val_2
+w my_metadata.bf_val_3
+w my_metadata.bf_val_4
+
+w my_metadata.sketch_val_1
+w my_metadata.sketch_val_2
+w my_metadata.sketch_val_3
+w my_metadata.sketch_val_4
+w my_metadata.sketch_val_min
+w my_metadata.global_counter_val
+w my_metadata.flow_counter_val
+
+show_wps
+show_bps

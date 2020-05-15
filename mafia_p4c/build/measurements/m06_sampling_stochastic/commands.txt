@@ -1,0 +1,6 @@
+table_set_default t_n_increment a_n_increment
+table_set_default t_sample_probability a_sample_probability
+table_set_default t_duplicate a_duplicate
+mirroring_add 1 0
+table_set_default t_n_samples_increment a_n_samples_increment
+table_set_default t_sample a_sample

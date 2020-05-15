@@ -1,0 +1,14 @@
+table_set_default table_countsketch_hashes _no_op
+table_set_default table_countsketch_update_1 _no_op 
+table_set_default table_countsketch_update_2 _no_op 
+table_set_default table_countsketch_update_3 _no_op 
+table_set_default table_countsketch_update_4 _no_op 
+table_add table_countsketch_hashes do_countsketch_hashes 10.0.0.0/24 =>
+table_add table_countsketch_update_1 do_countsketch_increment_1 1 =>
+table_add table_countsketch_update_2 do_countsketch_increment_2 1 =>
+table_add table_countsketch_update_3 do_countsketch_increment_3 1 =>
+table_add table_countsketch_update_4 do_countsketch_increment_4 1 =>
+table_add table_countsketch_update_1 do_countsketch_decrement_1 0 =>
+table_add table_countsketch_update_2 do_countsketch_decrement_2 0 =>
+table_add table_countsketch_update_3 do_countsketch_decrement_3 0 =>
+table_add table_countsketch_update_4 do_countsketch_decrement_4 0 =>

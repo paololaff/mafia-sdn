@@ -1,0 +1,12 @@
+table_set_default t_pcsa_hash_pcsa_sketch a_pcsa_hash_pcsa_sketch
+table_set_default t_pcsa_hash_tcam_lookup_zeroes_pcsa_sketch a_pcsa_hash_tcam_lookup_zeroes_pcsa_sketch
+table_set_default t_pcsa_sketch a_pcsa_sketch
+
+table_set_default   table_src_mac_overwrite _drop
+table_set_default   table_route_next_hop _drop
+table_add           table_src_mac_overwrite             do_src_mac_overwrite                                   1         => 00:00:00:00:00:01
+table_add           table_src_mac_overwrite             do_src_mac_overwrite                                   2         => 00:00:00:00:00:02
+table_add           table_src_mac_overwrite             do_src_mac_overwrite                                   3         => 00:00:00:00:00:03
+table_add           table_route_next_hop                do_route_next_hop                            10.0.0.1/32     => 00:00:00:00:00:01 1
+table_add           table_route_next_hop                do_route_next_hop                            10.0.0.2/32     => 00:00:00:00:00:02 2
+table_add           table_route_next_hop                do_route_next_hop                            10.0.0.3/32     => 00:00:00:00:00:03 3
